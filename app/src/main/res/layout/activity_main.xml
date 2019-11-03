@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".src.main.MainActivity"
+    android:background="@color/white">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentTop="true"
+        android:id="@+id/main_rl_titlebar">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="wadiz"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:textSize="30sp"
+            android:layout_marginLeft="20dp"
+            android:textColor="@color/black"
+            android:fontFamily="@font/nanumsquareroundeb"
+            android:background="@color/clear"
+            android:textAllCaps="false"
+            android:id="@+id/main_btn_wadiz"/>
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_toLeftOf="@id/main_ib_notification"
+            android:src="@drawable/search"
+            android:scaleType="centerInside"
+            android:background="@color/clear"
+            android:id="@+id/main_ib_search"
+            android:layout_marginRight="20dp">
+
+        </ImageButton>
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/notification"
+            android:scaleType="centerInside"
+            android:background="@color/clear"
+            android:id="@+id/main_ib_notification"
+            android:layout_marginRight="20dp"/>
+    </RelativeLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/main_rl_titlebar"
+        android:layout_above="@id/main_rl_footer"
+        android:id="@+id/main_fl_container"
+        android:layout_marginTop="10dp"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/main_rl_footer">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:background="@drawable/customborder">
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:background="@color/clear"
+                android:drawableTop="@drawable/gift_click"
+                android:text="리워드"
+                android:fontFamily="@font/nanumsquareroundb"
+                android:textStyle="normal"
+                android:gravity="center"
+                android:id="@+id/main_btn_footer_reward"
+                android:layout_gravity="bottom"/>
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:background="@color/clear"
+                android:drawableTop="@drawable/user"
+                android:text="MY"
+                android:fontFamily="@font/nanumsquareroundb"
+                android:textStyle="normal"
+                android:id="@+id/main_btn_footer_mypage"
+                android:gravity="center"
+                android:layout_gravity="bottom"/>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</RelativeLayout>
