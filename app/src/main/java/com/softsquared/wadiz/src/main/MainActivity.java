@@ -1,30 +1,46 @@
 package com.softsquared.wadiz.src.main;
 
+import android.media.Image;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.softsquared.wadiz.R;
 import com.softsquared.wadiz.src.BaseActivity;
 import com.softsquared.wadiz.src.main.interfaces.MainActivityView;
+import com.softsquared.wadiz.src.reward.RewardFragment;
 
-import java.util.zip.Inflater;
 
 public class MainActivity extends BaseActivity implements MainActivityView {
     private TextView mTvHelloWorld;
     FrameLayout mFlContainer;
+    Button mBtnReward, mBtnMypage;
+    FragmentManager fragmentManager;
+    FragmentTransaction transaction;
+    Fragment mRewardFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mFlContainer = findViewById(R.id.main_fl_container);
-        Inflater inflater = new Inflater;
-        inflater.inflate(R.layout.fragment_reward, mFlContainer,false);
-//        mTvHelloWorld = findViewById(R.id.main_tv_hello_world);
+        mBtnMypage = findViewById(R.id.main_btn_footer_mypage);
+        mBtnReward = findViewById(R.id.main_btn_footer_reward);
+
+        fragmentManager = getSupportFragmentManager();
+
+        mRewardFragment = new RewardFragment();
+
+        fragmentManager.beginTransaction().replace(R.id.main_fl_container, mRewardFragment).commitAllowingStateLoss();
+
     }
 
     private void tryGetTest() {

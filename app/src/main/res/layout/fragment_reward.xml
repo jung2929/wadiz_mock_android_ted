@@ -1,44 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/white">
 
-    <LinearLayout
+    <com.google.android.material.tabs.TabLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:id="@+id/reward_ll_title">
+        android:id="@+id/reward_tab"
+        app:tabTextColor="@color/gray"
+        app:tabSelectedTextColor="@color/black"
+        app:tabTextAppearance="@style/tab_text"
+        app:tabIndicatorColor="@color/black">
 
-        <Button
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@color/clear"
-            android:text="리워드 홈"
-            android:fontFamily="@font/nanumsquareroundb"
-            android:textColor="@color/black"
-            android:textStyle="bold"
-            android:textSize="20sp"
-            android:stateListAnimator="@null"
-            android:id="@+id/reward_btn_home"/>
-        <Button
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@color/clear"
-            android:text="오픈예정"
-            android:fontFamily="@font/nanumsquareroundl"
-            android:textColor="@color/black"
-            android:textStyle="normal"
-            android:textSize="20sp"
-            android:stateListAnimator="@null"
-            android:id="@+id/reward_btn_open"/>
+    </com.google.android.material.tabs.TabLayout>
 
-    </LinearLayout>
-
-    <FrameLayout
+    <androidx.viewpager.widget.ViewPager
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/reward_fl_container"/>
+        android:layout_below="@+id/reward_tab"
+        android:id="@+id/reward_vp">
 
-</LinearLayout>
+    </androidx.viewpager.widget.ViewPager>
+
+
+</RelativeLayout>

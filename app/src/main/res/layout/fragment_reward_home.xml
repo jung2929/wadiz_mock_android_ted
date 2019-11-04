@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <androidx.viewpager.widget.ViewPager
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:id="@+id/reward_home_vp"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:orientation="horizontal"
+            android:id="@+id/reward_home_rv"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <EditText
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="5"
+                android:background="@drawable/customborder_sideline"
+                android:id="@+id/reward_home_et"
+                android:drawableEnd="@drawable/search"
+                android:hint="  검색"
+                android:fontFamily="@font/nanumbarungothic"
+                android:padding="5dp"/>
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:background="@drawable/customborder_sideline"
+                android:drawableStart="@drawable/control"
+                android:text="전체"
+                android:fontFamily="@font/nanumbarungothic"
+                android:id="@+id/reward_home_control"
+                android:padding="5dp"/>
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:background="@drawable/customborder_sideline"
+                android:text="추천순"
+                android:fontFamily="@font/nanumbarungothic"
+                android:drawableStart="@drawable/order"
+                android:padding="5dp"
+                android:id="@+id/reward_home_order" />
+            <ImageButton
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/customborder_sideline"
+                android:src="@drawable/list"
+                android:id="@+id/reward_home_showlist"
+                android:padding="5dp"
+                android:scaleType="center"/>
+        </LinearLayout>
+
+        <ListView
+            android:id="@+id/reward_home_lv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"/>
+
+    </LinearLayout>
+
+</ScrollView>

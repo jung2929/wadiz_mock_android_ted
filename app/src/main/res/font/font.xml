@@ -17,5 +17,21 @@
         android:fontStyle="normal"
         android:fontWeight="400"
         android:font="@font/nanumsquareroundeb"/>
+    <font
+        android:fontStyle="normal"
+        android:fontWeight="400"
+        android:font="@font/nanumbarungothicultralight"/>
+    <font
+        android:fontStyle="normal"
+        android:fontWeight="400"
+        android:font="@font/nanumbarungothiclight"/>
+    <font
+        android:fontStyle="normal"
+        android:fontWeight="400"
+        android:font="@font/nanumbarungothic"/>
+    <font
+        android:fontStyle="normal"
+        android:fontWeight="400"
+        android:font="@font/nanumbarungothicbold"/>
 
 </font-family>
