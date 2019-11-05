@@ -1,4 +1,4 @@
-package com.softsquared.wadiz.src.reward_open;
+package com.softsquared.wadiz.src.reward_home;
 
 import android.content.Context;
 import android.view.LayoutInflater;
