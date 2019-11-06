@@ -1,6 +1,6 @@
-package com.softsquared.wadiz.src.mypage_funding.mypage.interfaces;
+package com.softsquared.wadiz.src.mypage_funding.interfaces;
 
-import com.softsquared.wadiz.src.mypage_funding.mypage.models.DefaultResponse;
+import com.softsquared.wadiz.src.mypage_funding.models.DefaultResponse;
 
 import okhttp3.RequestBody;
 import retrofit2.Call;

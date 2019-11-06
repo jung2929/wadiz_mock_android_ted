@@ -1,4 +1,4 @@
-package com.softsquared.wadiz.src.mypage_funding.mypage;
+package com.softsquared.wadiz.src.mypage_funding;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -33,14 +33,14 @@ public class FundingItemRvAdapter extends RecyclerView.Adapter<FundingItemRvAdap
             super(itemView);
 
             // 뷰 객체에 대한 참조. (hold strong reference)
-            ivItem = itemView.findViewById(R.id.item_iv);
-            tvName = itemView.findViewById(R.id.item_tv_name);
-            tvCompany = itemView.findViewById(R.id.item_tv_company);
-            tvPercent = itemView.findViewById(R.id.item_tv_percent);
-            tvMoney = itemView.findViewById(R.id.item_tv_money);
-            tvDay = itemView.findViewById(R.id.item_tv_day);
-            tvCategory = itemView.findViewById(R.id.item_tv_category);
-            pb = itemView.findViewById(R.id.item_progress);
+            ivItem = itemView.findViewById(R.id.mypage_funding_item_iv);
+            tvName = itemView.findViewById(R.id.mypage_funding_item_tv_name);
+            tvCompany = itemView.findViewById(R.id.mypage_funding_item_tv_company);
+            tvPercent = itemView.findViewById(R.id.mypage_funding_item_tv_percent);
+            tvMoney = itemView.findViewById(R.id.mypage_funding_item_tv_money);
+            tvDay = itemView.findViewById(R.id.mypage_funding_item_tv_day);
+            tvCategory = itemView.findViewById(R.id.mypage_funding_item_tv_category);
+            pb = itemView.findViewById(R.id.mypage_funding_item_progress);
         }
     }
 
@@ -54,7 +54,7 @@ public class FundingItemRvAdapter extends RecyclerView.Adapter<FundingItemRvAdap
     public FundingItemRvAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         Context context = parent.getContext();
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View view = inflater.inflate(R.layout.smalllist_item, parent, false);
+        View view = inflater.inflate(R.layout.mypage_fundinglist_item, parent, false);
         FundingItemRvAdapter.ViewHolder vh = new FundingItemRvAdapter.ViewHolder(view);
         return vh;
     }

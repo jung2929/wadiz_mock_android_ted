@@ -1,4 +1,4 @@
-package com.softsquared.wadiz.src.mypage_like.mypage.interfaces;
+package com.softsquared.wadiz.src.mypage_like.interfaces;
 
 public interface MainActivityView {
 

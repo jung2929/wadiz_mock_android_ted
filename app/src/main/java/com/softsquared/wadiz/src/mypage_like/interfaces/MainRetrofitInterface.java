@@ -1,6 +1,6 @@
-package com.softsquared.wadiz.src.mypage_like.mypage.interfaces;
+package com.softsquared.wadiz.src.mypage_like.interfaces;
 
-import com.softsquared.wadiz.src.mypage_like.mypage.models.DefaultResponse;
+import com.softsquared.wadiz.src.mypage_like.models.DefaultResponse;
 
 import okhttp3.RequestBody;
 import retrofit2.Call;

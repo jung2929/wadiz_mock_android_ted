@@ -1,6 +1,6 @@
-package com.softsquared.wadiz.src.mypage_funding.mypage;
+package com.softsquared.wadiz.src.mypage_like;
 
-public class FundingItemlist {
+public class LikeItemlist {
     int Image;
     String Name;
     String Company;
@@ -9,7 +9,7 @@ public class FundingItemlist {
     String Money;
     String Day;
 
-    public FundingItemlist(int image, String name, String company, String category, String percent, String money, String day) {
+    public LikeItemlist(int image, String name, String company, String category, String percent, String money, String day) {
         Image = image;
         Name = name;
         this.Company = company;

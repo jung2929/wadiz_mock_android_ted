@@ -1,51 +1,44 @@
-package com.softsquared.wadiz.src.mypage_funding.mypage;
+package com.softsquared.wadiz.src.mypage_card;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.FrameLayout;
-import android.widget.TextView;
+import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.softsquared.wadiz.R;
-import com.softsquared.wadiz.src.BaseActivity;
 import com.softsquared.wadiz.src.BaseFragment;
-import com.softsquared.wadiz.src.mypage_funding.mypage.interfaces.MainActivityView;
-import com.softsquared.wadiz.src.reward.RewardFragment;
-import com.softsquared.wadiz.src.reward_home.Reward_homeFragment;
+import com.softsquared.wadiz.src.mypage_card.interfaces.MainActivityView;
 
 
-public class Mypage_fundingFragment extends BaseFragment implements MainActivityView {
+public class Mypage_cardFragment extends BaseFragment implements MainActivityView {
     View view;
-    TextView tvNull;
-    RecyclerView rvItem;
-
-    public Mypage_fundingFragment() {
+    LinearLayout llRegister;
+    Button btnregister;
+    public Mypage_cardFragment() {
 
     }
 
-    public static Mypage_fundingFragment newInstance() {
-        Mypage_fundingFragment mypage_fundingFragment = new Mypage_fundingFragment();
-        return mypage_fundingFragment;
+    public static Mypage_cardFragment newInstance() {
+        Mypage_cardFragment mypage_cardFragment = new Mypage_cardFragment();
+        return mypage_cardFragment;
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_mypage_funding, container, false);
-        tvNull = view.findViewById(R.id.mypage_funding_tv_null);
-        rvItem = view.findViewById(R.id.mypage_funding_rv);
+        view = inflater.inflate(R.layout.fragment_mypage_card, container, false);
+        llRegister = view.findViewById(R.id.mypage_card_ll_register);
+        btnregister = view.findViewById(R.id.mypage_card_btn_register);
 
         return view;
     }
+
+
 
     private void tryGetTest() {
         showProgressDialog();

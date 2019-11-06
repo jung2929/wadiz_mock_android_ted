@@ -17,7 +17,6 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.softsquared.wadiz.R;
 import com.softsquared.wadiz.src.BaseActivity;
-import com.softsquared.wadiz.src.loginFragment.LoginFragment;
 import com.softsquared.wadiz.src.main.interfaces.MainActivityView;
 import com.softsquared.wadiz.src.mypage.MypageFragment;
 import com.softsquared.wadiz.src.reward.RewardFragment;
@@ -67,7 +66,7 @@ public class MainActivity extends BaseActivity implements MainActivityView {
 
             } else {
                 fragmentManager.beginTransaction().show(mRewardFragment).commit();
-                fragmentManager.beginTransaction().hide(mLoginFragment).commit();
+                fragmentManager.beginTransaction().hide(mMypageFragment).commit();
             }
             mBtnReward.setTypeface(null, Typeface.BOLD);
             Drawable img_click = getApplicationContext().getResources().getDrawable(R.drawable.gift_click);
@@ -77,13 +76,13 @@ public class MainActivity extends BaseActivity implements MainActivityView {
             mBtnMypage.setCompoundDrawablesWithIntrinsicBounds(null, img_nonclick,null,null);
 
         } else if (index==1) { //마이페이지
-            if (mLoginFragment == null) {
-                mLoginFragment = new LoginFragment();
-                fragmentManager.beginTransaction().add(R.id.main_fl_container,mLoginFragment).commit();
-                fragmentManager.beginTransaction().show(mLoginFragment).commit();
+            if (mMypageFragment == null) {
+                mMypageFragment = new MypageFragment();
+                fragmentManager.beginTransaction().add(R.id.main_fl_container,mMypageFragment).commit();
+                fragmentManager.beginTransaction().show(mMypageFragment).commit();
 
             } else {
-                fragmentManager.beginTransaction().show(mLoginFragment).commit();
+                fragmentManager.beginTransaction().show(mMypageFragment).commit();
                 fragmentManager.beginTransaction().hide(mRewardFragment).commit();
             }
             mBtnMypage.setTypeface(null, Typeface.BOLD);

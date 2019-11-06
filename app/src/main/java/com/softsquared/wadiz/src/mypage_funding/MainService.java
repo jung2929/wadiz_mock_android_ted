@@ -1,8 +1,8 @@
-package com.softsquared.wadiz.src.mypage_like.mypage;
+package com.softsquared.wadiz.src.mypage_funding;
 
-import com.softsquared.wadiz.src.mypage_like.mypage.interfaces.MainActivityView;
-import com.softsquared.wadiz.src.mypage_like.mypage.interfaces.MainRetrofitInterface;
-import com.softsquared.wadiz.src.mypage_like.mypage.models.DefaultResponse;
+import com.softsquared.wadiz.src.mypage_funding.interfaces.MainActivityView;
+import com.softsquared.wadiz.src.mypage_funding.interfaces.MainRetrofitInterface;
+import com.softsquared.wadiz.src.mypage_funding.models.DefaultResponse;
 
 import retrofit2.Call;
 import retrofit2.Callback;

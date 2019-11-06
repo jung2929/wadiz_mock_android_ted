@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp"
+    android:background="@color/white">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/nanumbarungothic"
+        android:text="간편결제 정보"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="30dp"
+        android:id="@+id/mypage_card_ll_register">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/nanumbarungothic"
+            android:text="등록된 결제 정보가 없습니다."
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:layout_gravity="center"
+            android:gravity="center"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/nanumbarungothic"
+            android:text="빠르고 간편한 결제를 위해\n간편결제 정보를 등록하세요."
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:layout_gravity="center"
+            android:gravity="center"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/nanumbarungothic"
+            android:text="간편결제 등록하기"
+            android:background="@color/percent"
+            android:textColor="@color/white"
+            android:paddingLeft="50dp"
+            android:paddingRight="50dp"
+            android:textSize="17sp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:id="@+id/mypage_card_btn_register"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="30dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="간편결제 이용안내"
+            android:textColor="@color/black"
+            android:textSize="15sp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1. 와디즈에서는 카드번호를 저장하지 않습니다. 카드사에서 제공하는 암호화된 정보만을 저장하기 때문에 안심하셔도 됩니다."
+            android:textColor="@color/gray"
+            android:textSize="13sp"
+            android:layout_marginTop="10dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2. 간편 결제 카드 등록은 1개만 가능합니다."
+            android:textColor="@color/gray"
+            android:textSize="13sp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="3. 결제 비밀번호를 잊어버렸거나 변경을 원한다면, 기존 등록되어 있던 결제 정보를 삭제하고 다시 등록해야합니다."
+            android:textColor="@color/gray"
+            android:textSize="13sp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="4. 이미 펀딩한 결제정보를 변경하고자할 때에는 '펀딩내역'에서 변경해야 합니다."
+            android:textColor="@color/gray"
+            android:textSize="13sp"/>
+
+    </LinearLayout>
+</LinearLayout>

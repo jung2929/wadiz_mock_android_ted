@@ -2,6 +2,8 @@ package com.softsquared.wadiz.src.mypage;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,14 +13,17 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
 
 import com.softsquared.wadiz.R;
 import com.softsquared.wadiz.src.BaseFragment;
 import com.softsquared.wadiz.src.editprofile.EditprofileActivity;
 import com.softsquared.wadiz.src.mypage.interfaces.MainActivityView;
-
-import java.util.ArrayList;
+import com.softsquared.wadiz.src.mypage_card.Mypage_cardFragment;
+import com.softsquared.wadiz.src.mypage_funding.Mypage_fundingFragment;
+import com.softsquared.wadiz.src.mypage_like.Mypage_likeFragment;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -27,8 +32,13 @@ public class MypageFragment extends BaseFragment implements MainActivityView {
     View view;
     Button btnEditprofile;
     Context myContext;
-    TextView tvName, tvMember, tvIntroduce, tvInterest1, tvInterest2, tvInterest3, tvInterest4, tvInterest5, tvInterest6, tvInterest7, tvInterest8;
+    TextView tvName, tvMember, tvIntroduce, tvInterest1, tvInterest2, tvInterest3, tvInterest4, tvInterest5, tvInterest6, tvInterest7, tvInterest8, tvNum;
     CircleImageView ivProfile;
+    Mypage_fundingFragment fundingFragment;
+    Mypage_likeFragment likeFragment;
+    Mypage_cardFragment cardFragment;
+    Button btnFunding, btnLike, btnCard;
+    FragmentManager fragmentManager;
 
     public MypageFragment() {
 
@@ -66,7 +76,106 @@ public class MypageFragment extends BaseFragment implements MainActivityView {
             }
         });
 
+        btnFunding = view.findViewById(R.id.mypage_btn_funding);
+        btnLike = view.findViewById(R.id.mypage_btn_like);
+        btnCard = view.findViewById(R.id.mypage_btn_card);
+
+        fragmentManager = getActivity().getSupportFragmentManager();
+
+        fundingFragment = new Mypage_fundingFragment();
+        fragmentManager.beginTransaction().replace(R.id.mypage_fl_container, fundingFragment).commit();
+
+        btnFunding.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onFragmentChange(0);
+            }
+        });
+
+        btnLike.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onFragmentChange(1);
+            }
+        });
+
+        btnCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onFragmentChange(2);
+            }
+        });
+
+
         return view;
+    }
+    public void onFragmentChange(int index) {
+        if (index == 0) { //펀딩한
+//            if (likeFragment != null) fragmentManager.beginTransaction().hide(likeFragment).commit();
+//            if (cardFragment != null) fragmentManager.beginTransaction().hide(cardFragment).commit();
+            if (fundingFragment == null) {
+                fundingFragment = new Mypage_fundingFragment();
+                fragmentManager.beginTransaction().replace(R.id.main_fl_container,fundingFragment).commit();
+                fragmentManager.beginTransaction().replace(R.id.mypage_fl_container,fundingFragment).commit();
+            } else {
+                if (fundingFragment != null) fragmentManager.beginTransaction().replace(R.id.mypage_fl_container,fundingFragment).commit();
+            }
+            btnFunding.setTypeface(null, Typeface.BOLD);
+            btnFunding.setTextColor(ContextCompat.getColor(myContext,R.color.percent));
+            Drawable img_click = getActivity().getResources().getDrawable(R.drawable.customborder_mypage_click);
+            btnFunding.setBackground(img_click);
+            btnLike.setTypeface(null,Typeface.NORMAL);
+            btnCard.setTypeface(null,Typeface.NORMAL);
+            btnLike.setTextColor(ContextCompat.getColor(myContext,R.color.black));
+            btnCard.setTextColor(ContextCompat.getColor(myContext,R.color.black));
+            Drawable img_nonclick = getActivity().getResources().getDrawable(R.drawable.customborder_mypage_nonclick);
+            btnCard.setBackground(img_nonclick);
+            btnLike.setBackground(img_nonclick);
+
+        } else if (index==1) { //좋아한
+//            if (fundingFragment != null) fragmentManager.beginTransaction().hide(fundingFragment).commit();
+//            if (cardFragment != null) fragmentManager.beginTransaction().hide(cardFragment).commit();
+            if (likeFragment == null) {
+                likeFragment = new Mypage_likeFragment();
+                fragmentManager.beginTransaction().replace(R.id.mypage_fl_container,likeFragment).commit();
+
+            } else {
+                if (likeFragment != null) fragmentManager.beginTransaction().replace(R.id.mypage_fl_container,likeFragment).commit();
+
+            }
+            btnLike.setTypeface(null, Typeface.BOLD);
+            btnLike.setTextColor(ContextCompat.getColor(myContext,R.color.percent));
+            Drawable img_click = getActivity().getResources().getDrawable(R.drawable.customborder_mypage_click);
+            btnLike.setBackground(img_click);
+            btnFunding.setTypeface(null,Typeface.NORMAL);
+            btnCard.setTypeface(null,Typeface.NORMAL);
+            btnFunding.setTextColor(ContextCompat.getColor(myContext,R.color.black));
+            btnCard.setTextColor(ContextCompat.getColor(myContext,R.color.black));
+            Drawable img_nonclick = getActivity().getResources().getDrawable(R.drawable.customborder_mypage_nonclick);
+            btnCard.setBackground(img_nonclick);
+            btnFunding.setBackground(img_nonclick);
+
+        } else if (index==2) { //간편카드정보
+//            if (fundingFragment != null) fragmentManager.beginTransaction().hide(fundingFragment).commit();
+//            if (likeFragment != null) fragmentManager.beginTransaction().hide(likeFragment).commit();
+            if (cardFragment == null) {
+                cardFragment = new Mypage_cardFragment();
+                fragmentManager.beginTransaction().replace(R.id.mypage_fl_container,cardFragment).commit();
+            } else {
+                fragmentManager.beginTransaction().replace(R.id.mypage_fl_container,cardFragment).commit();
+            }
+            btnCard.setTypeface(null, Typeface.BOLD);
+            btnCard.setTextColor(ContextCompat.getColor(myContext,R.color.percent));
+            Drawable img_click = getActivity().getResources().getDrawable(R.drawable.customborder_mypage_click);
+            btnCard.setBackground(img_click);
+            btnFunding.setTypeface(null,Typeface.NORMAL);
+            btnLike.setTypeface(null,Typeface.NORMAL);
+            btnFunding.setTextColor(ContextCompat.getColor(myContext,R.color.black));
+            btnLike.setTextColor(ContextCompat.getColor(myContext,R.color.black));
+            Drawable img_nonclick = getActivity().getResources().getDrawable(R.drawable.customborder_mypage_nonclick);
+            btnLike.setBackground(img_nonclick);
+            btnFunding.setBackground(img_nonclick);
+        }
     }
 
     @Override

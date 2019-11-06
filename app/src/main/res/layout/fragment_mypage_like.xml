@@ -2,7 +2,33 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#f5f6fa">
+    android:background="@color/lightgray">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal"
+        android:id="@+id/mypage_like_ll_num"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/mypage_like_tv_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/nanumbarungothic"
+            android:textColor="@color/gray"
+            android:textSize="15sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/nanumbarungothic"
+            android:text="개의 프로젝트를 좋아합니다."
+            android:textColor="@color/gray"
+            android:textSize="15sp" />
+    </LinearLayout>
 
     <TextView
         android:id="@+id/mypage_like_tv_null"
@@ -16,9 +42,10 @@
         android:textSize="20sp" />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/mypage_like_rv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/mypage_like_rv"
-        android:visibility="gone"/>
+        android:layout_marginTop="60dp"
+        android:visibility="gone" />
 
 </RelativeLayout>

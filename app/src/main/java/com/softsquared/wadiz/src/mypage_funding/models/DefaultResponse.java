@@ -1,4 +1,4 @@
-package com.softsquared.wadiz.src.mypage_like.mypage.models;
+package com.softsquared.wadiz.src.mypage_funding.models;
 
 import com.google.gson.annotations.SerializedName;
 
