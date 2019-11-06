@@ -3,7 +3,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    android:id="@+id/reward_home_sv"
     android:fillViewport="true">
 
     <LinearLayout
@@ -67,10 +66,10 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@drawable/customborder_sideline"
-                android:src="@drawable/list"
+                android:src="@drawable/smalllist"
                 android:id="@+id/reward_home_showlist"
                 android:padding="5dp"
-                android:scaleType="center"/>
+                android:scaleType="centerInside"/>
         </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView

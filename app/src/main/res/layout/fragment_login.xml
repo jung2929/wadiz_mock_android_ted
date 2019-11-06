@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_centerInParent="true">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="와디즈에 처음 오셨나요?"
+            android:textSize="25sp"
+            android:textColor="@color/black"
+            android:fontFamily="@font/nanumbarungothic"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textStyle="bold"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="회원가입하고\n다양한 혜택을 받으세요!"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:textColor="@color/black"
+            android:fontFamily="@font/nanumbarungothic"
+            android:layout_marginTop="20dp"
+            android:textSize="18sp"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="로그인/회원가입"
+            android:fontFamily="@font/nanumbarungothic"
+            android:textSize="18sp"
+            android:textColor="@color/white"
+            android:background="@color/percent"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:layout_marginTop="20dp"
+            android:paddingLeft="40dp"
+            android:paddingRight="40dp"
+            android:id="@+id/login_btn"/>
+
+    </LinearLayout>
+
+</RelativeLayout>

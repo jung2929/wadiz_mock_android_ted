@@ -8,4 +8,6 @@
     <color name="gray">#6c6c6e</color>
     <color name="clear">#00ff0000</color>
     <color name="percent">#53b3b2</color>
+    <color name="lightgray">#f5f6fa</color>
+    <color name="login">#7fe1e2</color>
 </resources>

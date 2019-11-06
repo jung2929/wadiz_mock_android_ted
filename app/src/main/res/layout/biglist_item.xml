@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="300dp"
     android:layout_marginTop="10dp">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="match_parent"
         android:layout_centerInParent="true"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp">
 
         <ImageView
             android:id="@+id/item_iv"
@@ -22,7 +24,6 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="0dp"
-            android:layout_marginLeft="10dp"
             android:layout_weight="1"
             android:orientation="vertical"
             android:layout_gravity="center">
@@ -34,7 +35,7 @@
                 android:layout_weight="2"
                 android:fontFamily="@font/nanumbarungothic"
                 android:maxLines="2"
-                android:text="[맛있는건 퍼-먹자] 뜯는순간 완통 보장! 지중해 만능요리, 그릭후무스"
+                android:layout_marginTop="5dp"
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 android:textStyle="bold" />
@@ -51,7 +52,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/nanumbarungothic"
-                    android:text="푸드"
                     android:textColor="@color/gray"
                     android:textSize="13sp" />
 
@@ -68,7 +68,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/nanumbarungothic"
-                    android:text="얄라 (yalla)"
                     android:textColor="@color/gray"
                     android:textSize="13sp" />
 
@@ -106,7 +105,6 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/nanumbarungothicbold"
-                            android:text="1900"
                             android:textColor="@color/percent"
                             android:textSize="16sp" />
 
@@ -131,7 +129,6 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/nanumbarungothic"
-                            android:text="000,000,000"
                             android:textColor="@color/gray"
                             android:textSize="13sp" />
 
@@ -157,7 +154,6 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/nanumbarungothic"
-                            android:text="00"
                             android:textColor="@color/gray"
                             android:textSize="13sp" />
 

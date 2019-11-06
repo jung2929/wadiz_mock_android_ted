@@ -2,4 +2,7 @@
     <string name="app_name">Wadiz</string>
     <string name="loading">로딩중입니다.</string>
     <string name="network_error">네트워크 연결이 원활하지 않습니다.</string>
+    <string name="profileupdate"><u>프로필 사진 등록</u></string>
+    <string name="profilechange"><u>바꾸기</u></string>
+    <string name="profiledelete"><u>삭제</u></string>
 </resources>

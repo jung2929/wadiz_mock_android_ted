@@ -29,8 +29,7 @@ public class Reward_homeFragment extends BaseFragment implements MainActivityVie
     EditText etSearch;
     Button btnControl, btnOrder;
     ImageButton ibShowlist;
-    SmalllistAdapter smalllistAdapter;
-    NestedScrollView nestedScrollView;
+    boolean showitemflag;
 
 
     public Reward_homeFragment() {
@@ -51,7 +50,6 @@ public class Reward_homeFragment extends BaseFragment implements MainActivityVie
         btnControl = view.findViewById(R.id.reward_home_control);
         btnOrder = view.findViewById(R.id.reward_home_order);
         ibShowlist = view.findViewById(R.id.reward_home_showlist);
-        nestedScrollView = view.findViewById(R.id.reward_home_sv);
 
         pagerAdapter = new ViewpagerAdapter(getActivity());
         viewPager.setAdapter(pagerAdapter);
@@ -95,12 +93,31 @@ public class Reward_homeFragment extends BaseFragment implements MainActivityVie
         for (int i = 0; i < 6; i++) {
             itemlistArrayList.add(new Itemlist(R.drawable.banner0, "[맛있는건 퍼-먹자] 뜯는순간 완통 보장! 지중해 만능요리, 그릭후무스", "푸드" ,"얄라 (yalla)", "50", "200,000","20"));
         }
+
         //아이템 리사이클러뷰 생성
         rvItem = view.findViewById(R.id.reward_home_lv);
-        smalllistAdapter = new SmalllistAdapter();
         rvItem.setLayoutManager(new LinearLayoutManager(getActivity()));
-        ItemRvAdapter itemRvAdapter = new ItemRvAdapter(itemlistArrayList);
-        rvItem.setAdapter(itemRvAdapter);
+        SmallItemRvAdapter smallItemRvAdapter = new SmallItemRvAdapter(itemlistArrayList);
+        BigItemRvAdapter bigItemRvAdapter = new BigItemRvAdapter(itemlistArrayList);
+        rvItem.setAdapter(smallItemRvAdapter);
+        showitemflag = true; //아이템 리스트 보여주는 방식 변경을 위한 플래그 (small리스트 사용시 true, big리스트 사용시 false)
+
+        //버튼 클릭시 보여주기 방식 변경 (크게/작게)
+        ibShowlist.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (showitemflag) {
+                    rvItem.setAdapter(bigItemRvAdapter);
+                    ibShowlist.setImageResource(R.drawable.biglist);
+                    showitemflag = false;
+                } else {
+                    rvItem.setAdapter(smallItemRvAdapter);
+                    ibShowlist.setImageResource(R.drawable.smalllist);
+                    showitemflag = true;
+                }
+
+            }
+        });
 
 
 //        listView.setOnTouchListener(new View.OnTouchListener() {

@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:layout_marginTop="30dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp">
+
+            <TextView
+                android:id="@+id/mypage_tv_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nanumbarungothic"
+                android:text="김태웅"
+                android:textColor="@color/black"
+                android:textSize="30sp" />
+
+            <TextView
+                android:id="@+id/mypage_tv_member"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/mypage_tv_name"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/nanumbarungothiclight"
+                android:text="개인회원"
+                android:textColor="@color/gray" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/mypage_iv_profile"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_alignParentRight="true"
+                android:src="@drawable/profile" />
+
+            <Button
+                android:id="@+id/mypage_btn_logout"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="60dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="20dp"
+                android:layout_toRightOf="@id/mypage_tv_name"
+                android:background="@drawable/customborder_sideline"
+                android:fontFamily="@font/nanumbarungothiclight"
+                android:text="로그아웃"
+                android:textColor="@color/black"
+                android:textSize="10sp" />
+
+            <TextView
+                android:id="@+id/introduce"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@id/interest"
+                android:layout_marginBottom="10dp"
+                android:fontFamily="@font/nanumbarungothic"
+                android:maxLines="2"
+                android:textColor="@color/black"
+                android:textSize="13sp" />
+
+            <com.google.android.flexbox.FlexboxLayout
+                android:id="@+id/interest"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_above="@id/mypage_btn_edit"
+                android:layout_marginBottom="10dp"
+                app:alignContent="stretch"
+                app:alignItems="stretch"
+                app:flexWrap="wrap">
+
+                <TextView
+                    android:id="@+id/mypage_tv_interest1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="2dp"
+                    android:background="@color/lightgray"
+                    android:fontFamily="@font/nanumbarungothic"
+                    android:padding="5dp"
+                    android:text="교육.키즈"
+                    android:textColor="@color/gray"
+                    android:textSize="13sp"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/mypage_tv_interest2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="2dp"
+                    android:background="@color/lightgray"
+                    android:fontFamily="@font/nanumbarungothic"
+                    android:padding="5dp"
+                    android:text="패션.잡화.뷰티"
+                    android:textColor="@color/gray"
+                    android:textSize="13sp"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/mypage_tv_interest3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="2dp"
+                    android:background="@color/lightgray"
+                    android:fontFamily="@font/nanumbarungothic"
+                    android:padding="5dp"
+                    android:text="홈리빙.디자인소품"
+                    android:textColor="@color/gray"
+                    android:textSize="13sp"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/mypage_tv_interest4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="2dp"
+                    android:background="@color/lightgray"
+                    android:fontFamily="@font/nanumbarungothic"
+                    android:padding="5dp"
+                    android:text="공연.컬쳐"
+                    android:textColor="@color/gray"
+                    android:textSize="13sp"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/mypage_tv_interest5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="2dp"
+                    android:background="@color/lightgray"
+                    android:fontFamily="@font/nanumbarungothic"
+                    android:padding="5dp"
+                    android:text="스포츠.모빌리티"
+                    android:textColor="@color/gray"
+                    android:textSize="13sp"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/mypage_tv_interest6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="2dp"
+                    android:background="@color/lightgray"
+                    android:fontFamily="@font/nanumbarungothic"
+                    android:padding="5dp"
+                    android:text="출판"
+                    android:textColor="@color/gray"
+                    android:textSize="13sp"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/mypage_tv_interest7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="2dp"
+                    android:background="@color/lightgray"
+                    android:fontFamily="@font/nanumbarungothic"
+                    android:padding="5dp"
+                    android:text="반려동물"
+                    android:textColor="@color/gray"
+                    android:textSize="13sp"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/mypage_tv_interest8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="2dp"
+                    android:background="@color/lightgray"
+                    android:fontFamily="@font/nanumbarungothic"
+                    android:padding="5dp"
+                    android:text="테크.가전"
+                    android:textColor="@color/gray"
+                    android:textSize="13sp"
+                    android:visibility="gone" />
+
+            </com.google.android.flexbox.FlexboxLayout>
+
+            <Button
+                android:id="@+id/mypage_btn_edit"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:background="@drawable/customborder_sideline"
+                android:fontFamily="@font/nanumbarungothiclight"
+                android:text="프로필 편집"
+                android:textColor="@color/black" />
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/mypage_btn_funding"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/customborder_mypage_click"
+                android:fontFamily="@font/nanumbarungothic"
+                android:gravity="center"
+                android:text="펀딩한"
+                android:textSize="17sp" />
+
+            <Button
+                android:id="@+id/mypage_btn_like"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/customborder_mypage_nonclick"
+                android:fontFamily="@font/nanumbarungothic"
+                android:gravity="center"
+                android:text="좋아한"
+                android:textColor="@color/gray"
+                android:textSize="17sp" />
+
+            <Button
+                android:id="@+id/mypage_btn_card"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/customborder_mypage_nonclick"
+                android:fontFamily="@font/nanumbarungothic"
+                android:gravity="center"
+                android:text="간편결제정보"
+                android:textColor="@color/gray"
+                android:textSize="17sp" />
+
+        </LinearLayout>
+
+        <FrameLayout
+            android:id="@+id/mypage_fl_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

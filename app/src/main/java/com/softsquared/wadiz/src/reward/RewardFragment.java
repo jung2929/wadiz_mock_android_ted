@@ -36,10 +36,9 @@ public class RewardFragment extends BaseFragment implements MainActivityView {
         return rewardFragment;
     }
 
-
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_reward,container, false);
+        view = inflater.inflate(R.layout.fragment_reward, container, false);
         tabLayout = view.findViewById(R.id.reward_tab);
         viewPager = view.findViewById(R.id.reward_vp);
         loadTabName();

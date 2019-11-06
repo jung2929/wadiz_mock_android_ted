@@ -8,18 +8,25 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
 import com.softsquared.wadiz.R;
 import com.softsquared.wadiz.src.BaseFragment;
+import com.softsquared.wadiz.src.reward_home.BigItemRvAdapter;
+import com.softsquared.wadiz.src.reward_home.Itemlist;
+import com.softsquared.wadiz.src.reward_home.SmallItemRvAdapter;
 import com.softsquared.wadiz.src.reward_open.interfaces.MainActivityView;
 
+import java.util.ArrayList;
 
 
 public class Reward_openFragment extends BaseFragment implements MainActivityView {
     View view;
     ViewPager viewPager;
     ViewpagerAdapter pagerAdapter;
+    RecyclerView rvItem;
 
     public Reward_openFragment() {
 
@@ -37,7 +44,8 @@ public class Reward_openFragment extends BaseFragment implements MainActivityVie
         pagerAdapter = new ViewpagerAdapter(getActivity());
         viewPager.setAdapter(pagerAdapter);
         viewPager.setCurrentItem(pagerAdapter.view_count);
-        //무한스크롤 구현 (마지막에서 다시 처음으로)
+
+        //배너 무한스크롤 구현 (마지막에서 다시 처음으로)
         viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -57,6 +65,18 @@ public class Reward_openFragment extends BaseFragment implements MainActivityVie
 
             }
         });
+
+        // 아이템에 넣을 리스트 생성
+        ArrayList<Openlist> openlistArrayList = new ArrayList<>();
+        for (int i = 0; i < 6; i++) {
+            openlistArrayList.add(new Openlist(R.drawable.banner0+i, "예쁜건 기본 편리함은 덤!", "블랑쉐나인" ,"11"));
+        }
+
+        //아이템 리사이클러뷰 생성
+        rvItem = view.findViewById(R.id.reward_open_rv);
+        rvItem.setLayoutManager(new LinearLayoutManager(getActivity()));
+        OpenItemRvAdapter openItemRvAdapter = new OpenItemRvAdapter(openlistArrayList);
+        rvItem.setAdapter(openItemRvAdapter);
 
         return view;
     }

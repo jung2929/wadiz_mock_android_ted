@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/lightgray"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@color/white"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/profile_edit_ib_back"
+            android:layout_width="0dp"
+            android:layout_height="20sp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:background="@color/clear"
+            android:scaleType="centerInside"
+            android:src="@drawable/back" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="6"
+            android:fontFamily="@font/nanumbarungothic"
+            android:gravity="center"
+            android:text="프로필"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
+
+        <ImageButton
+            android:id="@+id/profile_edit_ib_home"
+            android:layout_width="0dp"
+            android:layout_height="20sp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:background="@color/clear"
+            android:scaleType="centerInside"
+            android:src="@drawable/home" />
+
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="30dp"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:orientation="vertical"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nanumbarungothic"
+                android:text="프로필 정보 설정"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:fontFamily="@font/nanumbarungothic"
+                android:text="프로필 사진"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/profile_edit_iv_profile"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_alignParentRight="true"
+                android:layout_gravity="center"
+                android:src="@drawable/profile" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/profile_edit_btn_imgupdate"
+                    style="?android:attr/borderlessButtonStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/clear"
+                    android:fontFamily="@font/nanumbarungothic"
+                    android:text="@string/profileupdate"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+
+                <Button
+                    android:id="@+id/profile_edit_btn_imgchange"
+                    style="?android:attr/borderlessButtonStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/clear"
+                    android:fontFamily="@font/nanumbarungothic"
+                    android:text="@string/profilechange"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    android:visibility="gone" />
+
+                <Button
+                    android:id="@+id/profile_edit_btn_imgdelete"
+                    style="?android:attr/borderlessButtonStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/clear"
+                    android:fontFamily="@font/nanumbarungothic"
+                    android:text="@string/profiledelete"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    android:visibility="gone" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:fontFamily="@font/nanumbarungothic"
+                android:text="관심사"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TableRow>
+
+                    <CheckBox
+                        android:id="@+id/profile_edit_cb1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_weight="1"
+                        android:button="@drawable/custom_checkbox"
+                        android:fontFamily="@font/nanumbarungothic"
+                        android:text="  교육.키즈"
+                        android:textColor="@color/black"
+                        android:textSize="15sp" />
+
+                    <CheckBox
+                        android:id="@+id/profile_edit_cb2"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_weight="1"
+                        android:button="@drawable/custom_checkbox"
+                        android:fontFamily="@font/nanumbarungothic"
+                        android:text="  패션.잡화.뷰티"
+                        android:textColor="@color/black"
+                        android:textSize="15sp" />
+                </TableRow>
+
+                <TableRow>
+
+                    <CheckBox
+                        android:id="@+id/profile_edit_cb3"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_weight="1"
+                        android:button="@drawable/custom_checkbox"
+                        android:fontFamily="@font/nanumbarungothic"
+                        android:text="  홈리빙.디자인소품"
+                        android:textColor="@color/black"
+                        android:textSize="15sp" />
+
+                    <CheckBox
+                        android:id="@+id/profile_edit_cb4"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_weight="1"
+                        android:button="@drawable/custom_checkbox"
+                        android:fontFamily="@font/nanumbarungothic"
+                        android:text="  공연.컬쳐"
+                        android:textColor="@color/black"
+                        android:textSize="15sp" />
+                </TableRow>
+
+                <TableRow>
+
+                    <CheckBox
+                        android:id="@+id/profile_edit_cb5"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_weight="1"
+                        android:button="@drawable/custom_checkbox"
+                        android:fontFamily="@font/nanumbarungothic"
+                        android:text="  스포츠.모빌리티"
+                        android:textColor="@color/black"
+                        android:textSize="15sp" />
+
+                    <CheckBox
+                        android:id="@+id/profile_edit_cb6"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_weight="1"
+                        android:button="@drawable/custom_checkbox"
+                        android:fontFamily="@font/nanumbarungothic"
+                        android:text="  출판"
+                        android:textColor="@color/black"
+                        android:textSize="15sp" />
+                </TableRow>
+
+                <TableRow>
+
+                    <CheckBox
+                        android:id="@+id/profile_edit_cb7"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_weight="1"
+                        android:button="@drawable/custom_checkbox"
+                        android:fontFamily="@font/nanumbarungothic"
+                        android:text="  반려동물"
+                        android:textColor="@color/black"
+                        android:textSize="15sp" />
+
+                    <CheckBox
+                        android:id="@+id/profile_edit_cb8"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_weight="1"
+                        android:button="@drawable/custom_checkbox"
+                        android:fontFamily="@font/nanumbarungothic"
+                        android:text="  테크.가전"
+                        android:textColor="@color/black"
+                        android:textSize="15sp" />
+                </TableRow>
+
+            </TableLayout>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:fontFamily="@font/nanumbarungothic"
+                android:text="간단한 한 마디로 나를 소개해주세요"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+            <EditText
+                android:id="@+id/profile_edit_et"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/customborder_sideline"
+                android:fontFamily="@font/nanumbarungothic" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/profile_edit_btn_cancel"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:background="#90959b"
+                    android:fontFamily="@font/nanumbarungothic"
+                    android:text="취소"
+                    android:textColor="@color/white"
+                    android:textSize="15sp" />
+
+                <Button
+                    android:id="@+id/profile_edit_btn_ok"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="1"
+                    android:background="@color/percent"
+                    android:fontFamily="@font/nanumbarungothic"
+                    android:text="확인"
+                    android:textColor="@color/white"
+                    android:textSize="15sp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+    </ScrollView>
+
+</LinearLayout>

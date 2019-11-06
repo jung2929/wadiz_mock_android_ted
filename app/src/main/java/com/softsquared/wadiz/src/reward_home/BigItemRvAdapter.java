@@ -15,7 +15,7 @@ import com.softsquared.wadiz.R;
 
 import java.util.ArrayList;
 
-public class ItemRvAdapter extends RecyclerView.Adapter<ItemRvAdapter.ViewHolder> {
+public class BigItemRvAdapter extends RecyclerView.Adapter<BigItemRvAdapter.ViewHolder> {
 
     ArrayList<Itemlist> mData = null;
 
@@ -45,29 +45,22 @@ public class ItemRvAdapter extends RecyclerView.Adapter<ItemRvAdapter.ViewHolder
     }
 
     // 생성자에서 데이터 리스트 객체를 전달받음.
-    ItemRvAdapter(ArrayList<Itemlist> list) {
+    BigItemRvAdapter(ArrayList<Itemlist> list) {
         mData = list;
     }
 
     @NonNull
     @Override
-    public ItemRvAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public BigItemRvAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         Context context = parent.getContext();
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View view = inflater.inflate(R.layout.smalllist_item, parent, false);
-        ItemRvAdapter.ViewHolder vh = new ItemRvAdapter.ViewHolder(view);
+        View view = inflater.inflate(R.layout.biglist_item, parent, false);
+        BigItemRvAdapter.ViewHolder vh = new BigItemRvAdapter.ViewHolder(view);
         return vh;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ItemRvAdapter.ViewHolder holder, int position) {
-            int img = mData.get(position).Image;
-            String name = mData.get(position).Name;
-            String company = mData.get(position).Company;
-            String percent = mData.get(position).Name;
-            String money = mData.get(position).Name;
-            String day = mData.get(position).Name;
-            String category = mData.get(position).Name;
+    public void onBindViewHolder(@NonNull BigItemRvAdapter.ViewHolder holder, int position) {
 
             holder.ivItem.setImageResource(mData.get(position).Image);
             holder.tvName.setText(mData.get(position).Name);
@@ -76,7 +69,6 @@ public class ItemRvAdapter extends RecyclerView.Adapter<ItemRvAdapter.ViewHolder
             holder.tvCategory.setText(mData.get(position).Category);
             holder.tvMoney.setText(mData.get(position).Money);
             holder.tvDay.setText(mData.get(position).Day);
-
 
     }
 

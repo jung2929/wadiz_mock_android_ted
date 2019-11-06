@@ -24,7 +24,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".src.reward_home.Reward_homeFragment" />
-    </application>
+        <activity android:name=".src.editprofile.EditprofileActivity"/>
+        <activity android:name=".src.login.LoginActivity"/>
+        </application>
 
 </manifest>
