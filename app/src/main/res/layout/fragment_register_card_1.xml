@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <ProgressBar
+        android:id="@+id/item_progress"
+        style="@android:style/Widget.ProgressBar.Horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:progress="33"
+        android:progressDrawable="@drawable/progressbar_custom" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="20dp"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/nanumbarungothic"
+            android:text="결제 정보 입력"
+            android:textColor="@color/black"
+            android:textSize="30sp" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/nanumbarungothic"
+            android:text="신용(체크)카드번호"
+            android:textColor="@color/black"
+            android:textSize="15sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/register_card_et_cardnum1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/customborder_sideline"
+                android:fontFamily="@font/nanumbarungothic"
+                android:inputType="number"
+                android:maxLength="4"
+                android:padding="5dp" />
+
+            <EditText
+                android:id="@+id/register_card_et_cardnum2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/customborder_sideline"
+                android:fontFamily="@font/nanumbarungothic"
+                android:inputType="numberPassword"
+                android:maxLength="4"
+                android:padding="5dp" />
+
+            <EditText
+                android:id="@+id/register_card_et_cardnum3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/customborder_sideline"
+                android:fontFamily="@font/nanumbarungothic"
+                android:inputType="numberPassword"
+                android:maxLength="4"
+                android:padding="5dp" />
+
+            <EditText
+                android:id="@+id/register_card_et_cardnum4"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/customborder_sideline"
+                android:fontFamily="@font/nanumbarungothic"
+                android:inputType="number"
+                android:maxLength="4"
+                android:padding="5dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nanumbarungothic"
+                    android:text="유효기간"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+
+                <EditText
+                    android:id="@+id/register_card_et_validity"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/customborder_sideline"
+                    android:fontFamily="@font/nanumbarungothic"
+                    android:hint="MM/YY"
+                    android:inputType="number"
+                    android:maxLength="4"
+                    android:padding="5dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nanumbarungothic"
+                    android:text="카드비밀번호"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+
+                <EditText
+                    android:id="@+id/register_card_et_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/customborder_sideline"
+                    android:fontFamily="@font/nanumbarungothic"
+                    android:hint="앞 2자리"
+                    android:inputType="numberPassword"
+                    android:maxLength="2"
+                    android:padding="5dp" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nanumbarungothic"
+                    android:text="생년월일 (주민번호 앞 6자리)"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nanumbarungothic"
+                    android:text="무기명 법인카드는 사업자등록번호 10자리를 입력하세요."
+                    android:textColor="@color/gray"
+                    android:textSize="13sp" />
+
+
+                <EditText
+                    android:id="@+id/register_card_et_birth"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/customborder_sideline"
+                    android:fontFamily="@font/nanumbarungothic"
+                    android:inputType="number"
+                    android:maxLength="10"
+                    android:padding="5dp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nanumbarungothic"
+                android:text="와디즈에서 카드번호를저장하지 않습니다!"
+                android:textColor="@color/black"
+                android:textSize="13sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nanumbarungothic"
+                android:text="카드사에서 제공하는 암호화된 정보만을 저장하기 때문에 안심하셔도 됩니다."
+                android:textColor="@color/gray"
+                android:textSize="10sp" />
+
+        </LinearLayout>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="다음"
+            android:background="@color/percent"
+            android:textColor="#99ffffff"
+            android:layout_marginTop="30dp"
+            android:fontFamily="@font/nanumbarungothic"
+            android:enabled="false"
+            android:textSize="20sp"
+            style="?android:attr/borderlessButtonStyle"
+            android:id="@+id/register_card1_btn_next"/>
+    </LinearLayout>
+
+
+</LinearLayout>

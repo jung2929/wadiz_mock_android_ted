@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/nanumbarungothic"
+            android:text="결제 정보가 안전하게 등록되었습니다."
+            android:textColor="@color/black"
+            android:layout_marginTop="30dp"
+            android:textSize="30sp" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/nanumbarungothic"
+            android:text="등록한 결제 정보로 간편하게 펀딩하세요. 간편결제 정보는 [마이페이지]에서 관리할 수 있습니다."
+            android:textColor="@color/gray"
+            android:textSize="15sp" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/nanumbarungothic"
+            android:text="결제 정보를 새로 등록해도 이전 결제 예약 상태인 프로젝트가 있을 경우, 해당 결제 정보는 이전 정보로 유지됩니다. 변경을 원한다면, [마이페이지 - 펀딩내역]에서 변경하시기 바랍니다."
+            android:textColor="@color/gray"
+            android:textSize="15sp" />
+
+
+        <Button
+            android:id="@+id/register_card_ok_btn_ok"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:background="@color/percent"
+            android:fontFamily="@font/nanumbarungothic"
+            android:text="확인"
+            style="?android:attr/borderlessButtonStyle"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+
+</LinearLayout>

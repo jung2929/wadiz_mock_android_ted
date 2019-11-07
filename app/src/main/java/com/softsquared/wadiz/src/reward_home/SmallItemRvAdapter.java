@@ -1,6 +1,7 @@
 package com.softsquared.wadiz.src.reward_home;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,6 +32,7 @@ public class SmallItemRvAdapter extends RecyclerView.Adapter<SmallItemRvAdapter.
 
         ViewHolder(View itemView) {
             super(itemView);
+
 
             // 뷰 객체에 대한 참조. (hold strong reference)
             ivItem = itemView.findViewById(R.id.item_iv);
@@ -77,5 +79,9 @@ public class SmallItemRvAdapter extends RecyclerView.Adapter<SmallItemRvAdapter.
     @Override
     public int getItemCount() {
         return mData.size();
+    }
+
+    public interface OnItemClickListener {
+        void onItemClick(View v, int position) ;
     }
 }

@@ -1,5 +1,7 @@
 package com.softsquared.wadiz.src.main;
 
+import android.content.Context;
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.media.Image;
@@ -24,9 +26,12 @@ import com.softsquared.wadiz.src.reward.RewardFragment;
 
 public class MainActivity extends BaseActivity implements MainActivityView {
     FrameLayout mFlContainer;
+    public static Context mcontext;
     Button mBtnReward, mBtnMypage;
     FragmentManager fragmentManager;
+    Intent getintent;
     Fragment mMypageFragment, mRewardFragment, mLoginFragment;
+    public String cardnum;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +40,7 @@ public class MainActivity extends BaseActivity implements MainActivityView {
         mFlContainer = findViewById(R.id.main_fl_container);
         mBtnMypage = findViewById(R.id.main_btn_footer_mypage);
         mBtnReward = findViewById(R.id.main_btn_footer_reward);
+        mcontext = this;
 
         fragmentManager = getSupportFragmentManager();
 
@@ -61,12 +67,12 @@ public class MainActivity extends BaseActivity implements MainActivityView {
         if (index == 0) { //홈화면
             if (mRewardFragment == null) {
                 mRewardFragment = new RewardFragment();
-                fragmentManager.beginTransaction().add(R.id.main_fl_container,mRewardFragment).commit();
-                fragmentManager.beginTransaction().show(mRewardFragment).commit();
+                fragmentManager.beginTransaction().add(R.id.main_fl_container,mRewardFragment).commitAllowingStateLoss();
+                fragmentManager.beginTransaction().show(mRewardFragment).commitAllowingStateLoss();
 
             } else {
-                fragmentManager.beginTransaction().show(mRewardFragment).commit();
-                fragmentManager.beginTransaction().hide(mMypageFragment).commit();
+                fragmentManager.beginTransaction().show(mRewardFragment).commitAllowingStateLoss();
+                fragmentManager.beginTransaction().hide(mMypageFragment).commitAllowingStateLoss();
             }
             mBtnReward.setTypeface(null, Typeface.BOLD);
             Drawable img_click = getApplicationContext().getResources().getDrawable(R.drawable.gift_click);
@@ -78,12 +84,12 @@ public class MainActivity extends BaseActivity implements MainActivityView {
         } else if (index==1) { //마이페이지
             if (mMypageFragment == null) {
                 mMypageFragment = new MypageFragment();
-                fragmentManager.beginTransaction().add(R.id.main_fl_container,mMypageFragment).commit();
-                fragmentManager.beginTransaction().show(mMypageFragment).commit();
+                fragmentManager.beginTransaction().add(R.id.main_fl_container,mMypageFragment).commitAllowingStateLoss();
+                fragmentManager.beginTransaction().show(mMypageFragment).commitAllowingStateLoss();
 
             } else {
-                fragmentManager.beginTransaction().show(mMypageFragment).commit();
-                fragmentManager.beginTransaction().hide(mRewardFragment).commit();
+                fragmentManager.beginTransaction().show(mMypageFragment).commitAllowingStateLoss();
+                fragmentManager.beginTransaction().hide(mRewardFragment).commitAllowingStateLoss();
             }
             mBtnMypage.setTypeface(null, Typeface.BOLD);
             Drawable img_click = getApplicationContext().getResources().getDrawable(R.drawable.user_click);
@@ -94,6 +100,13 @@ public class MainActivity extends BaseActivity implements MainActivityView {
         }
     }
 
+    @Override
+    protected void onResume() {
+        getintent = getIntent();
+        cardnum = getintent.getStringExtra("cardnum");
+        System.out.println("메인액티비티 값 : "+cardnum);
+        super.onResume();
+    }
 
     private void tryGetTest() {
         showProgressDialog();

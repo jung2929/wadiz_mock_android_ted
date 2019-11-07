@@ -9,6 +9,8 @@ import android.widget.Button;
 
 import com.softsquared.wadiz.R;
 
+import static com.softsquared.wadiz.src.editprofile.EditprofileActivity.*;
+
 public class Ok_customDialog {
     EditprofileActivity editprofileActivity;
     Context mcontext;
@@ -32,7 +34,8 @@ public class Ok_customDialog {
             public void onClick(View view) {
                 // 커스텀 다이얼로그를 종료한다.
                 dlg.dismiss();
-                ((Activity)mcontext).finish();
+//                ((EditprofileActivity)EditprofileActivity.mcontext).startActivity((EditprofileActivity) intent);
+                //확인 누르면 인텐트 넘어가면서 다이얼로그랑 액티비티 다 종료시켜야함
             }
         });
 

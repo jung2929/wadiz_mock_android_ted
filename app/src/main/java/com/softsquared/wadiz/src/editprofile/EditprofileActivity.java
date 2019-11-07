@@ -1,5 +1,7 @@
 package com.softsquared.wadiz.src.editprofile;
 
+import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -20,11 +22,12 @@ import com.softsquared.wadiz.src.mypage.MypageFragment;
 
 public class EditprofileActivity extends BaseActivity implements MainActivityView {
     MainActivity mainActivity;
+    public static Context mcontext;
     ImageButton ibBack, ibHome;
     Button btnCancel, btnOk;
     CheckBox cb1, cb2, cb3, cb4, cb5, cb6, cb7, cb8;
     EditText etIntroduce;
-    Intent intent;
+    public static Intent intent;
 
     @Override
     protected void onResume() {
@@ -40,6 +43,7 @@ public class EditprofileActivity extends BaseActivity implements MainActivityVie
         ibHome = findViewById(R.id.profile_edit_ib_home);
         btnCancel = findViewById(R.id.profile_edit_btn_cancel);
         btnOk = findViewById(R.id.profile_edit_btn_ok);
+        mcontext = this;
 
         ibBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -48,13 +52,13 @@ public class EditprofileActivity extends BaseActivity implements MainActivityVie
             }
         });
 
-//        ibHome.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                mainActivity.onFragmentChange(0);
-//                finish();
-//            }
-//        }); 홈이미지버튼 누르면 홈으로 돌아가기 안됨 개썅 짜증나서 주석처리 context활용어쩌고 해야담닝라ㅓ미나어리
+        ibHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((MainActivity)MainActivity.mcontext).onFragmentChange(0);
+                finish();
+            }
+        });
         Cancel_customDialog cancelCustomDialog = new Cancel_customDialog(EditprofileActivity.this);
         btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,7 +67,7 @@ public class EditprofileActivity extends BaseActivity implements MainActivityVie
             }
         });
 
-        intent = new Intent(this, MypageFragment.class);
+        intent = new Intent(this, MainActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
         cb1 = findViewById(R.id.profile_edit_cb1);
         cb2 = findViewById(R.id.profile_edit_cb2);
@@ -92,7 +96,6 @@ public class EditprofileActivity extends BaseActivity implements MainActivityVie
             @Override
             public void onClick(View v) {
                 okCustomDialog.callFunction();
-                startActivity(intent);
             }
         });
     }

@@ -5,4 +5,5 @@
     <string name="profileupdate"><u>프로필 사진 등록</u></string>
     <string name="profilechange"><u>바꾸기</u></string>
     <string name="profiledelete"><u>삭제</u></string>
+    <string name="warning"><u>자세히 알아보기</u></string>
 </resources>

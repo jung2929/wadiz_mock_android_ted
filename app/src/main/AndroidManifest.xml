@@ -26,6 +26,8 @@
         </activity>
         <activity android:name=".src.editprofile.EditprofileActivity"/>
         <activity android:name=".src.login.LoginActivity"/>
+        <activity android:name=".src.register_card.Register_cardActivity"/>
+        <activity android:name=".src.item_main.Item_mainActivity"/>
         </application>
 
 </manifest>

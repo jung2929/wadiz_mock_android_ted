@@ -46,15 +46,16 @@ public class LoginActivity extends BaseActivity implements MainActivityView {
             }
         });
 
-//        ibHome.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                mainActivity.onFragmentChange(0);
-//                finish();
-//            }
-//        }); 홈이미지버튼 누르면 홈으로 돌아가기 안됨 개썅 짜증나서 주석처리 context활용어쩌고 해야담닝라ㅓ미나어리
+        ibHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((MainActivity)getApplicationContext()).onFragmentChange(0);
+                finish();
+            }
+        });
 
     }
+
 
     private void tryGetTest() {
         showProgressDialog();
