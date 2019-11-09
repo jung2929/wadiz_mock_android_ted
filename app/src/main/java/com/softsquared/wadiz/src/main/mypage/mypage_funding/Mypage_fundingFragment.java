@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.softsquared.wadiz.R;
 import com.softsquared.wadiz.src.BaseFragment;
-import com.softsquared.wadiz.src.main.mypage.RecyclerDecoration;
+import com.softsquared.wadiz.src.common.RecyclerDecoration;
 import com.softsquared.wadiz.src.main.mypage.mypage_funding.interfaces.MainActivityView;
 
 import java.util.ArrayList;
@@ -22,7 +22,7 @@ import java.util.ArrayList;
 
 public class Mypage_fundingFragment extends BaseFragment implements MainActivityView {
     View view;
-    TextView tvNull, tvNum;
+    TextView tvNull;
     LinearLayout llNum;;
     RecyclerView rvItem;
     ArrayList<FundingItemlist> fundingItemlistArrayList;
@@ -42,7 +42,6 @@ public class Mypage_fundingFragment extends BaseFragment implements MainActivity
         tvNull = view.findViewById(R.id.mypage_funding_tv_null);
         rvItem = view.findViewById(R.id.mypage_funding_rv);
         llNum = view.findViewById(R.id.mypage_funding_ll_num);
-        tvNum = view.findViewById(R.id.mypage_funding_tv_num);
 
         fundingItemlistArrayList = new ArrayList<>();
 
@@ -61,7 +60,6 @@ public class Mypage_fundingFragment extends BaseFragment implements MainActivity
             tvNull.setVisibility(View.GONE);
             rvItem.setVisibility(View.VISIBLE);
             llNum.setVisibility(View.VISIBLE);
-            tvNum.setText(Integer.toString(fundingItemlistArrayList.size()));
             System.out.println(Integer.toString(fundingItemlistArrayList.size()));
             rvItem.setLayoutManager(new LinearLayoutManager(getActivity()));
             FundingItemRvAdapter fundingItemRvAdapter = new FundingItemRvAdapter(fundingItemlistArrayList);

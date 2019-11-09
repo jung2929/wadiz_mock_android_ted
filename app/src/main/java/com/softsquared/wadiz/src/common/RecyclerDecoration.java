@@ -1,4 +1,4 @@
-package com.softsquared.wadiz.src.main.mypage;
+package com.softsquared.wadiz.src.common;
 
 import android.graphics.Rect;
 import android.view.View;

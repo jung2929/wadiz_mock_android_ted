@@ -31,6 +31,9 @@
         <activity android:name=".src.Item.MainItem.ItemMainActivity"/>
         <activity android:name=".src.main.MainActivity"/>
         <activity android:name=".src.Item.policy.PolicyActivity"/>
+        <activity android:name=".src.Item.ItemPurchaseFirst.PurchaseFirstActivity"/>
+        <activity android:name=".src.Item.ItemPurchaseSecond.PurchaseSecondActivity"/>
+        <activity android:name=".src.Item.ItemPurchaseLast.PurchaseLastActivity"/>
         </application>
 
 </manifest>

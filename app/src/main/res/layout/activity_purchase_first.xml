@@ -23,10 +23,10 @@
                 android:minWidth="0dp"
                 android:minHeight="0dp"
                 android:scaleType="centerCrop"
-                android:src="@drawable/delivery_back" />
+                android:src="@drawable/purchase_back" />
 
             <TextView
-                android:id="@+id/delivery_tv_name"
+                android:id="@+id/purchase_first_tv_name"
                 android:layout_width="250dp"
                 android:layout_height="match_parent"
                 android:layout_centerInParent="true"
@@ -50,7 +50,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
-                android:src="@drawable/delivery_flow_1" />
+                android:scaleType="center"
+                android:src="@drawable/purchase_flow_1" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -66,6 +67,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:orientation="vertical"
+                android:descendantFocusability="blocksDescendants"
                 android:padding="5dp">
 
                 <TextView
@@ -100,7 +102,7 @@
                 </LinearLayout>
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/delivery_rv"
+                    android:id="@+id/purchase_first_rv"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp" />
@@ -137,7 +139,7 @@
                         android:orientation="horizontal">
 
                         <EditText
-                            android:id="@+id/delivery_et"
+                            android:id="@+id/purchase_first_et_sponsor"
                             android:layout_width="200dp"
                             android:layout_height="wrap_content"
                             android:background="@drawable/customborder_rounded_focus"
@@ -155,7 +157,12 @@
                             android:textColor="@color/black"
                             android:textSize="15sp" />
                     </LinearLayout>
+                </LinearLayout>
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -193,22 +200,24 @@
                     </LinearLayout>
 
                     <CheckBox
-                        android:id="@+id/delivery_cb_name_open"
+                        android:id="@+id/purchase_first_cb_name_open"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20dp"
                         android:button="@drawable/custom_square_checkbox"
                         android:fontFamily="@font/nanumbarungothic"
                         android:text="이름 비공개"
+                        android:paddingLeft="10dp"
                         android:textColor="@color/black"
                         android:textSize="15sp" />
 
                     <CheckBox
-                        android:id="@+id/delivery_cb_money_open"
+                        android:id="@+id/purchase_first_cb_money_open"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20dp"
                         android:button="@drawable/custom_square_checkbox"
+                        android:paddingLeft="10dp"
                         android:fontFamily="@font/nanumbarungothic"
                         android:text="펀딩금액 비공개"
                         android:textColor="@color/black"
@@ -230,16 +239,17 @@
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="10dp"
                         android:scaleType="center"
-                        android:src="@drawable/delivery_example" />
+                        android:src="@drawable/purchase_funding_example" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
+                        android:layout_marginTop="10dp"
                         android:orientation="horizontal">
 
                         <TextView
-                            android:id="@+id/delivery_tv_lastname"
+                            android:id="@+id/purchase_first_tv_lastname"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/nanumbarungothic"
@@ -263,7 +273,7 @@
                         android:orientation="horizontal">
 
                         <TextView
-                            android:id="@+id/delivery_tv_lastmoney"
+                            android:id="@+id/purchase_first_tv_lastmoney"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/nanumbarungothic"
@@ -281,7 +291,7 @@
                     </LinearLayout>
 
                     <Button
-                        android:id="@+id/delivery_btn_next"
+                        android:id="@+id/purchase_first_btn_next"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"

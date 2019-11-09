@@ -13,4 +13,8 @@
     <color name="login">#7fe1e2</color>
     <color name="wadiz">#5ac0c4</color>
     <color name="lightgray">#c8c8ca</color>
+    <color name="red">#ff0000</color>
+    <color name="browngray">#eeede9</color>
+    <color name="rewardclick">#dbf4f0</color>
+    <color name="wadiz_splash">#00cccb</color>
 </resources>

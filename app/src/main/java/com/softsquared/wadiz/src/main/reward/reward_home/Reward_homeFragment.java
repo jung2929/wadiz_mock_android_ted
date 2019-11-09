@@ -104,6 +104,7 @@ public class Reward_homeFragment extends BaseFragment implements MainActivityVie
         SmallItemRvAdapter smallItemRvAdapter = new SmallItemRvAdapter(itemlistArrayList);
         BigItemRvAdapter bigItemRvAdapter = new BigItemRvAdapter(itemlistArrayList);
         rvItem.setAdapter(smallItemRvAdapter);
+
         showitemflag = true; //아이템 리스트 보여주는 방식 변경을 위한 플래그 (small리스트 사용시 true, big리스트 사용시 false)
 
         //버튼 클릭시 보여주기 방식 변경 (크게/작게)
@@ -137,15 +138,6 @@ public class Reward_homeFragment extends BaseFragment implements MainActivityVie
 
             }
         }));
-
-
-//        listView.setOnTouchListener(new View.OnTouchListener() {
-//            @Override
-//            public boolean onTouch(View v, MotionEvent event) {
-//                nestedScrollView.requestDisallowInterceptTouchEvent(true);
-//                return false;
-//            }
-//        });
 
         return view;
     }

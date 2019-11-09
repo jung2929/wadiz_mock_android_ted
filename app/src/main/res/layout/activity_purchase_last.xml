@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp">
+
+            <ImageButton
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:minWidth="0dp"
+                android:minHeight="0dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/back" />
+
+            <TextView
+                android:id="@+id/purchase_first_tv_name"
+                android:layout_width="250dp"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                android:ellipsize="end"
+                android:fontFamily="@font/nanumbarungothic"
+                android:gravity="center_vertical"
+                android:maxLines="1"
+                android:text="가나다라마바사아자차카타파하가나다라마"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+
+            <ImageButton
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:minWidth="0dp"
+                android:minHeight="0dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/home" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="펀딩 완료"
+                    android:textColor="@color/black"
+                    android:fontFamily="@string/point"
+                    android:textSize="28sp"
+                    android:textStyle="bold"/>
+
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/congratulation"
+                    android:background="@color/clear"
+                    android:scaleType="center"/>
+
+                </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="10dp"
+                android:background="@drawable/customborder_rounded_purchaselast">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="25dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="든든한 서포터"
+                        android:textColor="@color/black"
+                        android:fontFamily="@string/point"
+                        android:textSize="20sp"
+                        android:textStyle="bold"/>
+
+                    <TextView
+                        android:id="@+id/purchase_last_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="김태웅"
+                        android:textColor="@color/black"
+                        android:fontFamily="@string/point"
+                        android:textSize="20sp"
+                        android:textStyle="bold"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="님"
+                        android:textColor="@color/black"
+                        android:fontFamily="@string/point"
+                        android:textSize="20sp"
+                        android:textStyle="bold"/>
+
+                </LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="펀딩해 주셔서 감사합니다."
+                    android:textColor="@color/black"
+                    android:fontFamily="@string/point"
+                    android:textSize="20sp"
+                    android:textStyle="bold"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="10dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="결제 예정일 : "
+                        android:textColor="@color/gray"
+                        android:fontFamily="@string/point"
+                        android:textSize="15sp"
+                        android:textStyle="bold"/>
+
+                    <TextView
+                        android:id="@+id/purchase_last_day"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="2019년 12월 09일"
+                        android:textColor="@color/gray"
+                        android:fontFamily="@string/point"
+                        android:textSize="15sp"
+                        android:textStyle="bold"/>
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="프로젝트 성공 시에만 결제됩니다."
+                    android:textColor="@color/gray"
+                    android:layout_marginTop="5dp"
+                    android:fontFamily="@string/point"
+                    android:textSize="13sp"
+                    android:textStyle="bold"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="10dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="리워드 발송예정일 : "
+                        android:textColor="@color/gray"
+                        android:fontFamily="@string/point"
+                        android:textSize="15sp"
+                        android:textStyle="bold"/>
+
+                    <TextView
+                        android:id="@+id/purchase_last_delivery_day"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="2019년 12월 중순"
+                        android:textColor="@color/gray"
+                        android:fontFamily="@string/point"
+                        android:textSize="15sp"
+                        android:textStyle="bold"/>
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="리워드 준비 중 예기치 못한 사정으로 리워드 발송이 지연 되거나 리워드 품질이 기대와 다를 수 있음을 알려드립니다."
+                    android:textColor="@color/gray"
+                    android:layout_marginTop="5dp"
+                    android:fontFamily="@string/point"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="15dp"/>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="아직 끝나지 않았습니다."
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/nanumbarungothic"
+                android:textSize="17sp"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:layout_gravity="center"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="지지서명으로 프로젝트를 응원하세요"
+                    android:fontFamily="@font/nanumbarungothic"
+                    android:textSize="17sp"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:layout_gravity="center"/>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/clap_color"/>
+
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:src="@drawable/question_circle"
+                android:layout_marginTop="10dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp"
+                android:gravity="center">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="11명"
+                    android:fontFamily="@font/nanumbarungothic"
+                    android:textSize="14sp"
+                    android:textColor="@color/wadiz_splash"
+                    android:textStyle="bold"
+                    android:layout_gravity="center"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="이 확산에 참여중입니다"
+                    android:fontFamily="@font/nanumbarungothic"
+                    android:textSize="14sp"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:layout_gravity="center"/>
+
+            </LinearLayout>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="와디즈 지지서명을 통해 메이커의 멋진 이야기가\n세상에 알려질 수 있도록 페이스북에 공유해 주세요.\n참여시 최대 1,100포인트를 적립해 드립니다."
+                android:fontFamily="@font/nanumbarungothic"
+                android:textSize="12sp"
+                android:gravity="center"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/gray"
+                android:layout_gravity="center"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="결제 예약 결과 및 배송 예상일 조회는\n나의 펀딩현황에서 확인하세요."
+                android:fontFamily="@font/nanumbarungothic"
+                android:textSize="12sp"
+                android:gravity="center"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/gray"
+                android:layout_gravity="center"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/customborder_rounded_background_wadiz_click"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:text="펀딩 내역 보러가기"
+                android:paddingRight="20dp"
+                android:paddingLeft="20dp"
+                android:textColor="@color/white"
+                android:fontFamily="@font/nanumbarungothic"
+                android:id="@+id/purchase_last_btn_mypage_funding"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</androidx.core.widget.NestedScrollView>

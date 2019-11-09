@@ -18,6 +18,7 @@ import androidx.fragment.app.FragmentManager;
 
 import com.softsquared.wadiz.R;
 import com.softsquared.wadiz.src.BaseActivity;
+import com.softsquared.wadiz.src.Item.ItemPurchaseFirst.PurchaseFirstActivity;
 import com.softsquared.wadiz.src.Item.item_main_story.Item_main_storyFragment;
 import com.softsquared.wadiz.src.Item.item_main_supporter.Item_main_supporterFragment;
 import com.softsquared.wadiz.src.Item.policy.interfaces.MainActivityView;
@@ -113,9 +114,9 @@ public class PolicyActivity extends BaseActivity implements MainActivityView {
         mBtnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Intent intent = new Intent(this, );
-//                startActivity(intent);
-//                finish();
+                Intent intent = new Intent(getApplicationContext(), PurchaseFirstActivity.class);
+                startActivity(intent);
+                finish();
             }
         });
 

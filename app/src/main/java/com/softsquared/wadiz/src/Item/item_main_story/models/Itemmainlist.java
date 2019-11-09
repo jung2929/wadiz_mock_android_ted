@@ -1,14 +1,14 @@
-package com.softsquared.wadiz.src.Item.item_main_story;
+package com.softsquared.wadiz.src.Item.item_main_story.models;
 
 public class Itemmainlist {
-    String Money;
-    String Name;
-    String Content;
-    String Delivery_money;
-    String Delivery_day;
-    String Limited;
-    String Limited_now;
-    String Total;
+    public String Money;
+    public String Name;
+    public String Content;
+    public String Delivery_money;
+    public String Delivery_day;
+    public String Limited;
+    public String Limited_now;
+    public String Total;
 
     public Itemmainlist(String money, String name, String content, String delivery_money, String delivery_day, String limited, String limited_now, String total) {
         Money = money;

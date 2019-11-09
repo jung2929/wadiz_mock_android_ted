@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.softsquared.wadiz.R;
 import com.softsquared.wadiz.src.BaseFragment;
-import com.softsquared.wadiz.src.main.mypage.RecyclerDecoration;
+import com.softsquared.wadiz.src.common.RecyclerDecoration;
 import com.softsquared.wadiz.src.main.mypage.mypage_like.interfaces.MainActivityView;
 
 import java.util.ArrayList;

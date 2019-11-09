@@ -1,9 +1,9 @@
-package com.softsquared.wadiz.src.Item.item_main_supporter;
+package com.softsquared.wadiz.src.Item.item_main_supporter.models;
 
 public class Supporterlist {
-    int Image;
-    String Name;
-    String Money;
+    public int Image;
+    public String Name;
+    public String Money;
 
     public Supporterlist(int image, String name, String money) {
         Image = image;

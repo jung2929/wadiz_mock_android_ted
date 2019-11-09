@@ -1,5 +1,6 @@
 package com.softsquared.wadiz.src.Item.item_main_story;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
@@ -19,7 +20,11 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.softsquared.wadiz.R;
 import com.softsquared.wadiz.src.BaseFragment;
+import com.softsquared.wadiz.src.Item.ItemPurchaseSecond.PurchaseSecondActivity;
 import com.softsquared.wadiz.src.Item.item_main_story.interfaces.MainActivityView;
+import com.softsquared.wadiz.src.Item.item_main_story.models.Itemmainlist;
+import com.softsquared.wadiz.src.Item.policy.PolicyActivity;
+import com.softsquared.wadiz.src.common.RecyclerDecoration;
 
 import java.util.ArrayList;
 
@@ -103,10 +108,15 @@ public class Item_main_storyFragment extends BaseFragment implements MainActivit
         for (int i = 0; i < 6; i++) {
             itemmainlistArrayList.add(new Itemmainlist("10,000", "이곳은 이름입니다@@@@@@@@@", "소프트스퀘어드", "0", "2019년 11월 31일", "200", "30", "30"));
         }
+
+        //리사이클러 뷰 간 간격 조정
+        RecyclerDecoration recyclerDecoration = new RecyclerDecoration(20);
+
         //아이템 리사이클러뷰 생성
         rvItem = view.findViewById(R.id.item_main_rv);
         rvItem.setLayoutManager(new LinearLayoutManager(getActivity()));
         ItemRvAdapter smallItemRvAdapter = new ItemRvAdapter(itemmainlistArrayList);
+        rvItem.addItemDecoration(recyclerDecoration);
         rvItem.setAdapter(smallItemRvAdapter);
 
         //더보기 기능
@@ -126,6 +136,14 @@ public class Item_main_storyFragment extends BaseFragment implements MainActivit
                 tvMain.setMaxLines(5);
                 btnMore.setVisibility(View.VISIBLE);
                 btnLess.setVisibility(View.GONE);
+            }
+        });
+
+        btnFunding.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), PolicyActivity.class);
+                startActivity(intent);
             }
         });
 
