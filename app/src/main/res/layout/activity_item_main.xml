@@ -21,7 +21,7 @@
             <ImageButton
                 android:id="@+id/item_main_ib_back"
                 android:layout_width="0dp"
-                android:layout_height="20sp"
+                android:layout_height="35sp"
                 android:layout_gravity="center"
                 android:layout_weight="1"
                 android:background="@color/clear"
@@ -45,7 +45,7 @@
             <ImageButton
                 android:id="@+id/item_main_ib_home"
                 android:layout_width="0dp"
-                android:layout_height="20sp"
+                android:layout_height="35sp"
                 android:layout_gravity="center"
                 android:layout_weight="1"
                 android:background="@color/clear"

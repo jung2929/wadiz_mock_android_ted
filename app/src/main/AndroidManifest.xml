@@ -17,17 +17,20 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning"
         tools:targetApi="n">
-        <activity android:name=".src.main.MainActivity">
+        <activity android:name=".src.splsh.SplashActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".src.editprofile.EditprofileActivity"/>
+        <activity android:name=".src.main.mypage.editprofile.EditprofileActivity"/>
         <activity android:name=".src.login.LoginActivity"/>
-        <activity android:name=".src.register_card.Register_cardActivity"/>
-        <activity android:name=".src.item_main.Item_mainActivity"/>
+        <activity android:name=".src.main.mypage.mypage_card.card.register_card.Register_cardActivity"/>
+        <activity android:name=".src.Item.MainItem.ItemMainActivity"/>
+        <activity android:name=".src.main.MainActivity"/>
+        <activity android:name=".src.Item.policy.PolicyActivity"/>
         </application>
 
 </manifest>

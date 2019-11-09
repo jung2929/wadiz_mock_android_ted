@@ -225,7 +225,7 @@
             android:layout_height="wrap_content"
             android:text="다음"
             android:background="@color/percent"
-            android:textColor="#99ffffff"
+            android:textColor="@color/whitenonclick"
             android:layout_marginTop="30dp"
             android:fontFamily="@font/nanumbarungothic"
             android:enabled="false"

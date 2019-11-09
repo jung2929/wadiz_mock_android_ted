@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:fontFamily="@font/nanumbarungothic"
+            android:text="회원가입"
+            android:textColor="@color/black"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="30dp"
+            android:drawableRight="@drawable/arrowright"
+            android:fontFamily="@font/nanumbarungothic"
+            android:gravity="top"
+            android:text="@string/agree"
+            android:textColor="@color/black"
+            android:textSize="13sp" />
+
+
+        <EditText
+            android:id="@+id/join_emil_et_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:drawableTint="@color/gray"
+            android:background="@drawable/customborder_rounded_focus"
+            android:drawableRight="@drawable/email"
+            android:fontFamily="@font/nanumbarungothic"
+            android:hint="이메일 계정"
+            android:padding="15dp" />
+
+        <EditText
+            android:id="@+id/join_emil_et_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableTint="@color/gray"
+
+            android:layout_marginTop="20dp"
+            android:background="@drawable/customborder_rounded_nonfocus"
+            android:drawableRight="@drawable/user"
+            android:fontFamily="@font/nanumbarungothic"
+            android:hint="이름"
+            android:padding="15dp" />
+
+        <EditText
+            android:id="@+id/join_emil_et_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/customborder_rounded_nonfocus"
+            android:drawableTint="@color/gray"
+            android:drawableRight="@drawable/locked"
+            android:fontFamily="@font/nanumbarungothic"
+            android:hint="비밀번호 입력"
+            android:padding="15dp" />
+
+        <EditText
+            android:id="@+id/join_emil_et_password_right"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/customborder_rounded_nonfocus"
+            android:drawableTint="@color/gray"
+            android:drawableRight="@drawable/locked"
+            android:fontFamily="@font/nanumbarungothic"
+            android:hint="비밀번호 확인"
+            android:padding="15dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/nanumbarungothic"
+            android:text="영문, 숫자, 특수문자 (!@#$%^\u0026*+=-)를 조합한 8자 이상"
+            android:textColor="@color/black"
+            android:textSize="13sp"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="프로모션 코드"
+                android:fontFamily="@font/nanumbarungothic"
+                android:textColor="@color/black"
+                android:textSize="18sp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="(선택사항)"
+                android:layout_marginLeft="5dp"
+                android:fontFamily="@font/nanumbarungothic"
+                android:textColor="@color/gray"/>
+
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/join_emil_et_promotion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:drawableTint="@color/gray"
+            android:background="@drawable/customborder_rounded_focus"
+            android:drawableRight="@drawable/coupon"
+            android:fontFamily="@font/nanumbarungothic"
+            android:hint="신규가입·친구초대 프로모션 코드 입력"
+            android:padding="15dp" />
+
+        <Button
+            android:id="@+id/join_email_btn_ok"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/percent"
+            android:fontFamily="@font/nanumbarungothic"
+            android:text="확인"
+            android:textColor="@color/whitenonclick"
+            android:enabled="false"
+            android:layout_marginTop="30dp"
+            android:textSize="15sp" />
+
+    </LinearLayout>
+
+</ScrollView>

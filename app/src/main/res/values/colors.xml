@@ -4,10 +4,13 @@
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
     <color name="white">#ffffff</color>
+    <color name="whitenonclick">#99ffffff</color>
     <color name="black">#000000</color>
     <color name="gray">#6c6c6e</color>
     <color name="clear">#00ff0000</color>
     <color name="percent">#53b3b2</color>
-    <color name="lightgray">#f5f6fa</color>
+    <color name="ultralightgray">#f5f6fa</color>
     <color name="login">#7fe1e2</color>
+    <color name="wadiz">#5ac0c4</color>
+    <color name="lightgray">#c8c8ca</color>
 </resources>

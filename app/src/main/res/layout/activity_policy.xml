@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/policy_btn_next">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <Button
+                android:id="@+id/policy_btn_back"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/clear"
+                android:drawableLeft="@drawable/backarrow"
+                android:fontFamily="@font/nanumbarungothic"
+                android:text=" 스토리로 돌아가기"
+                android:textColor="@color/gray"
+                android:textSize="17sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/nanumbarungothic"
+                android:padding="10dp"
+                android:text="잠깐! 결제하기가 아닌 펀딩하기인 이유를 확인하고, 펀딩하세요."
+                android:textColor="@color/black"
+                android:textSize="34sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="5dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/customborder_sideline">
+
+                    <CheckBox
+                        android:id="@+id/policy_cb_1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:button="@drawable/custom_gray_up_checkbox"
+                        android:fontFamily="@font/nanumbarungothic"
+                        android:paddingLeft="5dp"
+                        android:paddingTop="15dp"
+                        android:paddingRight="15dp"
+                        android:paddingBottom="15dp"
+                        android:text="펀딩한 리워드는 새롭게 준비하고 있는 제품·서비스입니다."
+                        android:textColor="@color/lightgray"
+                        android:textSize="16sp" />
+                </LinearLayout>
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/customborder_sideline"
+                    android:padding="15dp"
+                    android:text="펀딩 후, 리워드를 제작·준비하는 크라우드펀딩 특성상, 품질 이슈가 발생할 수 있습니다.\n\n리워드 품질 이슈 발생시 메이커의 리워드 관련 정책을 꼭 확인해주세요."
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/customborder_sideline"
+                    android:padding="15dp">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/policy_company"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/nanumbarungothic"
+                            android:text="폭스테크"
+                            android:textColor="@color/gray"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/nanumbarungothic"
+                            android:text="의 리워드 관련 정책"
+                            android:textColor="@color/gray"
+                            android:textSize="16sp" />
+                    </LinearLayout>
+
+                    <ImageButton
+                        android:id="@+id/policy_ib_reward_more"
+                        style="?android:attr/borderlessButtonStyle"
+                        android:layout_width="15sp"
+                        android:layout_height="15sp"
+                        android:layout_alignParentRight="true"
+                        android:src="@drawable/policy_more"
+                        android:visibility="visible" />
+
+                    <ImageButton
+                        android:id="@+id/policy_ib_reward_less"
+                        style="?android:attr/borderlessButtonStyle"
+                        android:layout_width="15sp"
+                        android:layout_height="15sp"
+                        android:layout_alignParentRight="true"
+                        android:src="@drawable/policy_less"
+                        android:visibility="gone" />
+
+                    <TextView
+                        android:id="@+id/policy_tv_reward_more"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/policy_ib_reward_less"
+                        android:layout_marginTop="20dp"
+                        android:fontFamily="@font/nanumbarungothic"
+                        android:text="교환 : 초기불량 리워드의 경우 리워드를 수령하신 날로부터 14일 이내 무상교환이 가능합니다.\n초기불량 교환 시, 별도의 접수 없이 택배박스 안에 성함/연락처/펀딩번호/불량사유를 기재하시어 동봉하여 주십시오.\n\n반품 : 펀딩 기간 중 취소는 언제든지 가능하나, 펀딩 마지막 날은 취소가 어렵습니다.\n신중하게 선택해 주시기 바랍니다. \u0022펀딩\u0022은 \u0022온라인 쇼핑\u0022이 아닙니다.\n\nA/S : 상품을 수령하신 날로부터 1년 간 제공되며, 소비자의 과실이 아닌 제품 불량에 대해서 무상으로 교환/수리를 제공합니다."
+                        android:textColor="@color/gray"
+                        android:textSize="15sp"
+                        android:visibility="gone" />
+                </RelativeLayout>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="5dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/customborder_sideline">
+
+                    <CheckBox
+                        android:id="@+id/policy_cb_2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:button="@drawable/custom_gray_up_checkbox"
+                        android:fontFamily="@font/nanumbarungothic"
+                        android:paddingLeft="5dp"
+                        android:paddingTop="10dp"
+                        android:paddingRight="10dp"
+                        android:paddingBottom="10dp"
+                        android:text="바로 결제되지 않으며, 펀딩 종료 후에는 결제를 취소할 수 없습니다."
+                        android:textColor="@color/lightgray"
+                        android:textSize="16sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/customborder_sideline"
+                    android:orientation="vertical"
+                    android:padding="15dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="펀딩이 종료되고 목표 금액이 달성될 경우"
+                        android:textColor="@color/black"
+                        android:textSize="15sp" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/policy_tv_paymentday"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="2019.00.00"
+                            android:textColor="@color/black"
+                            android:textSize="15sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="에 결제가 진행됩니다."
+                            android:textColor="@color/black"
+                            android:textSize="15sp" />
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="5dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/customborder_sideline">
+
+                    <CheckBox
+                        android:id="@+id/policy_cb_3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:button="@drawable/custom_gray_checkbox"
+                        android:fontFamily="@font/nanumbarungothic"
+                        android:paddingLeft="5dp"
+                        android:paddingTop="10dp"
+                        android:paddingRight="10dp"
+                        android:paddingBottom="10dp"
+                        android:text="펀딩한 리워드는 즉시 배송되지 않습니다."
+                        android:textColor="@color/lightgray"
+                        android:textSize="16sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/customborder_sideline"
+                    android:orientation="vertical"
+                    android:padding="10dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="메이커가 약속한 리워드 발송 시작일을 확인했나요? 메이커는 펀딩이 성공해야 리워드 제작·준비를 진행합니다.\n\n 리워드 펀딩 특성상 발송이 지연되거나 불가할 수 있으니, 메이커의 발송 지연 정책을 꼭 확인해주세요."
+                        android:textColor="@color/black"
+                        android:textSize="15sp" />
+
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/customborder_sideline"
+                    android:padding="15dp">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/policy_company2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/nanumbarungothic"
+                            android:text="폭스테크"
+                            android:textColor="@color/gray"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/nanumbarungothic"
+                            android:text="의 발송 관련 정책"
+                            android:textColor="@color/gray"
+                            android:textSize="16sp" />
+                    </LinearLayout>
+
+                    <ImageButton
+                        android:id="@+id/policy_ib_delivery_more"
+                        style="?android:attr/borderlessButtonStyle"
+                        android:layout_width="15sp"
+                        android:layout_height="15sp"
+                        android:layout_alignParentRight="true"
+                        android:src="@drawable/policy_more"
+                        android:visibility="visible" />
+
+                    <ImageButton
+                        android:id="@+id/policy_ib_delivery_less"
+                        style="?android:attr/borderlessButtonStyle"
+                        android:layout_width="15sp"
+                        android:layout_height="15sp"
+                        android:layout_alignParentRight="true"
+                        android:src="@drawable/policy_less"
+                        android:visibility="gone" />
+
+                    <TextView
+                        android:id="@+id/policy_tv_delivery_more"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/policy_ib_delivery_less"
+                        android:layout_marginTop="20dp"
+                        android:fontFamily="@font/nanumbarungothic"
+                        android:text="리워드 발송이 지연될 수 있습니다. 펀딩 받은 후,리워드를 제작할 수 있는 크라우드펀딩의 특성과 생산 과정에서의 예상치 못한 상황으로 인하여 리워드 발송이 지연되거나 발송이 불가할 수 있습니다."
+                        android:textColor="@color/gray"
+                        android:textSize="15sp"
+                        android:visibility="gone" />
+
+                </RelativeLayout>
+
+
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <Button
+        android:id="@+id/policy_btn_next"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="#e5e9ec"
+        android:enabled="false"
+        android:padding="20dp"
+        android:text="계속해서 펀딩하기"
+        android:textColor="@color/white"
+        android:textSize="15sp"
+        android:textStyle="bold" />
+</RelativeLayout>

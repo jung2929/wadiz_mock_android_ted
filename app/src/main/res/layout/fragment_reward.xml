@@ -14,6 +14,9 @@
         app:tabSelectedTextColor="@color/black"
         app:tabTextAppearance="@style/tab_text"
         app:tabIndicatorColor="@color/black"
+        app:tabPaddingStart="10dp"
+        app:tabPaddingEnd="10dp"
+        app:tabIndicatorFullWidth="false"
         app:tabIndicatorHeight="4dp">
 
     </com.google.android.material.tabs.TabLayout>

@@ -4,22 +4,6 @@
     <font
         android:fontStyle="normal"
         android:fontWeight="400"
-        android:font="@font/nanumsquareroundl"/>
-    <font
-        android:fontStyle="normal"
-        android:fontWeight="400"
-        android:font="@font/nanumsquareroundr"/>
-    <font
-        android:fontStyle="normal"
-        android:fontWeight="400"
-        android:font="@font/nanumsquareroundb"/>
-    <font
-        android:fontStyle="normal"
-        android:fontWeight="400"
-        android:font="@font/nanumsquareroundeb"/>
-    <font
-        android:fontStyle="normal"
-        android:fontWeight="400"
         android:font="@font/nanumbarungothicultralight"/>
     <font
         android:fontStyle="normal"
