@@ -20,7 +20,6 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.softsquared.wadiz.R;
 import com.softsquared.wadiz.src.BaseFragment;
-import com.softsquared.wadiz.src.Item.ItemPurchaseSecond.PurchaseSecondActivity;
 import com.softsquared.wadiz.src.Item.item_main_story.interfaces.MainActivityView;
 import com.softsquared.wadiz.src.Item.item_main_story.models.Itemmainlist;
 import com.softsquared.wadiz.src.Item.policy.PolicyActivity;

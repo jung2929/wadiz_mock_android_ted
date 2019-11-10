@@ -13,10 +13,52 @@
         android:focusableInTouchMode="true"
         android:descendantFocusability="beforeDescendants">
 
-        <androidx.viewpager.widget.ViewPager
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="250dp"
-            android:id="@+id/reward_open_vp"/>
+            android:layout_height="230dp">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/open_banner"
+                    android:scaleType="centerCrop"
+                    android:id="@+id/reward_open_iv_banner"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:fontFamily="@font/nanumbarungothic"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:text="곧 열리는 오픈 임박 펀딩 모음"
+                    android:layout_marginBottom="10dp"
+                    android:layout_above="@id/banner_subtv"/>
+
+
+                <TextView
+                    android:id="@+id/banner_subtv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:text="순식간에 사라지는 슈퍼 얼리버드 혜택을 잡으세요!"
+                    android:fontFamily="@font/nanumbarungothic"
+                    android:textColor="@color/white"
+                    android:textSize="15sp"
+                    android:textStyle="bold"/>
+
+            </RelativeLayout>
+
+
+
+        </FrameLayout>
+
 
        <TextView
            android:layout_width="match_parent"

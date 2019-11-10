@@ -1,8 +1,6 @@
 package com.softsquared.wadiz.src.Item.policy;
 
-import android.content.Context;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -12,17 +10,11 @@ import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
-import androidx.core.widget.NestedScrollView;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 
 import com.softsquared.wadiz.R;
 import com.softsquared.wadiz.src.BaseActivity;
-import com.softsquared.wadiz.src.Item.ItemPurchaseFirst.PurchaseFirstActivity;
-import com.softsquared.wadiz.src.Item.item_main_story.Item_main_storyFragment;
-import com.softsquared.wadiz.src.Item.item_main_supporter.Item_main_supporterFragment;
+import com.softsquared.wadiz.src.Item.ItemPurchase.ItemPurchaseFirst.PurchaseFirstActivity;
 import com.softsquared.wadiz.src.Item.policy.interfaces.MainActivityView;
-import com.softsquared.wadiz.src.main.MainActivity;
 
 
 public class PolicyActivity extends BaseActivity implements MainActivityView {

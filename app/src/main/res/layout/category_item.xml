@@ -16,11 +16,12 @@
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/category_iv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@mipmap/ic_launcher_round"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/circle_category_main"
             android:layout_gravity="center"
-            app:civ_border_color="@color/clear"/>
+            app:civ_border_color="@color/wadiz"
+            app:civ_border_width="2dp"/>
 
         <TextView
             android:id="@+id/category_tv"
@@ -28,8 +29,9 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:fontFamily="@font/nanumbarungothic"
-            android:textColor="@color/black"
+            android:textColor="@color/wadiz"
             android:layout_marginTop="10dp"
+            android:text="카테고리 전체"
             android:textSize="15sp" />
 
     </LinearLayout>

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="120dp">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"
+            android:src="@drawable/category_main"
+            android:id="@+id/category_iv_main"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textSize="17sp"
+            android:fontFamily="@font/nanumbarungothic"
+            android:textColor="@color/white"
+            android:id="@+id/category_tv_main_name"/>
+    </RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/category_all_et"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="4.5"
+            android:background="@drawable/customborder_sideline"
+            android:drawableEnd="@drawable/search_small"
+            android:fontFamily="@font/nanumbarungothic"
+            android:hint="  검색"
+            android:paddingLeft="5dp"
+            android:textSize="15sp" />
+
+        <Button
+            android:id="@+id/category_all_control"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2.3"
+            android:background="@drawable/customborder_sideline"
+            android:drawableStart="@drawable/control"
+            android:drawablePadding="5dp"
+            android:fontFamily="@font/nanumbarungothic"
+            android:paddingLeft="13dp"
+            android:paddingRight="13dp"
+            android:text="전체"
+            android:textSize="15sp" />
+
+        <Button
+            android:id="@+id/category_all_order"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2.7"
+            android:background="@drawable/customborder_sideline"
+            android:drawableStart="@drawable/order"
+            android:drawablePadding="5dp"
+            android:fontFamily="@font/nanumbarungothic"
+            android:paddingLeft="13dp"
+            android:paddingRight="13dp"
+            android:text="추천순"
+            android:textSize="15sp" />
+
+        <ImageButton
+            android:id="@+id/category_all_showlist"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1.5"
+            android:background="@drawable/customborder_sideline"
+            android:padding="5dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/smalllist" />
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/category_all_rv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="10dp"
+        android:nestedScrollingEnabled="false" />
+
+</LinearLayout>

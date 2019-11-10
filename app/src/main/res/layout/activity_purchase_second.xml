@@ -814,7 +814,7 @@
                         android:textSize="14sp" />
 
                     <Button
-                        android:id="@+id/purchase_second_btn_delivery"
+                        android:id="@+id/purchase_second_btn_address"
                         android:layout_width="wrap_content"
                         android:layout_height="40dp"
                         android:layout_marginTop="20dp"

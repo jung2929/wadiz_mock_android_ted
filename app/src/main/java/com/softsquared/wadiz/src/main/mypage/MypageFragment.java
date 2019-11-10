@@ -94,7 +94,7 @@ public class MypageFragment extends BaseFragment implements MainActivityView {
         fragmentManager = getActivity().getSupportFragmentManager();
 
         fundingFragment = new Mypage_fundingFragment();
-        fragmentManager.beginTransaction().replace(R.id.mypage_fl_container, fundingFragment).commit();
+        fragmentManager.beginTransaction().replace(R.id.mypage_fl_container, fundingFragment).commitAllowingStateLoss();
 
         btnFunding.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -125,13 +125,13 @@ public class MypageFragment extends BaseFragment implements MainActivityView {
 
     public void onFragmentChange(int index) {
         if (index == 0) { //펀딩한
-            if (likeFragment != null) fragmentManager.beginTransaction().hide(likeFragment).commit();
-            if (cardFragment != null) fragmentManager.beginTransaction().hide(cardFragment).commit();
+            if (likeFragment != null) fragmentManager.beginTransaction().hide(likeFragment).commitAllowingStateLoss();
+            if (cardFragment != null) fragmentManager.beginTransaction().hide(cardFragment).commitAllowingStateLoss();
             if (fundingFragment == null) {
                 fundingFragment = new Mypage_fundingFragment();
-                fragmentManager.beginTransaction().add(R.id.main_fl_container,fundingFragment).commit();
+                fragmentManager.beginTransaction().add(R.id.main_fl_container,fundingFragment).commitAllowingStateLoss();
             } else {
-                if (fundingFragment != null) fragmentManager.beginTransaction().show(fundingFragment).commit();
+                if (fundingFragment != null) fragmentManager.beginTransaction().show(fundingFragment).commitAllowingStateLoss();
             }
             btnFunding.setTypeface(null, Typeface.BOLD);
             btnFunding.setTextColor(ContextCompat.getColor(myContext,R.color.percent));
@@ -146,14 +146,14 @@ public class MypageFragment extends BaseFragment implements MainActivityView {
             btnLike.setBackground(img_nonclick);
 
         } else if (index==1) { //좋아한
-            if (fundingFragment != null) fragmentManager.beginTransaction().hide(fundingFragment).commit();
-            if (cardFragment != null) fragmentManager.beginTransaction().hide(cardFragment).commit();
+            if (fundingFragment != null) fragmentManager.beginTransaction().hide(fundingFragment).commitAllowingStateLoss();
+            if (cardFragment != null) fragmentManager.beginTransaction().hide(cardFragment).commitAllowingStateLoss();
             if (likeFragment == null) {
                 likeFragment = new Mypage_likeFragment();
-                fragmentManager.beginTransaction().add(R.id.mypage_fl_container,likeFragment).commit();
+                fragmentManager.beginTransaction().add(R.id.mypage_fl_container,likeFragment).commitAllowingStateLoss();
 
             } else {
-                if (likeFragment != null) fragmentManager.beginTransaction().show(likeFragment).commit();
+                if (likeFragment != null) fragmentManager.beginTransaction().show(likeFragment).commitAllowingStateLoss();
 
             }
             btnLike.setTypeface(null, Typeface.BOLD);
@@ -169,13 +169,13 @@ public class MypageFragment extends BaseFragment implements MainActivityView {
             btnFunding.setBackground(img_nonclick);
 
         } else if (index==2) { //간편카드정보
-            if (fundingFragment != null) fragmentManager.beginTransaction().hide(fundingFragment).commit();
-            if (likeFragment != null) fragmentManager.beginTransaction().hide(likeFragment).commit();
+            if (fundingFragment != null) fragmentManager.beginTransaction().hide(fundingFragment).commitAllowingStateLoss();
+            if (likeFragment != null) fragmentManager.beginTransaction().hide(likeFragment).commitAllowingStateLoss();
             if (cardFragment == null) {
                 cardFragment = new Mypage_cardFragment();
-                fragmentManager.beginTransaction().add(R.id.mypage_fl_container,cardFragment).commit();
+                fragmentManager.beginTransaction().add(R.id.mypage_fl_container,cardFragment).commitAllowingStateLoss();
             } else {
-                fragmentManager.beginTransaction().show(cardFragment).commit();
+                fragmentManager.beginTransaction().show(cardFragment).commitAllowingStateLoss();
             }
             btnCard.setTypeface(null, Typeface.BOLD);
             btnCard.setTextColor(ContextCompat.getColor(myContext,R.color.percent));

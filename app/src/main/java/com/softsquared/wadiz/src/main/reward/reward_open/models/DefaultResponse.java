@@ -12,6 +12,8 @@ public class DefaultResponse {
     @SerializedName("isSuccess")
     private boolean isSuccess;
 
+
+
     public int getCode() {
         return code;
     }
