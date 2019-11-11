@@ -78,7 +78,7 @@
                 android:textSize="15sp" />
 
             <Button
-                android:id="@+id/login_btn_join"
+                android:id="@+id/join_btn_login"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@color/clear"

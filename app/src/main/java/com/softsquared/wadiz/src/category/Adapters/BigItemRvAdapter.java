@@ -1,4 +1,4 @@
-package com.softsquared.wadiz.src.category.categoryFragment.Adapters;
+package com.softsquared.wadiz.src.category.Adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -12,7 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.softsquared.wadiz.R;
-import com.softsquared.wadiz.src.category.categoryFragment.models.Itemlist;
+import com.softsquared.wadiz.src.category.models.Itemlist;
 
 import java.util.ArrayList;
 

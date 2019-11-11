@@ -1,6 +1,7 @@
-package com.softsquared.wadiz.src.join.join_email;
+package com.softsquared.wadiz.src.join.join_home;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,36 +14,38 @@ import androidx.fragment.app.FragmentActivity;
 
 import com.softsquared.wadiz.R;
 import com.softsquared.wadiz.src.BaseFragment;
-import com.softsquared.wadiz.src.join.join_email.interfaces.MainActivityView;
+import com.softsquared.wadiz.src.join.JoinActivity;
+import com.softsquared.wadiz.src.join.join_email.JoinEmailFragment;
+import com.softsquared.wadiz.src.join.join_home.interfaces.MainActivityView;
+import com.softsquared.wadiz.src.login.LoginActivity;
 
 
-public class Join_emailFragment extends BaseFragment implements MainActivityView {
+public class JoinHomeFragment extends BaseFragment implements MainActivityView {
     View view;
-    Button btnOk;
+    Button btnEmail;
     Context myContext;
 
-    public Join_emailFragment() {
+    public JoinHomeFragment() {
 
     }
 
-    public static Join_emailFragment newInstance() {
-        Join_emailFragment joinemailFragment = new Join_emailFragment();
-        return joinemailFragment;
+    public static JoinHomeFragment newInstance() {
+        JoinHomeFragment joinhomeFragment = new JoinHomeFragment();
+        return joinhomeFragment;
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_join_email, container, false);
-        btnOk = view.findViewById(R.id.join_email_btn_ok);
-
-        btnOk.setOnClickListener(new View.OnClickListener() {
+        view = inflater.inflate(R.layout.fragment_join_home, container, false);
+        btnEmail = view.findViewById(R.id.join_home_btn_email);
+        customOnClick(view);
+        btnEmail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                ((JoinActivity)getActivity()).replaceFragment(JoinEmailFragment.newInstance());
             }
         });
-
 
         return view;
     }
@@ -75,6 +78,8 @@ public class Join_emailFragment extends BaseFragment implements MainActivityView
 
     public void customOnClick(View view) {
         switch (view.getId()) {
+            case R.id.join_home_btn_email :
+                ((JoinActivity)getActivity()).replaceFragment(JoinEmailFragment.newInstance());
 //            case R.id.main_btn_hello_world:
 //                tryGetTest();
 //                break;

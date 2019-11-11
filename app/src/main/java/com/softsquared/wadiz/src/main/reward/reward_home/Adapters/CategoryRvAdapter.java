@@ -35,7 +35,6 @@ public class CategoryRvAdapter extends RecyclerView.Adapter<CategoryRvAdapter.Vi
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView tvCategory;
         CircleImageView ivCategory;
-        boolean touchFlag;
 
         ViewHolder(View itemView) {
             super(itemView) ;
@@ -47,8 +46,7 @@ public class CategoryRvAdapter extends RecyclerView.Adapter<CategoryRvAdapter.Vi
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(mContext, CategoryActivity.class);
-                    mContext.startActivity(intent);
+
                 }
             });
 
@@ -73,6 +71,15 @@ public class CategoryRvAdapter extends RecyclerView.Adapter<CategoryRvAdapter.Vi
         String img = mData.get(position).getImage();
         holder.tvCategory.setText(name);
         Glide.with(mContext).load(img).into(holder.ivCategory);
+
+        if (position == 0){
+            holder.tvCategory.setTextColor(ContextCompat.getColor(mContext,R.color.wadiz));
+            holder.ivCategory.setBorderColor(ContextCompat.getColor(mContext,R.color.wadiz));
+        } else if ( position == mData.size() ) {
+            holder.tvCategory.setTextColor(ContextCompat.getColor(mContext,R.color.black));
+            holder.ivCategory.setBorderColor(ContextCompat.getColor(mContext,R.color.clear));
+        }
+
     }
 
 

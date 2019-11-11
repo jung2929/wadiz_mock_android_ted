@@ -15,7 +15,6 @@ import static com.softsquared.wadiz.src.ApplicationClass.getRetrofit;
 
 class CategoryService {
     private final CategoryActivityView mCategoryActivityView;
-    ArrayList<CategoryNamelist> mCategoryNamelist;
 
     CategoryService(final CategoryActivityView categoryActivityView) {
         this.mCategoryActivityView = categoryActivityView;
@@ -32,13 +31,7 @@ class CategoryService {
                     return;
                 }
 
-                System.out.println("통신 성공");
-                mCategoryNamelist = new ArrayList<>();
-                for (int i=0; i < categoryNameResponse.getResult().size(); i++){
-                    mCategoryNamelist.add(new CategoryNamelist(categoryNameResponse.getResult().get(i).getName()));
-                    System.out.println(categoryNameResponse.getResult().get(i).getName());
-                }
-                mCategoryActivityView.validateSuccess(categoryNameResponse.getMessage());
+                mCategoryActivityView.validateSuccess(categoryNameResponse.getResult());
             }
 
             @Override

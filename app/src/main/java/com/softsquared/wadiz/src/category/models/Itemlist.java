@@ -1,4 +1,4 @@
-package com.softsquared.wadiz.src.category.categoryFragment.models;
+package com.softsquared.wadiz.src.category.models;
 
 public class Itemlist {
     int Image;

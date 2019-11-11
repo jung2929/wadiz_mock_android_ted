@@ -116,14 +116,13 @@
             </RelativeLayout>
 
             <Button
-                style="?android:attr/borderlessButtonStyle"
                 android:id="@+id/login_btn_login"
+                style="?android:attr/borderlessButtonStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:background="@color/login"
                 android:fontFamily="@font/nanumbarungothic"
-                android:fontFeatureSettings="@string/profiledelete"
                 android:padding="15dp"
                 android:text="로그인"
                 android:textColor="@color/white"
@@ -161,6 +160,23 @@
                     android:background="@color/lightgray" />
             </LinearLayout>
 
+            <com.facebook.login.widget.LoginButton
+                android:id="@+id/login_btn_facebook_real"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:layout_gravity="center" />
+            <Button
+                android:id="@+id/login_btn_facebook"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/facebooklogin"
+                android:fontFamily="@font/nanumbarungothic"
+                android:padding="15dp"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
 
         </LinearLayout>
 

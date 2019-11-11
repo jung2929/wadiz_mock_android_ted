@@ -23,6 +23,8 @@ import androidx.viewpager.widget.ViewPager;
 import com.softsquared.wadiz.R;
 import com.softsquared.wadiz.src.BaseFragment;
 import com.softsquared.wadiz.src.Item.MainItem.ItemMainActivity;
+import com.softsquared.wadiz.src.category.CategoryActivity;
+import com.softsquared.wadiz.src.common.RecyclerDecoration;
 import com.softsquared.wadiz.src.main.reward.reward_home.Adapters.BigItemRvAdapter;
 import com.softsquared.wadiz.src.main.reward.reward_home.Adapters.CategoryRvAdapter;
 import com.softsquared.wadiz.src.main.reward.reward_home.Adapters.SmallItemRvAdapter;
@@ -77,10 +79,10 @@ public class Reward_homeFragment extends BaseFragment implements RewardHomeView 
         mPb = view.findViewById(R.id.reward_home_pb);
         mBannerResponse = new BannerResponse();
         mCategoryResponse = new CategoryResponse();
+        mBannerItemlist = new ArrayList<>();
+        mCategoryItemlist = new ArrayList<>();
 
         tryGetTest();
-
-
 
 
         // 아이템에 넣을 리스트 생성
@@ -115,12 +117,29 @@ public class Reward_homeFragment extends BaseFragment implements RewardHomeView 
             }
         });
 
-        //리사이클러뷰 클릭 이벤트 구현
+        // 리워드 아이템 클릭 이벤트 구현
         rvItem.addOnItemTouchListener(new RecyclerTouchListener(getActivity(), rvItem, new ClickListener() {
             @Override
             public void onClick(View view, int position) {
                 Intent intent = new Intent(getActivity(), ItemMainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+            }
+
+            @Override
+            public void onLongClick(View view, int position) {
+
+            }
+        }));
+
+
+        //카테고리 클릭 이벤트 구현
+        rvCategory.addOnItemTouchListener(new RecyclerTouchListener(getActivity(), rvCategory, new ClickListener() {
+            @Override
+            public void onClick(View view, int position) {
+                Intent intent = new Intent(getActivity(), CategoryActivity.class);
+                intent.putExtra("categoryIdx", position);
+                System.out.println("카테고리 위치 : "+position);
                 startActivity(intent);
             }
 
@@ -191,17 +210,20 @@ public class Reward_homeFragment extends BaseFragment implements RewardHomeView 
     }
 
     @Override
-    public void validateSuccess(String text) {
+    public void validateBannerSuccess(ArrayList<BannerItemlist> item) {
         hideProgressDialog();
 
 
         //배너 리스트 생성
-        mBannerItemlist = new ArrayList<>();
-        mBannerItemlist.addAll(rewardHomeService.mBannerItemlist);
+//        mBannerItemlist = new ArrayList<>();
+//        mBannerItemlist.addAll(rewardHomeService.mBannerItemlist);
+
+        mBannerItemlist = item;
         pagerAdapter = new ViewpagerAdapter(getActivity(), mBannerItemlist);
         pagerAdapter.view_count = mBannerItemlist.size();
         viewPager.setAdapter(pagerAdapter);
         viewPager.setCurrentItem(pagerAdapter.view_count);
+
 
 //       자동스크롤 잘안됨;
 //        mCurrentPage = 0;
@@ -249,23 +271,32 @@ public class Reward_homeFragment extends BaseFragment implements RewardHomeView 
             }
         });
 
-        mCategoryItemlist = new ArrayList<>();
-        mCategoryItemlist.addAll(rewardHomeService.mCategoryItemlist);
-
-        //카테고리 리사이클러뷰 생성
-        rvCategory = view.findViewById(R.id.reward_home_rv_category);
-        rvCategory.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
-        CategoryRvAdapter categoryRvAdapter = new CategoryRvAdapter(getContext(),mCategoryItemlist);
-        rvCategory.setAdapter(categoryRvAdapter);
-
-
     }
 
 
     @Override
-    public void validateFailure(@Nullable String message) {
+    public void validateBannerFailure(@Nullable String message) {
         hideProgressDialog();
         showCustomToast(message == null || message.isEmpty() ? getString(R.string.network_error) : message);
+    }
+
+    @Override
+    public void validateCategorySuccess(ArrayList<CategoryItemList> item) {
+        mCategoryItemlist = item;
+        //카테고리 리사이클러뷰 생성
+
+        RecyclerDecoration recyclerDecoration = new RecyclerDecoration(-20);
+        rvCategory = view.findViewById(R.id.reward_home_rv_category);
+        rvCategory.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
+        CategoryRvAdapter categoryRvAdapter = new CategoryRvAdapter(getContext(),mCategoryItemlist);
+        rvCategory.addItemDecoration(recyclerDecoration);
+        rvCategory.setAdapter(categoryRvAdapter);
+        System.out.println(categoryRvAdapter.getItemCount());
+    }
+
+    @Override
+    public void validateCategoryFailure(String message) {
+
     }
 
     public void customOnClick(View view) {

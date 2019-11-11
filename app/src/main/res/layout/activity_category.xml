@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:softsquared="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
@@ -35,7 +36,8 @@
                 android:gravity="center"
                 android:text="카테고리"
                 android:textColor="@color/black"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
             <ImageButton
                 android:id="@+id/category_ib_home"
@@ -52,32 +54,137 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:background="@drawable/customborder_sideline"
+            android:background="@color/clear"
             android:orientation="horizontal">
 
             <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/category_rv_name"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:orientation="horizontal"
-                android:scrollbars="horizontal"
-                android:layout_weight="9"
                 android:layout_marginLeft="20dp"
-                android:id="@+id/category_rv"/>
+                android:layout_weight="9"
+                android:orientation="horizontal"
+                android:scrollbars="none" />
 
             <ImageButton
+                android:id="@+id/category_ib_more"
+                style="?android:attr/borderlessButtonStyle"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:background="@drawable/customborder_sideline"
                 android:layout_weight="1"
-                style="?android:attr/borderlessButtonStyle"
-                android:src="@drawable/category_more"
-                android:id="@+id/category_ib_more"/>
+                android:background="@drawable/customborder_sideline"
+                android:src="@drawable/category_more" />
 
         </LinearLayout>
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/category_fl_container"/>
 
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="130dp"
+                    android:layout_marginTop="1dp">
+
+                    <ImageView
+                        android:id="@+id/category_iv_main"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/category_main" />
+
+                    <com.softsquared.wadiz.src.common.CustomTextView
+                        android:id="@+id/category_tv_main_name"
+                        android:layout_width="wrap_content"
+                        android:textStyle="bold"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:fontFamily="@font/nanumbarungothic"
+                        android:textColor="@color/white"
+                        android:textSize="17sp"
+                        softsquared:textStroke="true"
+                        softsquared:textStrokeColor="@color/black"
+                        softsquared:textStrokeWidth="1.5" />
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:orientation="horizontal">
+
+                        <EditText
+                            android:id="@+id/category_et"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="4.5"
+                            android:background="@drawable/customborder_sideline"
+                            android:drawableEnd="@drawable/search_small"
+                            android:fontFamily="@font/nanumbarungothic"
+                            android:hint="  검색"
+                            android:paddingLeft="5dp"
+                            android:textSize="15sp" />
+
+                        <Button
+                            android:id="@+id/category_btn_control"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="2.3"
+                            android:background="@drawable/customborder_sideline"
+                            android:drawableStart="@drawable/control"
+                            android:drawablePadding="5dp"
+                            android:fontFamily="@font/nanumbarungothic"
+                            android:paddingLeft="13dp"
+                            android:paddingRight="13dp"
+                            android:text="전체"
+                            android:textSize="15sp" />
+
+                        <Button
+                            android:id="@+id/category_btn_order"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="2.7"
+                            android:background="@drawable/customborder_sideline"
+                            android:drawableStart="@drawable/order"
+                            android:drawablePadding="5dp"
+                            android:fontFamily="@font/nanumbarungothic"
+                            android:paddingLeft="13dp"
+                            android:paddingRight="13dp"
+                            android:text="추천순"
+                            android:textSize="15sp" />
+
+                        <ImageButton
+                            android:id="@+id/category_ib_showlist"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1.5"
+                            android:background="@drawable/customborder_sideline"
+                            android:padding="5dp"
+                            android:scaleType="centerInside"
+                            android:src="@drawable/smalllist" />
+                    </LinearLayout>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/category_rv_item"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="10dp"
+                        android:nestedScrollingEnabled="false" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
     </LinearLayout>
+
 </RelativeLayout>

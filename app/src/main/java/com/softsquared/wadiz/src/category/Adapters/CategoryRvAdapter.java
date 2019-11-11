@@ -78,11 +78,12 @@ public class CategoryRvAdapter extends RecyclerView.Adapter<CategoryRvAdapter.Vi
 
         String name = mData.get(position).getName();
         holder.tvCategory.setText(name);
+
     }
 
 
     @Override
     public int getItemCount() {
-        return mData.size() + 1;
+        return mData.size();
     }
 }

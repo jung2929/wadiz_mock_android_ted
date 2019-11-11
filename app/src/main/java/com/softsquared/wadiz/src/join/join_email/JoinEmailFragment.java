@@ -1,7 +1,6 @@
-package com.softsquared.wadiz.src.join.join_home;
+package com.softsquared.wadiz.src.join.join_email;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,38 +13,36 @@ import androidx.fragment.app.FragmentActivity;
 
 import com.softsquared.wadiz.R;
 import com.softsquared.wadiz.src.BaseFragment;
-import com.softsquared.wadiz.src.join.join_home.interfaces.MainActivityView;
-import com.softsquared.wadiz.src.login.LoginActivity;
+import com.softsquared.wadiz.src.join.join_email.interfaces.MainActivityView;
 
 
-public class Join_homeFragment extends BaseFragment implements MainActivityView {
+public class JoinEmailFragment extends BaseFragment implements MainActivityView {
     View view;
-    Button btnLogin;
+    Button btnOk;
     Context myContext;
 
-    public Join_homeFragment() {
+    public JoinEmailFragment() {
 
     }
 
-    public static Join_homeFragment newInstance() {
-        Join_homeFragment joinhomeFragment = new Join_homeFragment();
-        return joinhomeFragment;
+    public static JoinEmailFragment newInstance() {
+        JoinEmailFragment joinemailFragment = new JoinEmailFragment();
+        return joinemailFragment;
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_login, container, false);
-        btnLogin = view.findViewById(R.id.login_btn);
+        view = inflater.inflate(R.layout.fragment_join_email, container, false);
+        btnOk = view.findViewById(R.id.join_email_btn_ok);
 
-        btnLogin.setOnClickListener(new View.OnClickListener() {
+        btnOk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), LoginActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                startActivity(intent);
+
             }
         });
+
 
         return view;
     }

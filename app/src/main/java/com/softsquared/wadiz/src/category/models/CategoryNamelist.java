@@ -6,8 +6,12 @@ public class CategoryNamelist {
     @SerializedName("category")
     String Name;
 
-    public CategoryNamelist(String name) {
+    @SerializedName("categoryImg")
+    String Image;
+
+    public CategoryNamelist(String name, String image) {
         Name = name;
+        Image = image;
     }
 
     public String getName() {
@@ -16,5 +20,13 @@ public class CategoryNamelist {
 
     public void setName(String name) {
         Name = name;
+    }
+
+    public String getImage() {
+        return Image;
+    }
+
+    public void setImage(String image) {
+        Image = image;
     }
 }

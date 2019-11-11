@@ -1,16 +1,21 @@
 package com.softsquared.wadiz.src.join;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CheckBox;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
 
 import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import com.softsquared.wadiz.R;
 import com.softsquared.wadiz.src.BaseActivity;
 import com.softsquared.wadiz.src.join.interfaces.MainActivityView;
+import com.softsquared.wadiz.src.join.join_email.JoinEmailFragment;
+import com.softsquared.wadiz.src.join.join_home.JoinHomeFragment;
 import com.softsquared.wadiz.src.main.MainActivity;
 
 
@@ -18,6 +23,10 @@ public class JoinActivity extends BaseActivity implements MainActivityView {
 
     Button btnLogin;
     ImageButton ibBack, ibHome;
+    public Fragment mHomeFragment, mEmailFragment;
+    public FragmentManager mFragmentManager;
+    Context mContext;
+
 
     @Override
     protected void onResume() {
@@ -27,7 +36,12 @@ public class JoinActivity extends BaseActivity implements MainActivityView {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_join);
+        mContext = this;
+
+        ibBack= findViewById(R.id.join_ib_back);
+        ibHome = findViewById(R.id.join_ib_home);
+        btnLogin = findViewById(R.id.join_btn_login);
 
         ibBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -39,7 +53,7 @@ public class JoinActivity extends BaseActivity implements MainActivityView {
         ibHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((MainActivity)getApplicationContext()).onFragmentChange(0);
+                ((MainActivity)MainActivity.mcontext).onFragmentChange(0);
                 finish();
             }
         });
@@ -51,6 +65,15 @@ public class JoinActivity extends BaseActivity implements MainActivityView {
             }
         });
 
+        mHomeFragment = new JoinHomeFragment();
+        mEmailFragment = new JoinEmailFragment();
+
+     replaceFragment(mHomeFragment);
+    }
+    public void replaceFragment(Fragment fragment) {
+        mFragmentManager = getSupportFragmentManager();
+
+        mFragmentManager.beginTransaction().replace(R.id.join_container, fragment).commit();      // Fragment로 사용할 MainActivity내의 layout공간을 선택합니다.
     }
 
 
