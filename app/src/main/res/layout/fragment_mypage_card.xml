@@ -23,6 +23,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
+        android:visibility="invisible"
         android:layout_marginTop="30dp"
         android:layout_marginRight="20dp"
         android:orientation="vertical">
@@ -69,12 +70,23 @@
     <RelativeLayout
         android:id="@+id/mypage_card_rl_card"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="180dp"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="30dp"
         android:layout_marginRight="20dp"
-        android:background="@drawable/customborder_card"
+        android:background="@drawable/card_bc"
         android:visibility="gone">
+
+        <TextView
+            android:id="@+id/mypage_card_tv_cardname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="18dp"
+            android:fontFamily="@font/nanumbarungothic"
+            android:text="비씨카드"
+            android:textColor="@color/white"
+            android:textSize="14sp" />
 
         <LinearLayout
             android:id="@+id/mypage_card_ll_cardnum"
@@ -83,21 +95,13 @@
             android:layout_centerInParent="true"
             android:orientation="horizontal">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/nanumbarungothic"
-                android:text="**** **** **** "
-                android:textColor="@color/white"
-                android:textSize="20sp"
-                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/mypage_card_tv_cardnum"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/nanumbarungothic"
-                android:text="9869"
+                android:text=""
                 android:textColor="@color/white"
                 android:textSize="20sp"
                 android:textStyle="bold" />
@@ -113,36 +117,27 @@
             android:orientation="horizontal">
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/nanumbarungothic"
-                android:text="등록일 : "
-                android:textColor="@color/lightgray"
-                android:textSize="13sp" />
-
-            <TextView
                 android:id="@+id/mypage_card_tv_cardday"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/nanumbarungothic"
                 android:text="2019. 11. 07"
                 android:textColor="@color/lightgray"
-                android:textSize="13sp" />
+                android:textSize="11sp" />
 
         </LinearLayout>
 
         <Button
+            android:id="@+id/mypage_card_btn_delete"
+            style="?android:attr/borderlessButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
             android:background="@color/clear"
             android:text="삭제"
-            android:textColor="@color/white"
-            style="?android:attr/borderlessButtonStyle"
-            android:layout_alignParentRight="true"
-            android:id="@+id/mypage_card_btn_delete"/>
+            android:textColor="@color/white" />
 
     </RelativeLayout>
-
 
 
     <LinearLayout

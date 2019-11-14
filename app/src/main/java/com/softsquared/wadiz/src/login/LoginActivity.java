@@ -217,7 +217,6 @@ public class LoginActivity extends BaseActivity implements LoginActivityView {
             intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
             setResult(RESULT_OK,intent);
             finish();
-            System.out.println("토큰 값 : " +token);
             SaveSharedPreference.setUserToken(getApplicationContext(),token);
             if(cbSave.isChecked()) {
                 SaveSharedPreference.setUserName(getApplicationContext(),mEtEmail.getText().toString());

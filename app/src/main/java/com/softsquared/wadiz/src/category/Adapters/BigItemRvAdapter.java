@@ -11,6 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.softsquared.wadiz.R;
 import com.softsquared.wadiz.src.category.models.Itemlist;
 
@@ -19,6 +20,7 @@ import java.util.ArrayList;
 public class BigItemRvAdapter extends RecyclerView.Adapter<BigItemRvAdapter.ViewHolder> {
 
     ArrayList<Itemlist> mData = null;
+    Context mContext;
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         ImageView ivItem;
@@ -46,8 +48,9 @@ public class BigItemRvAdapter extends RecyclerView.Adapter<BigItemRvAdapter.View
     }
 
     // 생성자에서 데이터 리스트 객체를 전달받음.
-    public BigItemRvAdapter(ArrayList<Itemlist> list) {
+    public BigItemRvAdapter(ArrayList<Itemlist> list, Context context) {
         mData = list;
+        mContext = context;
     }
 
     @NonNull
@@ -63,8 +66,9 @@ public class BigItemRvAdapter extends RecyclerView.Adapter<BigItemRvAdapter.View
     @Override
     public void onBindViewHolder(@NonNull BigItemRvAdapter.ViewHolder holder, int position) {
 
-            holder.ivItem.setImageResource(mData.get(position).getImage());
-            holder.tvName.setText(mData.get(position).getName());
+        Glide.with(mContext).load(mData.get(position).getImage()).into(holder.ivItem);
+
+        holder.tvName.setText(mData.get(position).getName());
             holder.tvCompany.setText(mData.get(position).getCompany());
             holder.tvPercent.setText(mData.get(position).getPercent());
             holder.tvCategory.setText(mData.get(position).getCategory());
@@ -76,6 +80,7 @@ public class BigItemRvAdapter extends RecyclerView.Adapter<BigItemRvAdapter.View
 
     @Override
     public int getItemCount() {
-        return mData.size();
+        if (mData != null) return mData.size();
+        else return 0;
     }
 }

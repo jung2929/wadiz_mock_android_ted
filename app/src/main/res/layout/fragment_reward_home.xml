@@ -42,7 +42,7 @@
             android:layout_marginTop="40dp"
             android:layout_marginBottom="20dp"
             android:orientation="horizontal"
-            android:scrollbars="horizontal" />
+            android:scrollbars="none" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -53,20 +53,20 @@
                 android:id="@+id/reward_home_et"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="4.5"
+                android:layout_weight="4"
                 android:background="@drawable/customborder_sideline"
                 android:drawableEnd="@drawable/search_small"
                 android:fontFamily="@font/nanumbarungothic"
                 android:hint="  검색"
                 android:paddingLeft="5dp"
                 android:paddingRight="3dp"
-                android:textSize="15sp" />
+                android:textSize="13sp" />
 
             <Button
                 android:id="@+id/reward_home_control"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="2.3"
+                android:layout_weight="2.5"
                 android:background="@drawable/customborder_sideline"
                 android:drawableStart="@drawable/control"
                 android:drawablePadding="5dp"
@@ -74,32 +74,22 @@
                 android:paddingLeft="13dp"
                 android:paddingRight="13dp"
                 android:text="전체"
-                android:textSize="15sp" />
+                android:textSize="13sp" />
 
-            <LinearLayout
+            <Button
+                android:id="@+id/reward_home_order"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="2.7"
+                android:layout_weight="2.5"
                 android:background="@drawable/customborder_sideline"
-                android:orientation="horizontal"
-                android:padding="4dp">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:src="@drawable/order" />
-
-                <Spinner
-                    android:id="@+id/reward_home_spinner_order"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@color/clear"
-                    android:drawablePadding="5dp"
-                    android:entries="@array/order"
-                    android:fontFamily="@font/nanumbarungothic"
-                    android:textSize="15sp" />
-            </LinearLayout>
+                android:drawableStart="@drawable/order"
+                android:drawablePadding="5dp"
+                android:fontFamily="@font/nanumbarungothic"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:text="추천순"
+                android:maxLines="1"
+                android:textSize="13sp" />
 
 
             <ImageButton

@@ -56,7 +56,7 @@ public class ItemRvAdapter extends RecyclerView.Adapter<ItemRvAdapter.ViewHolder
     public ItemRvAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         Context context = parent.getContext();
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View view = inflater.inflate(R.layout.item_main_list, parent, false);
+        View view = inflater.inflate(R.layout.item_main_reward, parent, false);
         ItemRvAdapter.ViewHolder vh = new ItemRvAdapter.ViewHolder(view);
         return vh;
     }
@@ -64,11 +64,11 @@ public class ItemRvAdapter extends RecyclerView.Adapter<ItemRvAdapter.ViewHolder
     @Override
     public void onBindViewHolder(@NonNull ItemRvAdapter.ViewHolder holder, int position) {
 
-            holder.tvMoney.setText(mData.get(position).Money);
-            holder.tvName.setText(mData.get(position).Name);
+//            holder.tvMoney.setText(mData.get(position).Money);
+            holder.tvName.setText(mData.get(position).getName());
             holder.tvContent.setText(mData.get(position).getInfoText());
-            holder.tvDelivery_money.setText(mData.get(position).getMoney());
-            holder.tvDelivery_day.setText(mData.get(position).getDay());
+//            holder.tvDelivery_money.setText(mData.get(position).getMoney());
+//            holder.tvDelivery_day.setText(mData.get(position).getDay());
 //            holder.tvLimited.setText(mData.get(position).Limited);
 //            holder.tvLimited_now.setText(mData.get(position).Limited_now);
 //            holder.tvTotal.setText(mData.get(position).Total);

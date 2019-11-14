@@ -64,10 +64,10 @@
            android:layout_width="match_parent"
            android:layout_height="wrap_content"
            android:text="오픈예정 둘러보기"
-           android:textSize="30sp"
+           android:textSize="25sp"
            android:layout_marginLeft="20dp"
-           android:layout_marginTop="20dp"
-           android:layout_marginBottom="20dp"
+           android:layout_marginTop="35dp"
+           android:layout_marginBottom="15dp"
            android:fontFamily="@font/nanumbarungothic"
            android:textColor="@color/black"
            android:textStyle="bold"/>

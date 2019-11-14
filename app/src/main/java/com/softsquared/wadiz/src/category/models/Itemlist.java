@@ -1,29 +1,48 @@
 package com.softsquared.wadiz.src.category.models;
 
+import com.google.gson.annotations.SerializedName;
+
 public class Itemlist {
-    int Image;
+    @SerializedName("thumnail")
+    String Image;
+
+    @SerializedName("title")
     String Name;
+
+    @SerializedName("makerName")
     String Company;
+
+    @SerializedName("category")
     String Category;
+
+    @SerializedName("achievement")
     String Percent;
+
+    @SerializedName("amount")
     String Money;
+
+    @SerializedName("remaining")
     String Day;
 
-    public Itemlist(int image, String name, String category, String company, String percent, String money, String day) {
+    @SerializedName("projectIdx")
+    int ProjectIdx;
+
+    public Itemlist(String image, String name, String company, String category, String percent, String money, String day, int projectIdx) {
         Image = image;
         Name = name;
-        this.Company = company;
+        Company = company;
         Category = category;
-        this.Percent = percent;
-        this.Money = money;
-        this.Day = day;
+        Percent = percent;
+        Money = money;
+        Day = day;
+        ProjectIdx = projectIdx;
     }
 
-    public int getImage() {
+    public String getImage() {
         return Image;
     }
 
-    public void setImage(int image) {
+    public void setImage(String image) {
         Image = image;
     }
 
@@ -40,7 +59,7 @@ public class Itemlist {
     }
 
     public void setCompany(String company) {
-        this.Company = company;
+        Company = company;
     }
 
     public String getCategory() {
@@ -56,7 +75,7 @@ public class Itemlist {
     }
 
     public void setPercent(String percent) {
-        this.Percent = percent;
+        Percent = percent;
     }
 
     public String getMoney() {
@@ -64,7 +83,7 @@ public class Itemlist {
     }
 
     public void setMoney(String money) {
-        this.Money = money;
+        Money = money;
     }
 
     public String getDay() {
@@ -72,6 +91,14 @@ public class Itemlist {
     }
 
     public void setDay(String day) {
-        this.Day = day;
+        Day = day;
+    }
+
+    public int getProjectIdx() {
+        return ProjectIdx;
+    }
+
+    public void setProjectIdx(int projectIdx) {
+        ProjectIdx = projectIdx;
     }
 }

@@ -17,9 +17,10 @@ import androidx.core.content.ContextCompat;
 
 import com.softsquared.wadiz.R;
 import com.softsquared.wadiz.src.BaseFragment;
-import com.softsquared.wadiz.src.main.mypage.mypage_card.card.register_card.Register_cardActivity;
+import com.softsquared.wadiz.src.main.mypage.mypage_card.card.register_card.RegisterCardActivity;
 import com.softsquared.wadiz.src.main.mypage.mypage_card.card.register_card.card1.interfaces.MainActivityView;
 import com.softsquared.wadiz.src.main.mypage.mypage_card.card.register_card.card2.Card2Fragment;
+import com.softsquared.wadiz.src.main.mypage.mypage_card.card.register_card.models.RegisterCardList;
 
 
 public class Card1Fragment extends BaseFragment implements MainActivityView {
@@ -85,8 +86,13 @@ public class Card1Fragment extends BaseFragment implements MainActivityView {
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((Register_cardActivity)getActivity()).replaceFragment(Card2Fragment.newInstance());
-                ((Register_cardActivity)getActivity()).putIntent("cardnum", etCardnum4.getText().toString());
+                ((RegisterCardActivity)getActivity()).replaceFragment(Card2Fragment.newInstance());
+                String cardnum = etCardnum1.getText().toString() + "-" + etCardnum2.getText().toString() + "-" + etCardnum3.getText().toString() + "-" + etCardnum4.getText().toString();
+                String birth = etBirth.getText().toString();
+                ((RegisterCardActivity)getActivity()).mRegisterCardList.setCard(cardnum);
+                ((RegisterCardActivity)getActivity()).mRegisterCardList.setBirth(birth);
+                System.out.println(((RegisterCardActivity)getActivity()).mRegisterCardList.getCard());
+
             }
         });
 

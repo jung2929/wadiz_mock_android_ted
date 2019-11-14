@@ -17,7 +17,7 @@ import androidx.fragment.app.FragmentManager;
 import com.softsquared.wadiz.R;
 import com.softsquared.wadiz.src.BaseActivity;
 import com.softsquared.wadiz.src.Item.interfaces.MainActivityView;
-import com.softsquared.wadiz.src.Item.item_main_story.Item_itemStory_storyFragment;
+import com.softsquared.wadiz.src.Item.item_main_story.ItemStoryFragment;
 import com.softsquared.wadiz.src.Item.item_main_supporter.Item_main_supporterFragment;
 import com.softsquared.wadiz.src.Item.policy.PolicyActivity;
 import com.softsquared.wadiz.src.main.MainActivity;
@@ -52,7 +52,7 @@ public class ItemMainActivity extends BaseActivity implements MainActivityView {
         tryGetTest();
 
 
-        storyFragment = new Item_itemStory_storyFragment();
+        storyFragment = new ItemStoryFragment();
         fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.item_main_container, storyFragment).commitAllowingStateLoss();
 
@@ -71,7 +71,7 @@ public class ItemMainActivity extends BaseActivity implements MainActivityView {
             }
         });
 
-        Item_itemStory_storyFragment fragment = (Item_itemStory_storyFragment) fragmentManager.findFragmentById(R.id.item_main_container);
+        ItemStoryFragment fragment = (ItemStoryFragment) fragmentManager.findFragmentById(R.id.item_main_container);
 
         btnStory.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -100,7 +100,7 @@ public class ItemMainActivity extends BaseActivity implements MainActivityView {
     public void onFragmentChange(int index) {
         if (index == 0) { //상품설명 + 리워드
             if (storyFragment == null) {
-                storyFragment = new Item_itemStory_storyFragment();
+                storyFragment = new ItemStoryFragment();
                 fragmentManager.beginTransaction().replace(R.id.item_main_container, storyFragment).commitAllowingStateLoss();
 
             } else {

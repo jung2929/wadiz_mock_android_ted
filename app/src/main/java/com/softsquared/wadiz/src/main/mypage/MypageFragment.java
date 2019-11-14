@@ -27,9 +27,9 @@ import com.softsquared.wadiz.src.main.mypage.editprofile.EditprofileActivity;
 import com.softsquared.wadiz.src.main.MainActivity;
 import com.softsquared.wadiz.src.main.mypage.interfaces.MypageActivityView;
 import com.softsquared.wadiz.src.main.mypage.models.MypageList;
-import com.softsquared.wadiz.src.main.mypage.mypage_card.Mypage_cardFragment;
-import com.softsquared.wadiz.src.main.mypage.mypage_funding.Mypage_fundingFragment;
-import com.softsquared.wadiz.src.main.mypage.mypage_like.Mypage_likeFragment;
+import com.softsquared.wadiz.src.main.mypage.mypage_card.MypageCardFragment;
+import com.softsquared.wadiz.src.main.mypage.mypage_funding.MypageFundingFragment;
+import com.softsquared.wadiz.src.main.mypage.mypage_like.MypageLikeFragment;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -41,14 +41,15 @@ public class MypageFragment extends BaseFragment implements MypageActivityView {
     TextView tvName, tvMember, tvIntroduce, tvInterest1, tvInterest2, tvInterest3, tvInterest4, tvInterest5, tvInterest6, tvInterest7, tvInterest8, tvNum;
     TextView mtvCardnum;
     CircleImageView ivProfile;
-    Mypage_fundingFragment fundingFragment;
-    Mypage_likeFragment likeFragment;
-    Mypage_cardFragment cardFragment;
+    MypageFundingFragment fundingFragment;
+    MypageLikeFragment likeFragment;
+    MypageCardFragment cardFragment;
     Button btnFunding, btnLike, btnCard, mBtnLogout;
     FragmentManager fragmentManager;
     public static LinearLayout mllCardregister;
     RelativeLayout mrlCardInfo;
-    MainActivity mainActivity = new MainActivity();
+    public boolean[] mInterestNum = new boolean[8];
+    public String mInfo;
 
 
     public MypageFragment() {
@@ -67,7 +68,7 @@ public class MypageFragment extends BaseFragment implements MypageActivityView {
         btnEditprofile = view.findViewById(R.id.mypage_btn_edit);
         tvName = view.findViewById(R.id.mypage_tv_name);
         tvMember = view.findViewById(R.id.mypage_tv_member);
-        tvIntroduce = view.findViewById(R.id.mypage_tv_member);
+        tvIntroduce = view.findViewById(R.id.mypage_tv_introduce);
         tvInterest1 = view.findViewById(R.id.mypage_tv_interest1);
         tvInterest2 = view.findViewById(R.id.mypage_tv_interest2);
         tvInterest3 = view.findViewById(R.id.mypage_tv_interest3);
@@ -82,7 +83,6 @@ public class MypageFragment extends BaseFragment implements MypageActivityView {
         mtvCardnum = view.findViewById(R.id.mypage_card_tv_cardnum);
         mBtnLogout = view.findViewById(R.id.mypage_btn_logout);
 
-        tryGetTest();
 
         btnEditprofile.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -107,7 +107,7 @@ public class MypageFragment extends BaseFragment implements MypageActivityView {
             }
         });
 
-        fundingFragment = new Mypage_fundingFragment();
+        fundingFragment = new MypageFundingFragment();
         fragmentManager.beginTransaction().replace(R.id.mypage_fl_container, fundingFragment).commitAllowingStateLoss();
 
         btnFunding.setOnClickListener(new View.OnClickListener() {
@@ -138,16 +138,12 @@ public class MypageFragment extends BaseFragment implements MypageActivityView {
 
     public void onFragmentChange(int index) {
         if (index == 0) { //펀딩한
-            if (likeFragment != null)
-                fragmentManager.beginTransaction().hide(likeFragment).commitAllowingStateLoss();
-            if (cardFragment != null)
-                fragmentManager.beginTransaction().hide(cardFragment).commitAllowingStateLoss();
             if (fundingFragment == null) {
-                fundingFragment = new Mypage_fundingFragment();
-                fragmentManager.beginTransaction().add(R.id.main_fl_container, fundingFragment).commitAllowingStateLoss();
+                fundingFragment = new MypageFundingFragment();
+                fragmentManager.beginTransaction().replace(R.id.mypage_fl_container, fundingFragment).commitAllowingStateLoss();
             } else {
                 if (fundingFragment != null)
-                    fragmentManager.beginTransaction().show(fundingFragment).commitAllowingStateLoss();
+                    fragmentManager.beginTransaction().replace(R.id.mypage_fl_container, fundingFragment).commitAllowingStateLoss();
             }
             btnFunding.setTypeface(null, Typeface.BOLD);
             btnFunding.setTextColor(ContextCompat.getColor(myContext, R.color.percent));
@@ -162,18 +158,13 @@ public class MypageFragment extends BaseFragment implements MypageActivityView {
             btnLike.setBackground(img_nonclick);
 
         } else if (index == 1) { //좋아한
-            if (fundingFragment != null)
-                fragmentManager.beginTransaction().hide(fundingFragment).commitAllowingStateLoss();
-            if (cardFragment != null)
-                fragmentManager.beginTransaction().hide(cardFragment).commitAllowingStateLoss();
             if (likeFragment == null) {
-                likeFragment = new Mypage_likeFragment();
-                fragmentManager.beginTransaction().add(R.id.mypage_fl_container, likeFragment).commitAllowingStateLoss();
+                likeFragment = new MypageLikeFragment();
+                fragmentManager.beginTransaction().replace(R.id.mypage_fl_container, likeFragment).commitAllowingStateLoss();
 
             } else {
                 if (likeFragment != null)
-                    fragmentManager.beginTransaction().show(likeFragment).commitAllowingStateLoss();
-
+                    fragmentManager.beginTransaction().replace(R.id.mypage_fl_container, likeFragment).commitAllowingStateLoss();
             }
             btnLike.setTypeface(null, Typeface.BOLD);
             btnLike.setTextColor(ContextCompat.getColor(myContext, R.color.percent));
@@ -188,15 +179,11 @@ public class MypageFragment extends BaseFragment implements MypageActivityView {
             btnFunding.setBackground(img_nonclick);
 
         } else if (index == 2) { //간편카드정보
-            if (fundingFragment != null)
-                fragmentManager.beginTransaction().hide(fundingFragment).commitAllowingStateLoss();
-            if (likeFragment != null)
-                fragmentManager.beginTransaction().hide(likeFragment).commitAllowingStateLoss();
             if (cardFragment == null) {
-                cardFragment = new Mypage_cardFragment();
-                fragmentManager.beginTransaction().add(R.id.mypage_fl_container, cardFragment).commitAllowingStateLoss();
+                cardFragment = new MypageCardFragment();
+                fragmentManager.beginTransaction().replace(R.id.mypage_fl_container, cardFragment).commitAllowingStateLoss();
             } else {
-                fragmentManager.beginTransaction().show(cardFragment).commitAllowingStateLoss();
+                fragmentManager.beginTransaction().replace(R.id.mypage_fl_container, cardFragment).commitAllowingStateLoss();
             }
             btnCard.setTypeface(null, Typeface.BOLD);
             btnCard.setTextColor(ContextCompat.getColor(myContext, R.color.percent));
@@ -214,17 +201,7 @@ public class MypageFragment extends BaseFragment implements MypageActivityView {
 
     @Override
     public void onResume() {
-        Intent getintent = getActivity().getIntent();
-        tvIntroduce.setText(getintent.getStringExtra("introducetext"));
-
-        if (getintent.getBooleanExtra("interest1", false)) tvInterest1.setVisibility(View.VISIBLE);
-        if (getintent.getBooleanExtra("interest2", false)) tvInterest2.setVisibility(View.VISIBLE);
-        if (getintent.getBooleanExtra("interest3", false)) tvInterest3.setVisibility(View.VISIBLE);
-        if (getintent.getBooleanExtra("interest4", false)) tvInterest4.setVisibility(View.VISIBLE);
-        if (getintent.getBooleanExtra("interest5", false)) tvInterest5.setVisibility(View.VISIBLE);
-        if (getintent.getBooleanExtra("interest6", false)) tvInterest6.setVisibility(View.VISIBLE);
-        if (getintent.getBooleanExtra("interest7", false)) tvInterest7.setVisibility(View.VISIBLE);
-        if (getintent.getBooleanExtra("interest8", false)) tvInterest8.setVisibility(View.VISIBLE);
+        tryGetTest();
 
         super.onResume();
     }
@@ -250,7 +227,154 @@ public class MypageFragment extends BaseFragment implements MypageActivityView {
 
         tvName.setText(mypageList.getName());
         Glide.with(myContext).load(mypageList.getImg()).into(ivProfile);
+        System.out.println(SaveSharedPreference.getUserToken(myContext));
+
+        if (mypageList.getUserInfo() != null) {
+            tvIntroduce.setText(mypageList.getUserInfo());
+            tvIntroduce.setVisibility(View.VISIBLE);
+        } else {
+            tvIntroduce.setVisibility(View.GONE);
+        }
+
+        if (!mypageList.getInterestList().isEmpty()) {
+            if (mypageList.getInterestList().size() == 1) {
+                tvInterest1.setText(mypageList.getInterestList().get(0).getInterest());
+                tvInterest1.setVisibility(View.VISIBLE);
+            } else {
+                tvInterest2.setVisibility(View.GONE);
+                tvInterest3.setVisibility(View.GONE);
+                tvInterest4.setVisibility(View.GONE);
+                tvInterest5.setVisibility(View.GONE);
+                tvInterest6.setVisibility(View.GONE);
+                tvInterest7.setVisibility(View.GONE);
+                tvInterest8.setVisibility(View.GONE);
+            }
+            if (mypageList.getInterestList().size() == 2) {
+                tvInterest1.setText(mypageList.getInterestList().get(0).getInterest());
+                tvInterest1.setVisibility(View.VISIBLE);
+                tvInterest2.setText(mypageList.getInterestList().get(1).getInterest());
+                tvInterest2.setVisibility(View.VISIBLE);
+            } else {
+                tvInterest3.setVisibility(View.GONE);
+                tvInterest4.setVisibility(View.GONE);
+                tvInterest5.setVisibility(View.GONE);
+                tvInterest6.setVisibility(View.GONE);
+                tvInterest7.setVisibility(View.GONE);
+                tvInterest8.setVisibility(View.GONE);
+            }
+            if (mypageList.getInterestList().size() == 3) {
+                tvInterest1.setText(mypageList.getInterestList().get(0).getInterest());
+                tvInterest1.setVisibility(View.VISIBLE);
+                tvInterest2.setText(mypageList.getInterestList().get(1).getInterest());
+                tvInterest2.setVisibility(View.VISIBLE);
+                tvInterest3.setText(mypageList.getInterestList().get(2).getInterest());
+                tvInterest3.setVisibility(View.VISIBLE);
+            } else {
+                tvInterest4.setVisibility(View.GONE);
+                tvInterest5.setVisibility(View.GONE);
+                tvInterest6.setVisibility(View.GONE);
+                tvInterest7.setVisibility(View.GONE);
+                tvInterest8.setVisibility(View.GONE);
+            }
+            if (mypageList.getInterestList().size() == 4) {
+                tvInterest1.setText(mypageList.getInterestList().get(0).getInterest());
+                tvInterest1.setVisibility(View.VISIBLE);
+                tvInterest2.setText(mypageList.getInterestList().get(1).getInterest());
+                tvInterest2.setVisibility(View.VISIBLE);
+                tvInterest3.setText(mypageList.getInterestList().get(2).getInterest());
+                tvInterest3.setVisibility(View.VISIBLE);
+                tvInterest4.setText(mypageList.getInterestList().get(3).getInterest());
+                tvInterest4.setVisibility(View.VISIBLE);
+            } else {
+                tvInterest5.setVisibility(View.GONE);
+                tvInterest6.setVisibility(View.GONE);
+                tvInterest7.setVisibility(View.GONE);
+                tvInterest8.setVisibility(View.GONE);
+            }
+            if (mypageList.getInterestList().size() == 5) {
+                tvInterest1.setText(mypageList.getInterestList().get(0).getInterest());
+                tvInterest1.setVisibility(View.VISIBLE);
+                tvInterest2.setText(mypageList.getInterestList().get(1).getInterest());
+                tvInterest2.setVisibility(View.VISIBLE);
+                tvInterest3.setText(mypageList.getInterestList().get(2).getInterest());
+                tvInterest3.setVisibility(View.VISIBLE);
+                tvInterest4.setText(mypageList.getInterestList().get(3).getInterest());
+                tvInterest4.setVisibility(View.VISIBLE);
+                tvInterest5.setText(mypageList.getInterestList().get(4).getInterest());
+                tvInterest5.setVisibility(View.VISIBLE);
+            } else {
+                tvInterest6.setVisibility(View.GONE);
+                tvInterest7.setVisibility(View.GONE);
+                tvInterest8.setVisibility(View.GONE);
+            }
+            if (mypageList.getInterestList().size() == 6) {
+                tvInterest1.setText(mypageList.getInterestList().get(0).getInterest());
+                tvInterest1.setVisibility(View.VISIBLE);
+                tvInterest2.setText(mypageList.getInterestList().get(1).getInterest());
+                tvInterest2.setVisibility(View.VISIBLE);
+                tvInterest3.setText(mypageList.getInterestList().get(2).getInterest());
+                tvInterest3.setVisibility(View.VISIBLE);
+                tvInterest4.setText(mypageList.getInterestList().get(3).getInterest());
+                tvInterest4.setVisibility(View.VISIBLE);
+                tvInterest5.setText(mypageList.getInterestList().get(4).getInterest());
+                tvInterest5.setVisibility(View.VISIBLE);
+                tvInterest6.setText(mypageList.getInterestList().get(5).getInterest());
+                tvInterest6.setVisibility(View.VISIBLE);
+            } else {
+                tvInterest7.setVisibility(View.GONE);
+                tvInterest8.setVisibility(View.GONE);
+            }
+            if (mypageList.getInterestList().size() == 7) {
+                tvInterest1.setText(mypageList.getInterestList().get(0).getInterest());
+                tvInterest1.setVisibility(View.VISIBLE);
+                tvInterest2.setText(mypageList.getInterestList().get(1).getInterest());
+                tvInterest2.setVisibility(View.VISIBLE);
+                tvInterest3.setText(mypageList.getInterestList().get(2).getInterest());
+                tvInterest3.setVisibility(View.VISIBLE);
+                tvInterest4.setText(mypageList.getInterestList().get(3).getInterest());
+                tvInterest4.setVisibility(View.VISIBLE);
+                tvInterest5.setText(mypageList.getInterestList().get(4).getInterest());
+                tvInterest5.setVisibility(View.VISIBLE);
+                tvInterest6.setText(mypageList.getInterestList().get(5).getInterest());
+                tvInterest6.setVisibility(View.VISIBLE);
+                tvInterest7.setText(mypageList.getInterestList().get(6).getInterest());
+                tvInterest7.setVisibility(View.VISIBLE);
+            } else {
+                tvInterest8.setVisibility(View.GONE);
+            }
+            if (mypageList.getInterestList().size() == 8) {
+                tvInterest1.setText(mypageList.getInterestList().get(0).getInterest());
+                tvInterest1.setVisibility(View.VISIBLE);
+                tvInterest2.setText(mypageList.getInterestList().get(1).getInterest());
+                tvInterest2.setVisibility(View.VISIBLE);
+                tvInterest3.setText(mypageList.getInterestList().get(2).getInterest());
+                tvInterest3.setVisibility(View.VISIBLE);
+                tvInterest4.setText(mypageList.getInterestList().get(3).getInterest());
+                tvInterest4.setVisibility(View.VISIBLE);
+                tvInterest5.setText(mypageList.getInterestList().get(4).getInterest());
+                tvInterest5.setVisibility(View.VISIBLE);
+                tvInterest6.setText(mypageList.getInterestList().get(5).getInterest());
+                tvInterest6.setVisibility(View.VISIBLE);
+                tvInterest7.setText(mypageList.getInterestList().get(6).getInterest());
+                tvInterest7.setVisibility(View.VISIBLE);
+                tvInterest8.setText(mypageList.getInterestList().get(7).getInterest());
+                tvInterest8.setVisibility(View.VISIBLE);
+            }
+
+        } else {
+            tvInterest1.setVisibility(View.GONE);
+            tvInterest2.setVisibility(View.GONE);
+            tvInterest3.setVisibility(View.GONE);
+            tvInterest4.setVisibility(View.GONE);
+            tvInterest5.setVisibility(View.GONE);
+            tvInterest6.setVisibility(View.GONE);
+            tvInterest7.setVisibility(View.GONE);
+            tvInterest8.setVisibility(View.GONE);
+        }
+
+
     }
+
 
     @Override
     public void validateFailure(@Nullable String message) {

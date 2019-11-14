@@ -2,13 +2,8 @@ package com.softsquared.wadiz.src.main;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
-import android.content.pm.Signature;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.util.Base64;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
@@ -22,14 +17,11 @@ import com.softsquared.wadiz.R;
 import com.softsquared.wadiz.src.BaseActivity;
 import com.softsquared.wadiz.src.common.InavailableFragment;
 import com.softsquared.wadiz.src.common.SaveSharedPreference;
-import com.softsquared.wadiz.src.loginFragment.LoginFragment;
+import com.softsquared.wadiz.src.main.mypage.loginFragment.LoginFragment;
 import com.softsquared.wadiz.src.main.interfaces.MainActivityView;
 import com.softsquared.wadiz.src.main.mypage.MypageFragment;
-import com.softsquared.wadiz.src.main.mypage.mypage_card.Mypage_cardFragment;
+import com.softsquared.wadiz.src.main.mypage.mypage_card.MypageCardFragment;
 import com.softsquared.wadiz.src.main.reward.RewardFragment;
-
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 
 
 public class MainActivity extends BaseActivity implements MainActivityView {
@@ -55,7 +47,7 @@ public class MainActivity extends BaseActivity implements MainActivityView {
         mcontext = this;
 
         fragmentManager = getSupportFragmentManager();
-        mCardFragment = new Mypage_cardFragment();
+        mCardFragment = new MypageCardFragment();
 
         mRewardFragment = new RewardFragment();
         fragmentManager.beginTransaction().replace(R.id.main_fl_container, mRewardFragment).commitAllowingStateLoss();
@@ -102,7 +94,7 @@ public class MainActivity extends BaseActivity implements MainActivityView {
         int request = requestCode & 0xffff;
 //
 //        // 프래그먼트에서 결과값을 받아야 한다면 아래와 같이...
-//        Mypage_cardFragment mypage_cardFragment = (Mypage_cardFragment) getSupportFragmentManager().findFragmentById(R.id.main_fl_container);
+//        MypageCardFragment mypage_cardFragment = (MypageCardFragment) getSupportFragmentManager().findFragmentById(R.id.main_fl_container);
 //        mypage_cardFragment.onActivityResult(request, resultCode, data);
 
 
@@ -115,16 +107,17 @@ public class MainActivity extends BaseActivity implements MainActivityView {
                     System.out.println("로그인 성공");
                     fragmentManager.beginTransaction().remove(mLoginFragment).commitAllowingStateLoss();
                     if (mMypageFragment == null)
-                        fragmentManager.beginTransaction().add(R.id.main_fl_container, mMypageFragment).commitAllowingStateLoss();
+                        fragmentManager.beginTransaction().replace(R.id.main_fl_container, mMypageFragment).commitAllowingStateLoss();
                     else
                         fragmentManager.beginTransaction().replace(R.id.main_fl_container, mMypageFragment).commitAllowingStateLoss();
                     break;
 
                 case 2000: //프로필 수정
+
                     break;
 
                 case 3000: //카드등록
-                    Mypage_cardFragment mypage_cardFragment = (Mypage_cardFragment) getSupportFragmentManager().findFragmentById(R.id.mypage_fl_container);
+                    MypageCardFragment mypage_cardFragment = (MypageCardFragment) getSupportFragmentManager().findFragmentById(R.id.mypage_fl_container);
                     mypage_cardFragment.setCardvisible(View.GONE, View.VISIBLE, data.getStringExtra("cardnum"));
                     System.out.println("카드번호 : " + data.getStringExtra("cardnum"));
                     break;

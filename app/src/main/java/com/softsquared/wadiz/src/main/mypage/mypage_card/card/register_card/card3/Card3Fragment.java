@@ -17,7 +17,7 @@ import androidx.core.content.ContextCompat;
 
 import com.softsquared.wadiz.R;
 import com.softsquared.wadiz.src.BaseFragment;
-import com.softsquared.wadiz.src.main.mypage.mypage_card.card.register_card.Register_cardActivity;
+import com.softsquared.wadiz.src.main.mypage.mypage_card.card.register_card.RegisterCardActivity;
 import com.softsquared.wadiz.src.main.mypage.mypage_card.card.register_card.card3.interfaces.MainActivityView;
 import com.softsquared.wadiz.src.main.mypage.mypage_card.card.register_card.cardok.CardokFragment;
 
@@ -70,7 +70,7 @@ public class Card3Fragment extends BaseFragment implements MainActivityView {
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((Register_cardActivity)getActivity()).replaceFragment(CardokFragment.newInstance());
+                ((RegisterCardActivity)getActivity()).replaceFragment(CardokFragment.newInstance());
             }
         });
 

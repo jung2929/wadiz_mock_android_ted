@@ -11,7 +11,7 @@ import androidx.annotation.Nullable;
 
 import com.softsquared.wadiz.R;
 import com.softsquared.wadiz.src.BaseFragment;
-import com.softsquared.wadiz.src.main.mypage.mypage_card.card.register_card.Register_cardActivity;
+import com.softsquared.wadiz.src.main.mypage.mypage_card.card.register_card.RegisterCardActivity;
 import com.softsquared.wadiz.src.main.mypage.mypage_card.card.register_card.cardok.interfaces.MainActivityView;
 
 
@@ -36,7 +36,7 @@ public class CardokFragment extends BaseFragment implements MainActivityView {
         btnOk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((Register_cardActivity)getActivity()).startIntent();
+                ((RegisterCardActivity)getActivity()).tryGetTest();
             }
         });
 

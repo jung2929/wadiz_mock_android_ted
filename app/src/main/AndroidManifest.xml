@@ -29,9 +29,9 @@
         </activity>
         <activity android:name=".src.main.mypage.editprofile.EditprofileActivity" android:windowSoftInputMode="adjustPan"/>
         <activity android:name=".src.login.LoginActivity" android:windowSoftInputMode="adjustPan"  />
-        <activity android:name=".src.main.mypage.mypage_card.card.register_card.Register_cardActivity" android:windowSoftInputMode="adjustPan"/>
+        <activity android:name=".src.main.mypage.mypage_card.card.register_card.RegisterCardActivity" android:windowSoftInputMode="adjustPan"/>
         <activity android:name=".src.Item.ItemMainActivity" android:windowSoftInputMode="adjustPan"/>
-        <activity android:name=".src.main.MainActivity" android:windowSoftInputMode="adjustPan" />
+        <activity android:name=".src.main.MainActivity"  />
         <activity android:name=".src.Item.policy.PolicyActivity" android:windowSoftInputMode="adjustPan"/>
         <activity android:name=".src.Item.ItemPurchase.ItemPurchaseFirst.PurchaseFirstActivity" android:windowSoftInputMode="adjustPan"/>
         <activity android:name=".src.Item.ItemPurchase.ItemPurchaseSecond.PurchaseSecondActivity" android:windowSoftInputMode="adjustPan"/>

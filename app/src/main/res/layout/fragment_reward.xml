@@ -17,7 +17,7 @@
         app:tabPaddingStart="10dp"
         app:tabPaddingEnd="10dp"
         app:tabIndicatorFullWidth="false"
-        app:tabIndicatorHeight="4dp">
+        app:tabIndicatorHeight="3dp">
 
     </com.google.android.material.tabs.TabLayout>
 

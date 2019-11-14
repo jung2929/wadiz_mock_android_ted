@@ -12,8 +12,16 @@ public class MypageList {
     @SerializedName("profileImg")
     String Img;
 
-    @SerializedName("InterestList")
+    @SerializedName("userInfo")
+    String userInfo;
+
+    @SerializedName("interestList")
     ArrayList<InterestList> interestList = new ArrayList<>();
+
+    public String getUserInfo() {
+        return userInfo;
+    }
+
 
     public String getName() {
         return Name;

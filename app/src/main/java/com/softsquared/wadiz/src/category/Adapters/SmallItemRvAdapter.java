@@ -11,6 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.softsquared.wadiz.R;
 import com.softsquared.wadiz.src.category.models.Itemlist;
 
@@ -19,6 +20,7 @@ import java.util.ArrayList;
 public class SmallItemRvAdapter extends RecyclerView.Adapter<SmallItemRvAdapter.ViewHolder> {
 
     ArrayList<Itemlist> mData = null;
+    Context mContext;
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         ImageView ivItem;
@@ -47,8 +49,9 @@ public class SmallItemRvAdapter extends RecyclerView.Adapter<SmallItemRvAdapter.
     }
 
     // 생성자에서 데이터 리스트 객체를 전달받음.
-    public SmallItemRvAdapter(ArrayList<Itemlist> list) {
+    public SmallItemRvAdapter(ArrayList<Itemlist> list, Context context) {
         mData = list;
+        mContext = context;
     }
 
     @NonNull
@@ -64,13 +67,13 @@ public class SmallItemRvAdapter extends RecyclerView.Adapter<SmallItemRvAdapter.
     @Override
     public void onBindViewHolder(@NonNull SmallItemRvAdapter.ViewHolder holder, int position) {
 
-            holder.ivItem.setImageResource(mData.get(position).getImage());
-            holder.tvName.setText(mData.get(position).getName());
-            holder.tvCompany.setText(mData.get(position).getCompany());
-            holder.tvPercent.setText(mData.get(position).getPercent());
-            holder.tvCategory.setText(mData.get(position).getCategory());
-            holder.tvMoney.setText(mData.get(position).getMoney());
-            holder.tvDay.setText(mData.get(position).getDay());
+        Glide.with(mContext).load(mData.get(position).getImage()).into(holder.ivItem);
+        holder.tvName.setText(mData.get(position).getName());
+        holder.tvCompany.setText(mData.get(position).getCompany());
+        holder.tvPercent.setText(mData.get(position).getPercent());
+        holder.tvCategory.setText(mData.get(position).getCategory());
+        holder.tvMoney.setText(mData.get(position).getMoney());
+        holder.tvDay.setText(mData.get(position).getDay());
 
 
     }
@@ -78,10 +81,13 @@ public class SmallItemRvAdapter extends RecyclerView.Adapter<SmallItemRvAdapter.
 
     @Override
     public int getItemCount() {
-        return mData.size();
+
+
+        if (mData != null) return mData.size();
+        else return 0;
     }
 
     public interface OnItemClickListener {
-        void onItemClick(View v, int position) ;
+        void onItemClick(View v, int position);
     }
 }

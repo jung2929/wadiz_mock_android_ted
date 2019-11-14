@@ -15,7 +15,7 @@ public class DefaultResponse {
     private boolean isSuccess;
 
     @SerializedName("result")
-    ArrayList<Itemmainlist> item;
+    private ArrayList<Itemmainlist> item = null;
 
     public int getCode() {
         return code;

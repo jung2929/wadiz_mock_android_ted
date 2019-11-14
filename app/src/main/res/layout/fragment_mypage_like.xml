@@ -8,10 +8,9 @@
         android:id="@+id/mypage_like_ll_num"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-
         android:layout_marginTop="10dp"
         android:orientation="vertical"
-        android:visibility="visible">
+        android:visibility="gone">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -55,7 +54,7 @@
         android:text="좋아한 프로젝트가 없습니다."
         android:textColor="@color/gray"
         android:textSize="20sp"
-        android:visibility="visible" />
+        android:visibility="gone" />
 
 
 </RelativeLayout>

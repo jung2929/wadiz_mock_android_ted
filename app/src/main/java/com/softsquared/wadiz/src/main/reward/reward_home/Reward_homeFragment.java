@@ -1,6 +1,8 @@
 package com.softsquared.wadiz.src.main.reward.reward_home;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.GestureDetector;
@@ -8,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
@@ -39,6 +42,7 @@ import com.softsquared.wadiz.src.main.reward.reward_home.models.ItemResponse;
 import com.softsquared.wadiz.src.main.reward.reward_home.models.Itemlist;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Reward_homeFragment extends BaseFragment implements RewardHomeView {
     View view;
@@ -46,7 +50,7 @@ public class Reward_homeFragment extends BaseFragment implements RewardHomeView 
     ViewpagerAdapter pagerAdapter;
     RecyclerView rvCategory, rvItem;
     EditText etSearch;
-    Button btnControl;
+    Button btnControl, mBtnOrder;
     ImageButton ibShowlist;
     boolean showitemflag;
     ArrayList<BannerItemlist> mBannerItemlist;
@@ -58,7 +62,6 @@ public class Reward_homeFragment extends BaseFragment implements RewardHomeView 
     ProgressBar mPb;
     RewardHomeService rewardHomeService;
     String mOrder;
-    Spinner mSpOrder;
     int mProjectIdx;
     SmallItemRvAdapter smallItemRvAdapter;
     BigItemRvAdapter bigItemRvAdapter;
@@ -79,7 +82,7 @@ public class Reward_homeFragment extends BaseFragment implements RewardHomeView 
         rvCategory = view.findViewById(R.id.reward_home_rv_category);
         etSearch = view.findViewById(R.id.reward_home_et);
         btnControl = view.findViewById(R.id.reward_home_control);
-        mSpOrder = view.findViewById(R.id.reward_home_spinner_order);
+        mBtnOrder = view.findViewById(R.id.reward_home_order);
         ibShowlist = view.findViewById(R.id.reward_home_showlist);
         mPb = view.findViewById(R.id.reward_home_pb);
         mBannerResponse = new BannerResponse();
@@ -107,40 +110,80 @@ public class Reward_homeFragment extends BaseFragment implements RewardHomeView 
             }
         }));
 
-        mSpOrder.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        mBtnOrder.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                switch (position) {
-                    case 0:
-                        mOrder = "recommend";
-                        break;
-                    case 1:
-                        mOrder = "famous";
-                        break;
-                    case 2:
-                        mOrder = "funding";
-                        break;
-                    case 3:
-                        mOrder = "deadline";
-                        break;
-                    case 4:
-                        mOrder = "newp";
-                        break;
-                    case 5:
-                        mOrder = "supporter";
-                        break;
-                }
-                tryGetTest();
-            }
+            public void onClick(View v) {
+                //순서 다이얼로그 생성
+                final List<String> ListItems = new ArrayList<>();
+                ListItems.add("추천순");
+                ListItems.add("인기순");
+                ListItems.add("펀딩액순");
+                ListItems.add("마감임박순");
+                ListItems.add("최신순");
+                ListItems.add("응원참여자순");
+                final CharSequence[] items =  ListItems.toArray(new String[ ListItems.size()]);
 
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
+                final List SelectedItems  = new ArrayList();
+                int defaultItem = 0;
+                SelectedItems.add(defaultItem);
 
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                builder.setSingleChoiceItems(items, defaultItem,
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                SelectedItems.clear();
+                                SelectedItems.add(which);
+                            }
+                        });
+                builder.setPositiveButton("Ok",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                String msg="";
+
+                                if (!SelectedItems.isEmpty()) {
+                                    int index = (int) SelectedItems.get(0);
+                                    msg = ListItems.get(index);
+                                }
+                                mBtnOrder.setText(msg);
+
+                                switch (msg) {
+                                    case "추천순":
+                                        mOrder = "recommend";
+                                        break;
+                                    case "응원순":
+                                        mOrder = "famous";
+                                        break;
+                                    case "펀딩액순":
+                                        mOrder = "funding";
+                                        break;
+                                    case "마감임박순":
+                                        mOrder = "deadline";
+                                        break;
+                                    case "최신순":
+                                        mOrder = "newp";
+                                        break;
+                                    case "응원참여자순":
+                                        mOrder = "supporter";
+                                        break;
+                                }
+                                tryGetTest();
+                            }
+                        });
+                builder.setNegativeButton("Cancel",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+
+                            }
+                        });
+                builder.show();
             }
         });
 
+
         return view;
     }
+
 
     //리사이클러뷰 클릭 리스너 추가
     public interface ClickListener {
