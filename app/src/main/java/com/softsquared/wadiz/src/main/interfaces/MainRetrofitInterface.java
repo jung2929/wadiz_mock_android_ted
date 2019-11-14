@@ -12,7 +12,7 @@ import retrofit2.http.Query;
 
 public interface MainRetrofitInterface {
 //    @GET("/test")
-    @GET("/jwt")
+    @GET("/profile")
     Call<DefaultResponse> getTest();
 
     @GET("/test/{number}")

@@ -6,6 +6,7 @@ import com.softsquared.wadiz.src.main.reward.reward_home.models.BannerItemlist;
 import com.softsquared.wadiz.src.main.reward.reward_home.models.BannerResponse;
 import com.softsquared.wadiz.src.main.reward.reward_home.models.CategoryItemList;
 import com.softsquared.wadiz.src.main.reward.reward_home.models.CategoryResponse;
+import com.softsquared.wadiz.src.main.reward.reward_home.models.ItemResponse;
 
 import java.util.ArrayList;
 
@@ -40,7 +41,6 @@ public class RewardHomeService {
             @Override
             public void onFailure(Call<BannerResponse> call, Throwable t) {
                 mRewardHomeView.validateBannerFailure(null);
-                System.out.println("통신 실패 : ");
             }
 
         });
@@ -53,7 +53,7 @@ public class RewardHomeService {
             public void onResponse(Call<CategoryResponse> call, Response<CategoryResponse> response) {
                 final CategoryResponse categoryResponse = response.body();
                 if (categoryResponse == null) {
-                    mRewardHomeView.validateBannerFailure(null);
+                    mRewardHomeView.validateCategoryFailure(null);
                     return;
                 }
                 mRewardHomeView.validateCategorySuccess(categoryResponse.getResult());
@@ -62,10 +62,35 @@ public class RewardHomeService {
 
             @Override
             public void onFailure(Call<CategoryResponse> call, Throwable t) {
-                mRewardHomeView.validateBannerFailure(null);
-                System.out.println("통신 실패 : ");
+                mRewardHomeView.validateCategoryFailure(null);
+            }
+
+        });
+
+    }
+
+    void getItem(String order) {
+        final RewardHomeRetrofitInterface rewardHomeRetrofitInterface = getRetrofit().create(RewardHomeRetrofitInterface.class);
+        rewardHomeRetrofitInterface.getItem(order).enqueue(new Callback<ItemResponse>() {
+            @Override
+            public void onResponse(Call<ItemResponse> call, Response<ItemResponse> response) {
+                final ItemResponse itemResponse = response.body();
+                if (itemResponse == null) {
+                    mRewardHomeView.validateItemFailure(null);
+                    return;
+                }
+                mRewardHomeView.validateItemSuccess(itemResponse.getResult());
+
+            }
+
+            @Override
+            public void onFailure(Call<ItemResponse> call, Throwable t) {
+                mRewardHomeView.validateItemFailure(null);
+                System.out.println("아이템 통신 실패 : ");
             }
 
         });
     }
+
+
 }

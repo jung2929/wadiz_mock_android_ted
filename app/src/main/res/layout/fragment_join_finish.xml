@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="40dp"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@color/gray"
+                android:fontFamily="@font/nanumbarungothic"
+                android:gravity="center"
+                android:padding="3dp"
+                android:text="1단계"
+                android:textColor="@color/white"
+                android:textSize="13sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:fontFamily="@font/nanumbarungothic"
+                android:text="회원가입 완료"
+                android:textColor="@color/black"
+                android:textSize="30sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/nanumbarungothic"
+            android:text="이제 리워드 서비스를 이용할 수 있습니다."
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+
+
+        <Button
+            android:id="@+id/join_finish_btn_go"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/customborder_sideline"
+            android:fontFamily="@font/nanumbarungothic"
+            android:text="둘러보던 페이지로 돌아가기"
+            android:textColor="@color/gray"
+            android:textSize="17sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@color/wadiz"
+                android:fontFamily="@font/nanumbarungothic"
+                android:gravity="center"
+                android:padding="3dp"
+                android:text="2단계"
+                android:textColor="@color/white"
+                android:textSize="13sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:fontFamily="@font/nanumbarungothic"
+                android:text="투자회원 등록"
+                android:textColor="@color/black"
+                android:textSize="30sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/nanumbarungothic"
+            android:text="2단계를 완료하고 투자 서비스도 이용하세요."
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+
+
+        <Button
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:background="@color/wadiz"
+            android:fontFamily="@font/nanumbarungothic"
+            android:text="투자회원 등록하기"
+            android:textColor="@color/white"
+            android:textSize="17sp" />
+
+    </LinearLayout>
+
+</ScrollView>

@@ -4,8 +4,8 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:layout_marginLeft="20dp"
-    android:layout_marginRight="20dp">
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp">
 
 
     <LinearLayout
@@ -18,21 +18,22 @@
             android:id="@+id/category_iv"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:src="@drawable/circle_category_main"
             android:layout_gravity="center"
+            android:src="@drawable/circle_category_main"
             app:civ_border_color="@color/clear"
-            app:civ_border_width="2dp"/>
+            app:civ_border_width="2dp" />
 
         <TextView
             android:id="@+id/category_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:fontFamily="@font/nanumbarungothic"
-            android:textColor="@color/black"
+            android:gravity="center"
             android:layout_marginTop="10dp"
+            android:fontFamily="@font/nanumbarungothic"
             android:text="카테고리 전체"
-            android:textSize="15sp" />
+            android:textColor="@color/black"
+            android:textSize="13sp" />
 
     </LinearLayout>
 

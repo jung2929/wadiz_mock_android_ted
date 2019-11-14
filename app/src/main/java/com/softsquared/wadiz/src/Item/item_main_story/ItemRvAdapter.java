@@ -66,12 +66,12 @@ public class ItemRvAdapter extends RecyclerView.Adapter<ItemRvAdapter.ViewHolder
 
             holder.tvMoney.setText(mData.get(position).Money);
             holder.tvName.setText(mData.get(position).Name);
-            holder.tvContent.setText(mData.get(position).Content);
-            holder.tvDelivery_money.setText(mData.get(position).Delivery_money);
-            holder.tvDelivery_day.setText(mData.get(position).Delivery_day);
-            holder.tvLimited.setText(mData.get(position).Limited);
-            holder.tvLimited_now.setText(mData.get(position).Limited_now);
-            holder.tvTotal.setText(mData.get(position).Total);
+            holder.tvContent.setText(mData.get(position).getInfoText());
+            holder.tvDelivery_money.setText(mData.get(position).getMoney());
+            holder.tvDelivery_day.setText(mData.get(position).getDay());
+//            holder.tvLimited.setText(mData.get(position).Limited);
+//            holder.tvLimited_now.setText(mData.get(position).Limited_now);
+//            holder.tvTotal.setText(mData.get(position).Total);
 
     }
 

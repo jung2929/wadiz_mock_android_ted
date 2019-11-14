@@ -1,8 +1,8 @@
-package com.softsquared.wadiz.src.join.join_email;
+package com.softsquared.wadiz.src.Item;
 
-import com.softsquared.wadiz.src.join.join_email.interfaces.MainActivityView;
-import com.softsquared.wadiz.src.join.join_email.interfaces.MainRetrofitInterface;
-import com.softsquared.wadiz.src.join.join_email.models.DefaultResponse;
+import com.softsquared.wadiz.src.Item.interfaces.MainActivityView;
+import com.softsquared.wadiz.src.Item.interfaces.MainRetrofitInterface;
+import com.softsquared.wadiz.src.Item.models.DefaultResponse;
 
 import retrofit2.Call;
 import retrofit2.Callback;

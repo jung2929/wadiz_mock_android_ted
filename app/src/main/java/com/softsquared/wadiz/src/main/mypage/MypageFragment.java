@@ -19,11 +19,14 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 
+import com.bumptech.glide.Glide;
 import com.softsquared.wadiz.R;
 import com.softsquared.wadiz.src.BaseFragment;
+import com.softsquared.wadiz.src.common.SaveSharedPreference;
 import com.softsquared.wadiz.src.main.mypage.editprofile.EditprofileActivity;
 import com.softsquared.wadiz.src.main.MainActivity;
-import com.softsquared.wadiz.src.main.mypage.interfaces.MainActivityView;
+import com.softsquared.wadiz.src.main.mypage.interfaces.MypageActivityView;
+import com.softsquared.wadiz.src.main.mypage.models.MypageList;
 import com.softsquared.wadiz.src.main.mypage.mypage_card.Mypage_cardFragment;
 import com.softsquared.wadiz.src.main.mypage.mypage_funding.Mypage_fundingFragment;
 import com.softsquared.wadiz.src.main.mypage.mypage_like.Mypage_likeFragment;
@@ -31,7 +34,7 @@ import com.softsquared.wadiz.src.main.mypage.mypage_like.Mypage_likeFragment;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 
-public class MypageFragment extends BaseFragment implements MainActivityView {
+public class MypageFragment extends BaseFragment implements MypageActivityView {
     View view;
     Button btnEditprofile;
     Context myContext;
@@ -41,7 +44,7 @@ public class MypageFragment extends BaseFragment implements MainActivityView {
     Mypage_fundingFragment fundingFragment;
     Mypage_likeFragment likeFragment;
     Mypage_cardFragment cardFragment;
-    Button btnFunding, btnLike, btnCard;
+    Button btnFunding, btnLike, btnCard, mBtnLogout;
     FragmentManager fragmentManager;
     public static LinearLayout mllCardregister;
     RelativeLayout mrlCardInfo;
@@ -77,6 +80,9 @@ public class MypageFragment extends BaseFragment implements MainActivityView {
         mllCardregister = view.findViewById(R.id.mypage_card_ll_register);
         mrlCardInfo = view.findViewById(R.id.mypage_card_rl_card);
         mtvCardnum = view.findViewById(R.id.mypage_card_tv_cardnum);
+        mBtnLogout = view.findViewById(R.id.mypage_btn_logout);
+
+        tryGetTest();
 
         btnEditprofile.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -92,6 +98,14 @@ public class MypageFragment extends BaseFragment implements MainActivityView {
         btnCard = view.findViewById(R.id.mypage_btn_card);
 
         fragmentManager = getActivity().getSupportFragmentManager();
+
+        mBtnLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SaveSharedPreference.clearUserToken(getActivity());
+                ((MainActivity) MainActivity.mcontext).onFragmentChange(1);
+            }
+        });
 
         fundingFragment = new Mypage_fundingFragment();
         fragmentManager.beginTransaction().replace(R.id.mypage_fl_container, fundingFragment).commitAllowingStateLoss();
@@ -122,69 +136,76 @@ public class MypageFragment extends BaseFragment implements MainActivityView {
     }
 
 
-
     public void onFragmentChange(int index) {
         if (index == 0) { //펀딩한
-            if (likeFragment != null) fragmentManager.beginTransaction().hide(likeFragment).commitAllowingStateLoss();
-            if (cardFragment != null) fragmentManager.beginTransaction().hide(cardFragment).commitAllowingStateLoss();
+            if (likeFragment != null)
+                fragmentManager.beginTransaction().hide(likeFragment).commitAllowingStateLoss();
+            if (cardFragment != null)
+                fragmentManager.beginTransaction().hide(cardFragment).commitAllowingStateLoss();
             if (fundingFragment == null) {
                 fundingFragment = new Mypage_fundingFragment();
-                fragmentManager.beginTransaction().add(R.id.main_fl_container,fundingFragment).commitAllowingStateLoss();
+                fragmentManager.beginTransaction().add(R.id.main_fl_container, fundingFragment).commitAllowingStateLoss();
             } else {
-                if (fundingFragment != null) fragmentManager.beginTransaction().show(fundingFragment).commitAllowingStateLoss();
+                if (fundingFragment != null)
+                    fragmentManager.beginTransaction().show(fundingFragment).commitAllowingStateLoss();
             }
             btnFunding.setTypeface(null, Typeface.BOLD);
-            btnFunding.setTextColor(ContextCompat.getColor(myContext,R.color.percent));
+            btnFunding.setTextColor(ContextCompat.getColor(myContext, R.color.percent));
             Drawable img_click = getActivity().getResources().getDrawable(R.drawable.customborder_mypage_click);
             btnFunding.setBackground(img_click);
-            btnLike.setTypeface(null,Typeface.NORMAL);
-            btnCard.setTypeface(null,Typeface.NORMAL);
-            btnLike.setTextColor(ContextCompat.getColor(myContext,R.color.black));
-            btnCard.setTextColor(ContextCompat.getColor(myContext,R.color.black));
+            btnLike.setTypeface(null, Typeface.NORMAL);
+            btnCard.setTypeface(null, Typeface.NORMAL);
+            btnLike.setTextColor(ContextCompat.getColor(myContext, R.color.black));
+            btnCard.setTextColor(ContextCompat.getColor(myContext, R.color.black));
             Drawable img_nonclick = getActivity().getResources().getDrawable(R.drawable.customborder_mypage_nonclick);
             btnCard.setBackground(img_nonclick);
             btnLike.setBackground(img_nonclick);
 
-        } else if (index==1) { //좋아한
-            if (fundingFragment != null) fragmentManager.beginTransaction().hide(fundingFragment).commitAllowingStateLoss();
-            if (cardFragment != null) fragmentManager.beginTransaction().hide(cardFragment).commitAllowingStateLoss();
+        } else if (index == 1) { //좋아한
+            if (fundingFragment != null)
+                fragmentManager.beginTransaction().hide(fundingFragment).commitAllowingStateLoss();
+            if (cardFragment != null)
+                fragmentManager.beginTransaction().hide(cardFragment).commitAllowingStateLoss();
             if (likeFragment == null) {
                 likeFragment = new Mypage_likeFragment();
-                fragmentManager.beginTransaction().add(R.id.mypage_fl_container,likeFragment).commitAllowingStateLoss();
+                fragmentManager.beginTransaction().add(R.id.mypage_fl_container, likeFragment).commitAllowingStateLoss();
 
             } else {
-                if (likeFragment != null) fragmentManager.beginTransaction().show(likeFragment).commitAllowingStateLoss();
+                if (likeFragment != null)
+                    fragmentManager.beginTransaction().show(likeFragment).commitAllowingStateLoss();
 
             }
             btnLike.setTypeface(null, Typeface.BOLD);
-            btnLike.setTextColor(ContextCompat.getColor(myContext,R.color.percent));
+            btnLike.setTextColor(ContextCompat.getColor(myContext, R.color.percent));
             Drawable img_click = getActivity().getResources().getDrawable(R.drawable.customborder_mypage_click);
             btnLike.setBackground(img_click);
-            btnFunding.setTypeface(null,Typeface.NORMAL);
-            btnCard.setTypeface(null,Typeface.NORMAL);
-            btnFunding.setTextColor(ContextCompat.getColor(myContext,R.color.black));
-            btnCard.setTextColor(ContextCompat.getColor(myContext,R.color.black));
+            btnFunding.setTypeface(null, Typeface.NORMAL);
+            btnCard.setTypeface(null, Typeface.NORMAL);
+            btnFunding.setTextColor(ContextCompat.getColor(myContext, R.color.black));
+            btnCard.setTextColor(ContextCompat.getColor(myContext, R.color.black));
             Drawable img_nonclick = getActivity().getResources().getDrawable(R.drawable.customborder_mypage_nonclick);
             btnCard.setBackground(img_nonclick);
             btnFunding.setBackground(img_nonclick);
 
-        } else if (index==2) { //간편카드정보
-            if (fundingFragment != null) fragmentManager.beginTransaction().hide(fundingFragment).commitAllowingStateLoss();
-            if (likeFragment != null) fragmentManager.beginTransaction().hide(likeFragment).commitAllowingStateLoss();
+        } else if (index == 2) { //간편카드정보
+            if (fundingFragment != null)
+                fragmentManager.beginTransaction().hide(fundingFragment).commitAllowingStateLoss();
+            if (likeFragment != null)
+                fragmentManager.beginTransaction().hide(likeFragment).commitAllowingStateLoss();
             if (cardFragment == null) {
                 cardFragment = new Mypage_cardFragment();
-                fragmentManager.beginTransaction().add(R.id.mypage_fl_container,cardFragment).commitAllowingStateLoss();
+                fragmentManager.beginTransaction().add(R.id.mypage_fl_container, cardFragment).commitAllowingStateLoss();
             } else {
                 fragmentManager.beginTransaction().show(cardFragment).commitAllowingStateLoss();
             }
             btnCard.setTypeface(null, Typeface.BOLD);
-            btnCard.setTextColor(ContextCompat.getColor(myContext,R.color.percent));
+            btnCard.setTextColor(ContextCompat.getColor(myContext, R.color.percent));
             Drawable img_click = getActivity().getResources().getDrawable(R.drawable.customborder_mypage_click);
             btnCard.setBackground(img_click);
-            btnFunding.setTypeface(null,Typeface.NORMAL);
-            btnLike.setTypeface(null,Typeface.NORMAL);
-            btnFunding.setTextColor(ContextCompat.getColor(myContext,R.color.black));
-            btnLike.setTextColor(ContextCompat.getColor(myContext,R.color.black));
+            btnFunding.setTypeface(null, Typeface.NORMAL);
+            btnLike.setTypeface(null, Typeface.NORMAL);
+            btnFunding.setTextColor(ContextCompat.getColor(myContext, R.color.black));
+            btnLike.setTextColor(ContextCompat.getColor(myContext, R.color.black));
             Drawable img_nonclick = getActivity().getResources().getDrawable(R.drawable.customborder_mypage_nonclick);
             btnLike.setBackground(img_nonclick);
             btnFunding.setBackground(img_nonclick);
@@ -218,14 +239,17 @@ public class MypageFragment extends BaseFragment implements MainActivityView {
 
     private void tryGetTest() {
         showProgressDialog();
-
-        final MainService mainService = new MainService(this);
-        mainService.getTest();
+        String token = SaveSharedPreference.getUserToken(getActivity());
+        final MypageService mypageService = new MypageService(this);
+        mypageService.getProfile(token);
     }
 
     @Override
-    public void validateSuccess(String text) {
+    public void validateSuccess(MypageList mypageList) {
         hideProgressDialog();
+
+        tvName.setText(mypageList.getName());
+        Glide.with(myContext).load(mypageList.getImg()).into(ivProfile);
     }
 
     @Override

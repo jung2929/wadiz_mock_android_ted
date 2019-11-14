@@ -1,6 +1,7 @@
 package com.softsquared.wadiz.src.join;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -21,11 +22,11 @@ import com.softsquared.wadiz.src.main.MainActivity;
 
 public class JoinActivity extends BaseActivity implements MainActivityView {
 
-    Button btnLogin;
+    Button mBtnLogin;
     ImageButton ibBack, ibHome;
     public Fragment mHomeFragment, mEmailFragment;
     public FragmentManager mFragmentManager;
-    Context mContext;
+    public Context mContext;
 
 
     @Override
@@ -41,7 +42,7 @@ public class JoinActivity extends BaseActivity implements MainActivityView {
 
         ibBack= findViewById(R.id.join_ib_back);
         ibHome = findViewById(R.id.join_ib_home);
-        btnLogin = findViewById(R.id.join_btn_login);
+        mBtnLogin = findViewById(R.id.join_btn_login);
 
         ibBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,15 +54,17 @@ public class JoinActivity extends BaseActivity implements MainActivityView {
         ibHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 ((MainActivity)MainActivity.mcontext).onFragmentChange(0);
-                finish();
+                startActivity(intent);
             }
         });
 
-        btnLogin.setOnClickListener(new View.OnClickListener() {
+        mBtnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                
+                finish();
             }
         });
 

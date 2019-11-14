@@ -2,7 +2,7 @@ package com.softsquared.wadiz.src.join.join_email.models;
 
 import com.google.gson.annotations.SerializedName;
 
-public class DefaultResponse {
+public class JoinEmailResponse {
     @SerializedName("code")
     private int code;
 

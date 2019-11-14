@@ -59,6 +59,7 @@
                 android:fontFamily="@font/nanumbarungothic"
                 android:hint="  검색"
                 android:paddingLeft="5dp"
+                android:paddingRight="3dp"
                 android:textSize="15sp" />
 
             <Button
@@ -75,19 +76,31 @@
                 android:text="전체"
                 android:textSize="15sp" />
 
-            <Button
-                android:id="@+id/reward_home_order"
+            <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="2.7"
                 android:background="@drawable/customborder_sideline"
-                android:drawableStart="@drawable/order"
-                android:drawablePadding="5dp"
-                android:fontFamily="@font/nanumbarungothic"
-                android:paddingLeft="13dp"
-                android:paddingRight="13dp"
-                android:text="추천순"
-                android:textSize="15sp" />
+                android:orientation="horizontal"
+                android:padding="4dp">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:src="@drawable/order" />
+
+                <Spinner
+                    android:id="@+id/reward_home_spinner_order"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/clear"
+                    android:drawablePadding="5dp"
+                    android:entries="@array/order"
+                    android:fontFamily="@font/nanumbarungothic"
+                    android:textSize="15sp" />
+            </LinearLayout>
+
 
             <ImageButton
                 android:id="@+id/reward_home_showlist"

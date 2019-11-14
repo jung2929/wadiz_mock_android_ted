@@ -26,8 +26,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="30dp"
+            android:paddingLeft="10dp"
             android:drawableRight="@drawable/arrowright"
-            android:button="@drawable/customcheck"
+            android:button="@drawable/custom_gray_up_square_checkbox"
             android:fontFamily="@font/nanumbarungothic"
             android:gravity="top"
             android:text="@string/agree"
@@ -36,7 +37,7 @@
 
 
         <EditText
-            android:id="@+id/join_emil_et_email"
+            android:id="@+id/join_email_et_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
@@ -46,11 +47,19 @@
             android:hint="이메일 계정"
             android:padding="15dp" />
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="위 이메일로 인증번호가 발송됩니다."
+            android:layout_marginTop="5dp"
+            android:textColor="@color/black"
+            android:textSize="12sp" />
+
+
         <EditText
-            android:id="@+id/join_emil_et_name"
+            android:id="@+id/join_email_et_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawableTint="@color/gray"
             android:layout_marginTop="20dp"
             android:background="@drawable/customborder_rounded_focus"
             android:drawableRight="@drawable/user"
@@ -58,27 +67,28 @@
             android:hint="이름"
             android:padding="15dp" />
 
+
         <EditText
-            android:id="@+id/join_emil_et_password"
+            android:id="@+id/join_email_et_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:background="@drawable/customborder_rounded_focus"
-            android:drawableTint="@color/gray"
             android:drawableRight="@drawable/locked"
+            android:inputType="textPassword"
             android:fontFamily="@font/nanumbarungothic"
             android:hint="비밀번호 입력"
             android:padding="15dp" />
 
         <EditText
-            android:id="@+id/join_emil_et_password_right"
+            android:id="@+id/join_email_et_password_right"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:background="@drawable/customborder_rounded_focus"
-            android:drawableTint="@color/gray"
             android:drawableRight="@drawable/locked"
             android:fontFamily="@font/nanumbarungothic"
+            android:inputType="textPassword"
             android:hint="비밀번호 확인"
             android:padding="15dp" />
 
@@ -89,7 +99,7 @@
             android:layout_marginTop="5dp"
             android:text="영문, 숫자, 특수문자 (!@#$%^\u0026*+=-)를 조합한 8자 이상"
             android:textColor="@color/black"
-            android:textSize="13sp"/>
+            android:textSize="12sp"/>
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -116,7 +126,7 @@
         </LinearLayout>
 
         <EditText
-            android:id="@+id/join_emil_et_promotion"
+            android:id="@+id/join_email_et_promotion"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
@@ -127,6 +137,16 @@
             android:hint="신규가입·친구초대 프로모션 코드 입력"
             android:padding="15dp" />
 
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="이메일을 입력해주세요."
+            android:textColor="@color/red"
+            android:layout_marginTop="10dp"
+            android:id="@+id/join_email_tv_name_error"
+            android:visibility="invisible"/>
+
         <Button
             android:id="@+id/join_email_btn_ok"
             android:layout_width="match_parent"
@@ -134,9 +154,9 @@
             android:background="@color/percent"
             android:fontFamily="@font/nanumbarungothic"
             android:text="확인"
-            android:textColor="@color/whitenonclick"
-            android:enabled="false"
-            android:layout_marginTop="30dp"
+            android:textColor="@color/white"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="30dp"
             android:textSize="15sp" />
 
     </LinearLayout>

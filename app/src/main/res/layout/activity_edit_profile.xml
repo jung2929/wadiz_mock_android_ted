@@ -29,6 +29,7 @@
             android:fontFamily="@font/nanumbarungothic"
             android:gravity="center"
             android:text="프로필"
+            android:textStyle="bold"
             android:textColor="@color/black"
             android:textSize="20sp" />
 

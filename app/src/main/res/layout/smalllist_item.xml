@@ -113,13 +113,6 @@
                             android:textColor="@color/percent"
                             android:textSize="16sp" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/nanumbarungothicbold"
-                            android:text="%"
-                            android:textColor="@color/percent"
-                            android:textSize="16sp" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -137,13 +130,6 @@
                             android:textColor="@color/gray"
                             android:textSize="12sp" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/nanumbarungothic"
-                            android:text="원"
-                            android:textColor="@color/gray"
-                            android:textSize="12sp" />
 
                     </LinearLayout>
 
@@ -163,13 +149,6 @@
                             android:textColor="@color/gray"
                             android:textSize="12sp" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/nanumbarungothic"
-                            android:text="일 남음"
-                            android:textColor="@color/gray"
-                            android:textSize="12sp" />
                     </LinearLayout>
 
 

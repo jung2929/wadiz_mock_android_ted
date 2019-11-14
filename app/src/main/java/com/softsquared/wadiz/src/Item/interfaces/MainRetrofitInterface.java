@@ -1,6 +1,6 @@
-package com.softsquared.wadiz.src.login.interfaces;
+package com.softsquared.wadiz.src.Item.interfaces;
 
-import com.softsquared.wadiz.src.login.models.DefaultResponse;
+import com.softsquared.wadiz.src.Item.models.DefaultResponse;
 
 import okhttp3.RequestBody;
 import retrofit2.Call;

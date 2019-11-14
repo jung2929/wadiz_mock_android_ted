@@ -1,6 +1,6 @@
-package com.softsquared.wadiz.src.Item.item_main_story.interfaces;
+package com.softsquared.wadiz.src.join.JoinFinish.interfaces;
 
-import com.softsquared.wadiz.src.Item.item_main_story.models.DefaultResponse;
+import com.softsquared.wadiz.src.join.JoinFinish.models.DefaultResponse;
 
 import okhttp3.RequestBody;
 import retrofit2.Call;

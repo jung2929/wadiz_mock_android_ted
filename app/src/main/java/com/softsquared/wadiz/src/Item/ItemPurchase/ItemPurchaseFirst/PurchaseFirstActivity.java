@@ -20,6 +20,7 @@ import com.softsquared.wadiz.R;
 import com.softsquared.wadiz.src.BaseActivity;
 import com.softsquared.wadiz.src.Item.ItemPurchase.ItemPurchaseFirst.Adapters.PurchaseItemRvAdapter;
 import com.softsquared.wadiz.src.Item.ItemPurchase.ItemPurchaseFirst.interfaces.MainActivityView;
+import com.softsquared.wadiz.src.Item.ItemPurchase.ItemPurchaseFirst.models.PurchaseItemlist;
 import com.softsquared.wadiz.src.Item.ItemPurchase.ItemPurchaseSecond.PurchaseSecondActivity;
 import com.softsquared.wadiz.src.Item.item_main_story.models.Itemmainlist;
 import com.softsquared.wadiz.src.common.RecyclerDecoration;
@@ -49,16 +50,16 @@ public class PurchaseFirstActivity extends BaseActivity implements MainActivityV
         mCbMoneyOpen = findViewById(R.id.purchase_first_cb_money_open);
         mRv = findViewById(R.id.purchase_first_rv);
 
-        ArrayList<Itemmainlist> itemmainlistArrayList = new ArrayList<>();
+        ArrayList<PurchaseItemlist> purchaseItemlistArrayList = new ArrayList<>();
         for (int i = 0; i < 6; i++) {
-            itemmainlistArrayList.add(new Itemmainlist("10,000", "이곳은 이름입니다@@@@@@@@@", "소프트스퀘어드", "0", "2019년 11월 31일", "200", "30", "30"));
+            purchaseItemlistArrayList.add(new PurchaseItemlist("10,000", "이곳은 이름입니다@@@@@@@@@", "소프트스퀘어드", "0", "2019년 11월 31일"));
         }
 
         //리사이클러 뷰 간 간격 조정
         RecyclerDecoration recyclerDecoration = new RecyclerDecoration(20);
 
         mRv.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-        PurchaseItemRvAdapter purchaseItemRvAdapter = new PurchaseItemRvAdapter(itemmainlistArrayList);
+        PurchaseItemRvAdapter purchaseItemRvAdapter = new PurchaseItemRvAdapter(purchaseItemlistArrayList);
         mRv.addItemDecoration(recyclerDecoration);
         mRv.setAdapter(purchaseItemRvAdapter);
 

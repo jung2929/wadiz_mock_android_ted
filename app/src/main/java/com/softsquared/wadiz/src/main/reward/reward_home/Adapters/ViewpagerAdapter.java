@@ -1,6 +1,8 @@
 package com.softsquared.wadiz.src.main.reward.reward_home.Adapters;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -51,6 +53,8 @@ public class ViewpagerAdapter extends PagerAdapter {
             Glide.with(mContext).load(mData.get(position).getImage()).into(ivBanner);
             tvBannermain.setText(mData.get(position).getText());
             tvBannersub.setText(mData.get(position).getSub());
+            ivBanner.setColorFilter(Color.parseColor("#BDBDBD"), PorterDuff.Mode.MULTIPLY);
+
 
 
         }

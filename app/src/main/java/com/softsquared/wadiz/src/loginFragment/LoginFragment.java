@@ -43,7 +43,7 @@ public class LoginFragment extends BaseFragment implements MainActivityView {
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), LoginActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                startActivity(intent);
+                startActivityForResult(intent,1000);
             }
         });
 

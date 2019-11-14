@@ -1,4 +1,4 @@
-package com.softsquared.wadiz.src.Item.MainItem.models;
+package com.softsquared.wadiz.src.Item.models;
 
 import com.google.gson.annotations.SerializedName;
 

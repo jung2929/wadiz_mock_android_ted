@@ -17,6 +17,7 @@
             android:gravity="center"
             android:text="간편결제 정보 등록"
             android:textColor="@color/black"
+            android:textStyle="bold"
             android:textSize="20sp" />
 
         <Button

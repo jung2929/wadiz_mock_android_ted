@@ -1,8 +1,8 @@
-package com.softsquared.wadiz.src.main.mypage;
+package com.softsquared.wadiz.src.join.JoinFinish;
 
-import com.softsquared.wadiz.src.main.mypage.interfaces.MainActivityView;
-import com.softsquared.wadiz.src.main.mypage.interfaces.MainRetrofitInterface;
-import com.softsquared.wadiz.src.main.mypage.models.DefaultResponse;
+import com.softsquared.wadiz.src.join.JoinFinish.interfaces.MainActivityView;
+import com.softsquared.wadiz.src.join.JoinFinish.interfaces.MainRetrofitInterface;
+import com.softsquared.wadiz.src.join.JoinFinish.models.DefaultResponse;
 
 import retrofit2.Call;
 import retrofit2.Callback;

@@ -14,13 +14,14 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.softsquared.wadiz.R;
+import com.softsquared.wadiz.src.Item.ItemPurchase.ItemPurchaseFirst.models.PurchaseItemlist;
 import com.softsquared.wadiz.src.Item.item_main_story.models.Itemmainlist;
 
 import java.util.ArrayList;
 
 public class PurchaseItemRvAdapter extends RecyclerView.Adapter<PurchaseItemRvAdapter.ViewHolder> {
 
-    ArrayList<Itemmainlist> mData = null;
+    ArrayList<PurchaseItemlist> mData = null;
     Context mContext;
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -67,7 +68,7 @@ public class PurchaseItemRvAdapter extends RecyclerView.Adapter<PurchaseItemRvAd
     }
 
     // 생성자에서 데이터 리스트 객체를 전달받음.
-    public PurchaseItemRvAdapter(ArrayList<Itemmainlist> list) {
+    public PurchaseItemRvAdapter(ArrayList<PurchaseItemlist> list) {
         mData = list;
     }
 
@@ -85,10 +86,10 @@ public class PurchaseItemRvAdapter extends RecyclerView.Adapter<PurchaseItemRvAd
     public void onBindViewHolder(@NonNull PurchaseItemRvAdapter.ViewHolder holder, int position) {
 
         holder.tvMoney.setText(mData.get(position).Money);
-        holder.tvRewardName.setText(mData.get(position).Name);
-        holder.tvRewardInfo.setText(mData.get(position).Content);
-        holder.tvDeliveryMoney.setText(mData.get(position).Delivery_money);
-        holder.tvDeliveryDay.setText(mData.get(position).Delivery_day);
+        holder.tvRewardName.setText(mData.get(position).RewardName);
+        holder.tvRewardInfo.setText(mData.get(position).Info);
+        holder.tvDeliveryMoney.setText(mData.get(position).DeliveryMoney);
+        holder.tvDeliveryDay.setText(mData.get(position).DeliveryDay);
 
 
     }

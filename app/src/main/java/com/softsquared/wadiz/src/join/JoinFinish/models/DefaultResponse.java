@@ -1,4 +1,4 @@
-package com.softsquared.wadiz.src.login.models;
+package com.softsquared.wadiz.src.join.JoinFinish.models;
 
 import com.google.gson.annotations.SerializedName;
 

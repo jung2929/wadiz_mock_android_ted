@@ -3,16 +3,17 @@ package com.softsquared.wadiz.src.main.reward.reward_home;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.GestureDetector;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
+import android.widget.Spinner;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -22,7 +23,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.softsquared.wadiz.R;
 import com.softsquared.wadiz.src.BaseFragment;
-import com.softsquared.wadiz.src.Item.MainItem.ItemMainActivity;
+import com.softsquared.wadiz.src.Item.ItemMainActivity;
 import com.softsquared.wadiz.src.category.CategoryActivity;
 import com.softsquared.wadiz.src.common.RecyclerDecoration;
 import com.softsquared.wadiz.src.main.reward.reward_home.Adapters.BigItemRvAdapter;
@@ -34,11 +35,10 @@ import com.softsquared.wadiz.src.main.reward.reward_home.models.BannerItemlist;
 import com.softsquared.wadiz.src.main.reward.reward_home.models.BannerResponse;
 import com.softsquared.wadiz.src.main.reward.reward_home.models.CategoryItemList;
 import com.softsquared.wadiz.src.main.reward.reward_home.models.CategoryResponse;
+import com.softsquared.wadiz.src.main.reward.reward_home.models.ItemResponse;
 import com.softsquared.wadiz.src.main.reward.reward_home.models.Itemlist;
 
 import java.util.ArrayList;
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class Reward_homeFragment extends BaseFragment implements RewardHomeView {
     View view;
@@ -46,17 +46,22 @@ public class Reward_homeFragment extends BaseFragment implements RewardHomeView 
     ViewpagerAdapter pagerAdapter;
     RecyclerView rvCategory, rvItem;
     EditText etSearch;
-    Button btnControl, btnOrder;
+    Button btnControl;
     ImageButton ibShowlist;
     boolean showitemflag;
     ArrayList<BannerItemlist> mBannerItemlist;
     BannerResponse mBannerResponse;
     ArrayList<CategoryItemList> mCategoryItemlist;
     CategoryResponse mCategoryResponse;
+    ArrayList<Itemlist> mItemlist;
+    ItemResponse mItemResponse;
     ProgressBar mPb;
     RewardHomeService rewardHomeService;
-    int mCurrentPage;
-
+    String mOrder;
+    Spinner mSpOrder;
+    int mProjectIdx;
+    SmallItemRvAdapter smallItemRvAdapter;
+    BigItemRvAdapter bigItemRvAdapter;
 
     public Reward_homeFragment() {
 
@@ -74,64 +79,18 @@ public class Reward_homeFragment extends BaseFragment implements RewardHomeView 
         rvCategory = view.findViewById(R.id.reward_home_rv_category);
         etSearch = view.findViewById(R.id.reward_home_et);
         btnControl = view.findViewById(R.id.reward_home_control);
-        btnOrder = view.findViewById(R.id.reward_home_order);
+        mSpOrder = view.findViewById(R.id.reward_home_spinner_order);
         ibShowlist = view.findViewById(R.id.reward_home_showlist);
         mPb = view.findViewById(R.id.reward_home_pb);
         mBannerResponse = new BannerResponse();
         mCategoryResponse = new CategoryResponse();
         mBannerItemlist = new ArrayList<>();
         mCategoryItemlist = new ArrayList<>();
+        mItemlist = new ArrayList<>();
+        mItemResponse = new ItemResponse();
+        mOrder = "recommend";
 
         tryGetTest();
-
-
-        // 아이템에 넣을 리스트 생성
-        ArrayList<Itemlist> itemlistArrayList = new ArrayList<>();
-        for (int i = 0; i < 6; i++) {
-            itemlistArrayList.add(new Itemlist(R.drawable.banner0, "[맛있는건 퍼-먹자] 뜯는순간 완통 보장! 지중해 만능요리, 그릭후무스", "푸드", "얄라 (yalla)", "50", "200,000", "20"));
-        }
-
-        //아이템 리사이클러뷰 생성
-        rvItem = view.findViewById(R.id.reward_home_lv);
-        rvItem.setLayoutManager(new LinearLayoutManager(getActivity()));
-        SmallItemRvAdapter smallItemRvAdapter = new SmallItemRvAdapter(itemlistArrayList);
-        BigItemRvAdapter bigItemRvAdapter = new BigItemRvAdapter(itemlistArrayList);
-        rvItem.setAdapter(smallItemRvAdapter);
-
-        showitemflag = true; //아이템 리스트 보여주는 방식 변경을 위한 플래그 (small리스트 사용시 true, big리스트 사용시 false)
-
-        //버튼 클릭시 보여주기 방식 변경 (크게/작게)
-        ibShowlist.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (showitemflag) {
-                    rvItem.setAdapter(bigItemRvAdapter);
-                    ibShowlist.setImageResource(R.drawable.biglist);
-                    showitemflag = false;
-                } else {
-                    rvItem.setAdapter(smallItemRvAdapter);
-                    ibShowlist.setImageResource(R.drawable.smalllist);
-                    showitemflag = true;
-                }
-
-            }
-        });
-
-        // 리워드 아이템 클릭 이벤트 구현
-        rvItem.addOnItemTouchListener(new RecyclerTouchListener(getActivity(), rvItem, new ClickListener() {
-            @Override
-            public void onClick(View view, int position) {
-                Intent intent = new Intent(getActivity(), ItemMainActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
-            }
-
-            @Override
-            public void onLongClick(View view, int position) {
-
-            }
-        }));
-
 
         //카테고리 클릭 이벤트 구현
         rvCategory.addOnItemTouchListener(new RecyclerTouchListener(getActivity(), rvCategory, new ClickListener() {
@@ -139,7 +98,6 @@ public class Reward_homeFragment extends BaseFragment implements RewardHomeView 
             public void onClick(View view, int position) {
                 Intent intent = new Intent(getActivity(), CategoryActivity.class);
                 intent.putExtra("categoryIdx", position);
-                System.out.println("카테고리 위치 : "+position);
                 startActivity(intent);
             }
 
@@ -148,6 +106,38 @@ public class Reward_homeFragment extends BaseFragment implements RewardHomeView 
 
             }
         }));
+
+        mSpOrder.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                switch (position) {
+                    case 0:
+                        mOrder = "recommend";
+                        break;
+                    case 1:
+                        mOrder = "famous";
+                        break;
+                    case 2:
+                        mOrder = "funding";
+                        break;
+                    case 3:
+                        mOrder = "deadline";
+                        break;
+                    case 4:
+                        mOrder = "newp";
+                        break;
+                    case 5:
+                        mOrder = "supporter";
+                        break;
+                }
+                tryGetTest();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
         return view;
     }
@@ -207,16 +197,13 @@ public class Reward_homeFragment extends BaseFragment implements RewardHomeView 
         rewardHomeService = new RewardHomeService(this);
         rewardHomeService.getBanner();
         rewardHomeService.getCategory();
+        System.out.println("순서 : " + mOrder);
+        rewardHomeService.getItem(mOrder);
     }
 
     @Override
     public void validateBannerSuccess(ArrayList<BannerItemlist> item) {
         hideProgressDialog();
-
-
-        //배너 리스트 생성
-//        mBannerItemlist = new ArrayList<>();
-//        mBannerItemlist.addAll(rewardHomeService.mBannerItemlist);
 
         mBannerItemlist = item;
         pagerAdapter = new ViewpagerAdapter(getActivity(), mBannerItemlist);
@@ -249,6 +236,7 @@ public class Reward_homeFragment extends BaseFragment implements RewardHomeView 
         //배너 무한스크롤 구현 (마지막에서 다시 처음으로)
         viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             int Count = pagerAdapter.view_count;
+
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
             }
@@ -285,17 +273,73 @@ public class Reward_homeFragment extends BaseFragment implements RewardHomeView 
         mCategoryItemlist = item;
         //카테고리 리사이클러뷰 생성
 
-        RecyclerDecoration recyclerDecoration = new RecyclerDecoration(-20);
         rvCategory = view.findViewById(R.id.reward_home_rv_category);
         rvCategory.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
-        CategoryRvAdapter categoryRvAdapter = new CategoryRvAdapter(getContext(),mCategoryItemlist);
-        rvCategory.addItemDecoration(recyclerDecoration);
+        CategoryRvAdapter categoryRvAdapter = new CategoryRvAdapter(getContext(), mCategoryItemlist);
         rvCategory.setAdapter(categoryRvAdapter);
         System.out.println(categoryRvAdapter.getItemCount());
     }
 
     @Override
     public void validateCategoryFailure(String message) {
+
+    }
+
+    @Override
+    public void validateItemSuccess(ArrayList<Itemlist> item) {
+
+        //아이템 리사이클러뷰 생성
+        rvItem = view.findViewById(R.id.reward_home_lv);
+        rvItem.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+        mItemlist = item;
+        smallItemRvAdapter = new SmallItemRvAdapter(mItemlist, getActivity());
+        bigItemRvAdapter = new BigItemRvAdapter(mItemlist, getActivity());
+        rvItem.setAdapter(smallItemRvAdapter);
+        smallItemRvAdapter.notifyDataSetChanged();
+
+        showitemflag = true; //아이템 리스트 보여주는 방식 변경을 위한 플래그 (small리스트 사용시 true, big리스트 사용시 false)
+
+        //버튼 클릭시 보여주기 방식 변경 (크게/작게)
+        ibShowlist.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (showitemflag) {
+                    rvItem.setAdapter(bigItemRvAdapter);
+                    ibShowlist.setImageResource(R.drawable.biglist);
+                    showitemflag = false;
+                } else {
+                    rvItem.setAdapter(smallItemRvAdapter);
+                    ibShowlist.setImageResource(R.drawable.smalllist);
+                    showitemflag = true;
+                }
+
+            }
+        });
+        // 리워드 아이템 클릭 이벤트 구현
+        rvItem.addOnItemTouchListener(new RecyclerTouchListener(getActivity(), rvItem, new ClickListener() {
+            @Override
+            public void onClick(View view, int position) {
+                Intent intent = new Intent(getActivity(), ItemMainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                mProjectIdx = item.get(position).getProjectIdx();
+                System.out.println("프로젝트 이름 : " + item.get(position).getName());
+                intent.putExtra("projectIdx", mProjectIdx);
+                System.out.println("프로젝트 번호 보내기 : " + item.get(position).getProjectIdx());
+
+                startActivity(intent);
+            }
+
+            @Override
+            public void onLongClick(View view, int position) {
+
+            }
+        }));
+
+    }
+
+    @Override
+    public void validateItemFailure(String message) {
 
     }
 

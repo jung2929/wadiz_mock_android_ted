@@ -21,6 +21,7 @@ import androidx.fragment.app.FragmentManager;
 import com.softsquared.wadiz.R;
 import com.softsquared.wadiz.src.BaseActivity;
 import com.softsquared.wadiz.src.common.InavailableFragment;
+import com.softsquared.wadiz.src.common.SaveSharedPreference;
 import com.softsquared.wadiz.src.loginFragment.LoginFragment;
 import com.softsquared.wadiz.src.main.interfaces.MainActivityView;
 import com.softsquared.wadiz.src.main.mypage.MypageFragment;
@@ -105,21 +106,28 @@ public class MainActivity extends BaseActivity implements MainActivityView {
 //        mypage_cardFragment.onActivityResult(request, resultCode, data);
 
 
-        System.out.println("액티비티리절트 호출 : "+ requestCode);
+        System.out.println("액티비티리절트 호출 : " + request);
 
         if (resultCode == RESULT_OK) {
             System.out.println("액티비티리절트 이프문 진입");
-            switch (requestCode) {
-
-                case 2000 : //프로필 수정
+            switch (request) {
+                case 1000: //로그인
+                    System.out.println("로그인 성공");
+                    fragmentManager.beginTransaction().remove(mLoginFragment).commitAllowingStateLoss();
+                    if (mMypageFragment == null)
+                        fragmentManager.beginTransaction().add(R.id.main_fl_container, mMypageFragment).commitAllowingStateLoss();
+                    else
+                        fragmentManager.beginTransaction().replace(R.id.main_fl_container, mMypageFragment).commitAllowingStateLoss();
                     break;
 
-                case 3000 : //카드등록
+                case 2000: //프로필 수정
+                    break;
+
+                case 3000: //카드등록
                     Mypage_cardFragment mypage_cardFragment = (Mypage_cardFragment) getSupportFragmentManager().findFragmentById(R.id.mypage_fl_container);
                     mypage_cardFragment.setCardvisible(View.GONE, View.VISIBLE, data.getStringExtra("cardnum"));
                     System.out.println("카드번호 : " + data.getStringExtra("cardnum"));
                     break;
-
 
             }
         }
@@ -130,15 +138,9 @@ public class MainActivity extends BaseActivity implements MainActivityView {
         if (index == 0) { //리워드 버튼 클릭
             if (mRewardFragment == null) {
                 mRewardFragment = new RewardFragment();
-                fragmentManager.beginTransaction().add(R.id.main_fl_container, mRewardFragment).commitAllowingStateLoss();
-            } else {
-                if (mMypageFragment != null)
-                    fragmentManager.beginTransaction().hide(mMypageFragment).commitAllowingStateLoss();
-                if (mInavailabeFragment != null)
-                    fragmentManager.beginTransaction().hide(mInavailabeFragment).commitAllowingStateLoss();
-                if (mRewardFragment != null)
-                    fragmentManager.beginTransaction().show(mRewardFragment).commitAllowingStateLoss();
-            }
+                fragmentManager.beginTransaction().replace(R.id.main_fl_container, mRewardFragment).commitAllowingStateLoss();
+            } else
+                fragmentManager.beginTransaction().replace(R.id.main_fl_container, mRewardFragment).commitAllowingStateLoss();
             Drawable giftClick = getApplicationContext().getResources().getDrawable(R.drawable.gift_click);
             mBtnReward.setCompoundDrawablesWithIntrinsicBounds(null, giftClick, null, null);
             mBtnReward.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.black));
@@ -156,17 +158,22 @@ public class MainActivity extends BaseActivity implements MainActivityView {
             mBtnHome.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.gray));
 
         } else if (index == 1) { //마이 버튼 클릭
-            if (mMypageFragment == null) {
-                mMypageFragment = new LoginFragment();
-                fragmentManager.beginTransaction().add(R.id.main_fl_container, mMypageFragment).commitAllowingStateLoss();
+            if (SaveSharedPreference.getUserToken(getApplicationContext()).length() == 0) {
+                if (mLoginFragment == null) {
+                    mLoginFragment = new LoginFragment();
+                    fragmentManager.beginTransaction().replace(R.id.main_fl_container, mLoginFragment).commitAllowingStateLoss();
+                } else {
+                    fragmentManager.beginTransaction().replace(R.id.main_fl_container, mLoginFragment).commitAllowingStateLoss();
+                }
             } else {
-                if (mRewardFragment != null)
-                    fragmentManager.beginTransaction().hide(mRewardFragment).commitAllowingStateLoss();
-                if (mInavailabeFragment != null)
-                    fragmentManager.beginTransaction().hide(mInavailabeFragment).commitAllowingStateLoss();
-                if (mMypageFragment != null)
-                    fragmentManager.beginTransaction().show(mMypageFragment).commitAllowingStateLoss();
+                if (mMypageFragment == null) {
+                    mMypageFragment = new MypageFragment();
+                    fragmentManager.beginTransaction().replace(R.id.main_fl_container, mMypageFragment).commitAllowingStateLoss();
+
+                } else
+                    fragmentManager.beginTransaction().replace(R.id.main_fl_container, mMypageFragment).commitAllowingStateLoss();
             }
+
             Drawable giftNoneclick = getApplicationContext().getResources().getDrawable(R.drawable.gift_nonclick);
             mBtnReward.setCompoundDrawablesWithIntrinsicBounds(null, giftNoneclick, null, null);
             mBtnReward.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.gray));
@@ -185,14 +192,9 @@ public class MainActivity extends BaseActivity implements MainActivityView {
         } else if (index == 2) { //투자 버튼 클릭
             if (mInavailabeFragment == null) {
                 mInavailabeFragment = new InavailableFragment();
-                fragmentManager.beginTransaction().add(R.id.main_fl_container, mInavailabeFragment).commitAllowingStateLoss();
+                fragmentManager.beginTransaction().replace(R.id.main_fl_container, mInavailabeFragment).commitAllowingStateLoss();
             } else {
-                if (mMypageFragment != null)
-                    fragmentManager.beginTransaction().hide(mMypageFragment).commitAllowingStateLoss();
-                if (mRewardFragment != null)
-                    fragmentManager.beginTransaction().hide(mRewardFragment).commitAllowingStateLoss();
-                if (mInavailabeFragment != null)
-                    fragmentManager.beginTransaction().show(mInavailabeFragment).commitAllowingStateLoss();
+                fragmentManager.beginTransaction().replace(R.id.main_fl_container, mInavailabeFragment).commitAllowingStateLoss();
             }
             Drawable giftNoneclick = getApplicationContext().getResources().getDrawable(R.drawable.gift_nonclick);
             mBtnReward.setCompoundDrawablesWithIntrinsicBounds(null, giftNoneclick, null, null);
@@ -212,14 +214,9 @@ public class MainActivity extends BaseActivity implements MainActivityView {
         } else if (index == 3) { //홈 버튼 클릭
             if (mInavailabeFragment == null) {
                 mInavailabeFragment = new InavailableFragment();
-                fragmentManager.beginTransaction().add(R.id.main_fl_container, mInavailabeFragment).commitAllowingStateLoss();
+                fragmentManager.beginTransaction().replace(R.id.main_fl_container, mInavailabeFragment).commitAllowingStateLoss();
             } else {
-                if (mMypageFragment != null)
-                    fragmentManager.beginTransaction().hide(mMypageFragment).commitAllowingStateLoss();
-                if (mRewardFragment != null)
-                    fragmentManager.beginTransaction().hide(mRewardFragment).commitAllowingStateLoss();
-                if (mInavailabeFragment != null)
-                    fragmentManager.beginTransaction().show(mInavailabeFragment).commitAllowingStateLoss();
+                fragmentManager.beginTransaction().replace(R.id.main_fl_container, mInavailabeFragment).commitAllowingStateLoss();
             }
             Drawable giftNoneclick = getApplicationContext().getResources().getDrawable(R.drawable.gift_nonclick);
             mBtnReward.setCompoundDrawablesWithIntrinsicBounds(null, giftNoneclick, null, null);
@@ -237,20 +234,11 @@ public class MainActivity extends BaseActivity implements MainActivityView {
             mBtnHome.setCompoundDrawablesWithIntrinsicBounds(null, homeClick, null, null);
             mBtnHome.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.black));
         } else if (index == 4) { // 더보기 버튼 클릭
-            if (mMypageFragment != null)
-                fragmentManager.beginTransaction().hide(mMypageFragment).commitAllowingStateLoss();
-            if (mRewardFragment != null)
-                fragmentManager.beginTransaction().hide(mRewardFragment).commitAllowingStateLoss();
             if (mInavailabeFragment == null) {
                 mInavailabeFragment = new InavailableFragment();
-                fragmentManager.beginTransaction().add(R.id.main_fl_container, mInavailabeFragment).commitAllowingStateLoss();
+                fragmentManager.beginTransaction().replace(R.id.main_fl_container, mInavailabeFragment).commitAllowingStateLoss();
             } else {
-                if (mMypageFragment != null)
-                    fragmentManager.beginTransaction().hide(mMypageFragment).commitAllowingStateLoss();
-                if (mRewardFragment != null)
-                    fragmentManager.beginTransaction().hide(mRewardFragment).commitAllowingStateLoss();
-                if (mInavailabeFragment != null)
-                    fragmentManager.beginTransaction().show(mInavailabeFragment).commitAllowingStateLoss();
+                fragmentManager.beginTransaction().replace(R.id.main_fl_container, mInavailabeFragment).commitAllowingStateLoss();
             }
             Drawable giftNoneclick = getApplicationContext().getResources().getDrawable(R.drawable.gift_nonclick);
             mBtnReward.setCompoundDrawablesWithIntrinsicBounds(null, giftNoneclick, null, null);
@@ -276,6 +264,12 @@ public class MainActivity extends BaseActivity implements MainActivityView {
         cardnum = getintent.getStringExtra("cardnum");
         System.out.println("메인액티비티 값 : " + cardnum);
         super.onResume();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        SaveSharedPreference.clearUserToken(this);
     }
 
     private void tryGetTest() {

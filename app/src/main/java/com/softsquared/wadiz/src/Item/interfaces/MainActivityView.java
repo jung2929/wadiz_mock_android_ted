@@ -1,4 +1,4 @@
-package com.softsquared.wadiz.src.Item.MainItem.interfaces;
+package com.softsquared.wadiz.src.Item.interfaces;
 
 public interface MainActivityView {
 

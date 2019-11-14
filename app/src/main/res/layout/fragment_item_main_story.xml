@@ -10,8 +10,8 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <androidx.viewpager.widget.ViewPager
-            android:id="@+id/item_main_vp"
+        <ImageView
+            android:id="@+id/item_main_iv_mainimage"
             android:layout_width="match_parent"
             android:layout_height="200dp" />
 
@@ -81,15 +81,6 @@
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/nanumbarungothic"
-                    android:text="일 남음"
-                    android:textColor="@color/black"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
             </LinearLayout>
 
             <ProgressBar
@@ -117,14 +108,6 @@
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/nanumbarungothic"
-                    android:text=" % 달성"
-                    android:textColor="@color/gray"
-                    android:textSize="15sp"
-                    android:textStyle="bold" />
 
             </LinearLayout>
 
@@ -144,14 +127,6 @@
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/nanumbarungothic"
-                    android:text=" 원 펀딩 "
-                    android:textColor="@color/gray"
-                    android:textSize="15sp"
-                    android:textStyle="bold" />
 
             </LinearLayout>
 
@@ -171,15 +146,6 @@
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
-                <TextView
-                    style="?android:attr/borderlessButtonStyle"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/nanumbarungothic"
-                    android:text=" 명의 서포터"
-                    android:textColor="@color/gray"
-                    android:textSize="15sp"
-                    android:textStyle="bold" />
 
             </LinearLayout>
 
@@ -383,159 +349,164 @@
                 android:layout_marginBottom="30dp"
                 android:background="@color/lightgray" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="30dp"
-                android:fontFamily="@font/nanumbarungothic"
-                android:text="프로젝트 스토리"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginBottom="30dp"-->
+<!--                android:fontFamily="@font/nanumbarungothic"-->
+<!--                android:text="프로젝트 스토리"-->
+<!--                android:textColor="@color/black"-->
+<!--                android:textSize="20sp"-->
+<!--                android:textStyle="bold" />-->
 
-            <ImageView
-                android:id="@+id/itme_main_iv_mainimage"
+<!--            <ImageView-->
+<!--                android:id="@+id/itme_main_iv_mainimage"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:scaleType="fitCenter" />-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/item_main_tv_main"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:ellipsize="end"-->
+<!--                android:text="국회나 그 위원회의 요구가 있을 때에는 국무총리·국무위원 또는 정부위원은 출석·답변하여야 하며, 국무총리 또는 국무위원이 출석요구를 받은 때에는 국무위원 또는 정부위원으로 하여금 출석·답변하게 할 수 있다.-->
+
+<!--국회의원은 국가이익을 우선하여 양심에 따라 직무를 행한다. 모든 국민은 직업선택의 자유를 가진다. 대한민국은 민주공화국이다. 대통령의 임기는 5년으로 하며, 중임할 수 없다.-->
+
+<!--대법원장은 국회의 동의를 얻어 대통령이 임명한다. 군인·군무원·경찰공무원 기타 법률이 정하는 자가 전투·훈련등 직무집행과 관련하여 받은 손해에 대하여는 법률이 정하는 보상외에 국가 또는 공공단체에 공무원의 직무상 불법행위로 인한 배상은 청구할 수 없다.-->
+
+<!--선거와 국민투표의 공정한 관리 및 정당에 관한 사무를 처리하기 위하여 선거관리위원회를 둔다. 국가원로자문회의의 조직·직무범위 기타 필요한 사항은 법률로 정한다.-->
+
+<!--모든 국민은 고문을 받지 아니하며, 형사상 자기에게 불리한 진술을 강요당하지 아니한다. 국회가 재적의원 과반수의 찬성으로 계엄의 해제를 요구한 때에는 대통령은 이를 해제하여야 한다.-->
+
+<!--누구든지 체포 또는 구속을 당한 때에는 즉시 변호인의 조력을 받을 권리를 가진다. 다만, 형사피고인이 스스로 변호인을 구할 수 없을 때에는 법률이 정하는 바에 의하여 국가가 변호인을 붙인다.-->
+
+<!--국무총리는 국회의 동의를 얻어 대통령이 임명한다. 모든 국민은 언론·출판의 자유와 집회·결사의 자유를 가진다. 국회는 헌법 또는 법률에 특별한 규정이 없는 한 재적의원 과반수의 출석과 출석의원 과반수의 찬성으로 의결한다. 가부동수인 때에는 부결된 것으로 본다.-->
+
+<!--국가는 농지에 관하여 경자유전의 원칙이 달성될 수 있도록 노력하여야 하며, 농지의 소작제도는 금지된다. 국가원로자문회의의 의장은 직전대통령이 된다. 다만, 직전대통령이 없을 때에는 대통령이 지명한다."-->
+<!--                android:fontFamily="@font/nanumbarungothic"-->
+<!--                android:maxLines="5"-->
+<!--                android:textColor="@color/black"-->
+<!--                android:textSize="20sp" />-->
+
+<!--            <RelativeLayout-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_gravity="end">-->
+
+<!--                <Button-->
+<!--                    android:id="@+id/item_main_btn_more"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:background="@color/clear"-->
+<!--                    android:drawableLeft="@drawable/policy_more"-->
+<!--                    android:drawablePadding="10dp"-->
+<!--                    android:fontFamily="@font/nanumbarungothic"-->
+<!--                    android:text="자세히 보기"-->
+<!--                    android:textSize="15sp" />-->
+
+<!--                <Button-->
+<!--                    android:id="@+id/item_main_btn_less"-->
+<!--                    style="?android:attr/borderlessButtonStyle"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:background="@color/clear"-->
+<!--                    android:drawableLeft="@drawable/policy_less"-->
+<!--                    android:drawablePadding="10dp"-->
+<!--                    android:fontFamily="@font/nanumbarungothic"-->
+<!--                    android:text="접기"-->
+<!--                    android:textSize="15sp"-->
+<!--                    android:visibility="gone" />-->
+
+<!--            </RelativeLayout>-->
+
+
+<!--            <View-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="2dp"-->
+<!--                android:layout_marginTop="30dp"-->
+<!--                android:layout_marginBottom="30dp"-->
+<!--                android:background="@color/lightgray" />-->
+
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:layout_marginBottom="30dp"-->
+<!--                android:fontFamily="@font/nanumbarungothic"-->
+<!--                android:text="리워드 일정"-->
+<!--                android:textColor="@color/black"-->
+<!--                android:textSize="20sp"-->
+<!--                android:textStyle="bold" />-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/item_main_tv_schedule"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:ellipsize="end"-->
+<!--                android:fontFamily="@font/nanumbarungothic"-->
+<!--                android:maxLines="5"-->
+<!--                android:textColor="@color/black"-->
+<!--                android:textSize="20sp" />-->
+
+<!--            <View-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="2dp"-->
+<!--                android:layout_marginTop="30dp"-->
+<!--                android:layout_marginBottom="30dp"-->
+<!--                android:background="@color/lightgray" />-->
+
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:layout_marginBottom="30dp"-->
+<!--                android:fontFamily="@font/nanumbarungothic"-->
+<!--                android:text="Q \u0026 A"-->
+<!--                android:textColor="@color/black"-->
+<!--                android:textSize="20sp"-->
+<!--                android:textStyle="bold" />-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/item_main_tv_qna"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:ellipsize="end"-->
+<!--                android:fontFamily="@font/nanumbarungothic"-->
+<!--                android:maxLines="5"-->
+<!--                android:textColor="@color/black"-->
+<!--                android:textSize="20sp" />-->
+
+<!--            <View-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="2dp"-->
+<!--                android:layout_marginTop="30dp"-->
+<!--                android:layout_marginBottom="30dp"-->
+<!--                android:background="@color/lightgray" />-->
+
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:layout_marginBottom="30dp"-->
+<!--                android:fontFamily="@font/nanumbarungothic"-->
+<!--                android:text="배송 일자"-->
+<!--                android:textColor="@color/black"-->
+<!--                android:textSize="20sp"-->
+<!--                android:textStyle="bold" />-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/item_main_tv_delivery"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:ellipsize="end"-->
+<!--                android:fontFamily="@font/nanumbarungothic"-->
+<!--                android:maxLines="5"-->
+<!--                android:textColor="@color/black"-->
+<!--                android:textSize="20sp" />-->
+
+            <WebView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:scaleType="fitCenter" />
-
-            <TextView
-                android:id="@+id/item_main_tv_main"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ellipsize="end"
-                android:text="국회나 그 위원회의 요구가 있을 때에는 국무총리·국무위원 또는 정부위원은 출석·답변하여야 하며, 국무총리 또는 국무위원이 출석요구를 받은 때에는 국무위원 또는 정부위원으로 하여금 출석·답변하게 할 수 있다.
-
-국회의원은 국가이익을 우선하여 양심에 따라 직무를 행한다. 모든 국민은 직업선택의 자유를 가진다. 대한민국은 민주공화국이다. 대통령의 임기는 5년으로 하며, 중임할 수 없다.
-
-대법원장은 국회의 동의를 얻어 대통령이 임명한다. 군인·군무원·경찰공무원 기타 법률이 정하는 자가 전투·훈련등 직무집행과 관련하여 받은 손해에 대하여는 법률이 정하는 보상외에 국가 또는 공공단체에 공무원의 직무상 불법행위로 인한 배상은 청구할 수 없다.
-
-선거와 국민투표의 공정한 관리 및 정당에 관한 사무를 처리하기 위하여 선거관리위원회를 둔다. 국가원로자문회의의 조직·직무범위 기타 필요한 사항은 법률로 정한다.
-
-모든 국민은 고문을 받지 아니하며, 형사상 자기에게 불리한 진술을 강요당하지 아니한다. 국회가 재적의원 과반수의 찬성으로 계엄의 해제를 요구한 때에는 대통령은 이를 해제하여야 한다.
-
-누구든지 체포 또는 구속을 당한 때에는 즉시 변호인의 조력을 받을 권리를 가진다. 다만, 형사피고인이 스스로 변호인을 구할 수 없을 때에는 법률이 정하는 바에 의하여 국가가 변호인을 붙인다.
-
-국무총리는 국회의 동의를 얻어 대통령이 임명한다. 모든 국민은 언론·출판의 자유와 집회·결사의 자유를 가진다. 국회는 헌법 또는 법률에 특별한 규정이 없는 한 재적의원 과반수의 출석과 출석의원 과반수의 찬성으로 의결한다. 가부동수인 때에는 부결된 것으로 본다.
-
-국가는 농지에 관하여 경자유전의 원칙이 달성될 수 있도록 노력하여야 하며, 농지의 소작제도는 금지된다. 국가원로자문회의의 의장은 직전대통령이 된다. 다만, 직전대통령이 없을 때에는 대통령이 지명한다."
-                android:fontFamily="@font/nanumbarungothic"
-                android:maxLines="5"
-                android:textColor="@color/black"
-                android:textSize="20sp" />
-
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="end">
-
-                <Button
-                    android:id="@+id/item_main_btn_more"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@color/clear"
-                    android:drawableLeft="@drawable/policy_more"
-                    android:drawablePadding="10dp"
-                    android:fontFamily="@font/nanumbarungothic"
-                    android:text="자세히 보기"
-                    android:textSize="15sp" />
-
-                <Button
-                    android:id="@+id/item_main_btn_less"
-                    style="?android:attr/borderlessButtonStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@color/clear"
-                    android:drawableLeft="@drawable/policy_less"
-                    android:drawablePadding="10dp"
-                    android:fontFamily="@font/nanumbarungothic"
-                    android:text="접기"
-                    android:textSize="15sp"
-                    android:visibility="gone" />
-
-            </RelativeLayout>
-
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:layout_marginTop="30dp"
-                android:layout_marginBottom="30dp"
-                android:background="@color/lightgray" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="30dp"
-                android:fontFamily="@font/nanumbarungothic"
-                android:text="리워드 일정"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/item_main_tv_schedule"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ellipsize="end"
-                android:fontFamily="@font/nanumbarungothic"
-                android:maxLines="5"
-                android:textColor="@color/black"
-                android:textSize="20sp" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:layout_marginTop="30dp"
-                android:layout_marginBottom="30dp"
-                android:background="@color/lightgray" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="30dp"
-                android:fontFamily="@font/nanumbarungothic"
-                android:text="Q \u0026 A"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/item_main_tv_qna"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ellipsize="end"
-                android:fontFamily="@font/nanumbarungothic"
-                android:maxLines="5"
-                android:textColor="@color/black"
-                android:textSize="20sp" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:layout_marginTop="30dp"
-                android:layout_marginBottom="30dp"
-                android:background="@color/lightgray" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="30dp"
-                android:fontFamily="@font/nanumbarungothic"
-                android:text="배송 일자"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/item_main_tv_delivery"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ellipsize="end"
-                android:fontFamily="@font/nanumbarungothic"
-                android:maxLines="5"
-                android:textColor="@color/black"
-                android:textSize="20sp" />
+                android:id="@+id/item_main_story_wv"/>
 
             <View
                 android:layout_width="match_parent"

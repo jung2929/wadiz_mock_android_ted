@@ -67,7 +67,7 @@ public class RewardFragment extends BaseFragment implements MainActivityView {
 
     private void setViewPager() {
 
-        FragmentAdapter adapter = new FragmentAdapter(myContext.getSupportFragmentManager());
+        FragmentAdapter adapter = new FragmentAdapter(getChildFragmentManager());
         viewPager.setAdapter(adapter);
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {

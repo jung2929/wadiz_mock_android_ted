@@ -19,8 +19,9 @@
             android:fontFamily="@font/nanumbarungothic"
             android:text="공개로 펀딩한 프로젝트 입니다."
             android:textColor="@color/gray"
+            android:layout_marginTop="10dp"
             android:layout_marginLeft="20dp"
-            android:textSize="15sp" />
+            android:textSize="13sp" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/mypage_funding_rv"

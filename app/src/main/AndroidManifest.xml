@@ -27,17 +27,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".src.main.mypage.editprofile.EditprofileActivity" />
-        <activity android:name=".src.login.LoginActivity" />
-        <activity android:name=".src.main.mypage.mypage_card.card.register_card.Register_cardActivity" />
-        <activity android:name=".src.Item.MainItem.ItemMainActivity" />
-        <activity android:name=".src.main.MainActivity" />
-        <activity android:name=".src.Item.policy.PolicyActivity" />
-        <activity android:name=".src.Item.ItemPurchase.ItemPurchaseFirst.PurchaseFirstActivity" />
-        <activity android:name=".src.Item.ItemPurchase.ItemPurchaseSecond.PurchaseSecondActivity" />
-        <activity android:name=".src.Item.ItemPurchase.ItemPurchaseLast.PurchaseLastActivity" />
-        <activity android:name=".src.category.CategoryActivity"/>
-        <activity android:name=".src.join.JoinActivity"/>
+        <activity android:name=".src.main.mypage.editprofile.EditprofileActivity" android:windowSoftInputMode="adjustPan"/>
+        <activity android:name=".src.login.LoginActivity" android:windowSoftInputMode="adjustPan"  />
+        <activity android:name=".src.main.mypage.mypage_card.card.register_card.Register_cardActivity" android:windowSoftInputMode="adjustPan"/>
+        <activity android:name=".src.Item.ItemMainActivity" android:windowSoftInputMode="adjustPan"/>
+        <activity android:name=".src.main.MainActivity" android:windowSoftInputMode="adjustPan" />
+        <activity android:name=".src.Item.policy.PolicyActivity" android:windowSoftInputMode="adjustPan"/>
+        <activity android:name=".src.Item.ItemPurchase.ItemPurchaseFirst.PurchaseFirstActivity" android:windowSoftInputMode="adjustPan"/>
+        <activity android:name=".src.Item.ItemPurchase.ItemPurchaseSecond.PurchaseSecondActivity" android:windowSoftInputMode="adjustPan"/>
+        <activity android:name=".src.Item.ItemPurchase.ItemPurchaseLast.PurchaseLastActivity" android:windowSoftInputMode="adjustPan"/>
+        <activity android:name=".src.category.CategoryActivity" android:windowSoftInputMode="adjustPan"/>
+        <activity android:name=".src.join.JoinActivity" android:windowSoftInputMode="adjustPan"/>
     </application>
 
 </manifest>

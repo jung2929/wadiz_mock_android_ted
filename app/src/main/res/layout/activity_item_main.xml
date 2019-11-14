@@ -40,7 +40,8 @@
                 android:singleLine="true"
                 android:text="모든 국민은 법률이 정하는 바에 의하여 납세의 의무를 진다. 국가는 농업 및 어업을 보호·육성하기 위하여 농·어촌종합개발과 그 지원등 필요한 계획을 수립·시행하여야 한다."
                 android:textColor="@color/black"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
             <ImageButton
                 android:id="@+id/item_main_ib_home"
@@ -95,15 +96,14 @@
         </LinearLayout>
 
 
-
     </LinearLayout>
 
     <FrameLayout
+        android:id="@+id/item_main_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/item_main_ll_title"
         android:layout_above="@id/item_main_ll_footer"
-        android:id="@+id/item_main_container"/>
+        android:layout_below="@id/item_main_ll_title" />
 
     <LinearLayout
         android:id="@+id/item_main_ll_footer"

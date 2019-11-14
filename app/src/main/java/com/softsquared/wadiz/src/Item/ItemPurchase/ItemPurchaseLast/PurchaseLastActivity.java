@@ -11,7 +11,7 @@ import androidx.annotation.Nullable;
 import com.softsquared.wadiz.R;
 import com.softsquared.wadiz.src.BaseActivity;
 import com.softsquared.wadiz.src.Item.ItemPurchase.ItemPurchaseLast.interfaces.MainActivityView;
-import com.softsquared.wadiz.src.Item.MainItem.ItemMainActivity;
+import com.softsquared.wadiz.src.Item.ItemMainActivity;
 import com.softsquared.wadiz.src.main.MainActivity;
 
 
