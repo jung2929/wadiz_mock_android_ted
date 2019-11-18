@@ -18,6 +18,7 @@ import com.softsquared.wadiz.R;
 import com.softsquared.wadiz.src.BaseFragment;
 import com.softsquared.wadiz.src.common.SaveSharedPreference;
 import com.softsquared.wadiz.src.main.MainActivity;
+import com.softsquared.wadiz.src.main.mypage.mypage_card.card.delete_card.CardDeleteActivity;
 import com.softsquared.wadiz.src.main.mypage.mypage_card.interfaces.MypageCardActivityView;
 import com.softsquared.wadiz.src.main.mypage.mypage_card.card.register_card.RegisterCardActivity;
 import com.softsquared.wadiz.src.main.mypage.mypage_card.models.CardList;
@@ -67,7 +68,8 @@ public class MypageCardFragment extends BaseFragment implements MypageCardActivi
         btnCarddelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(getActivity(), CardDeleteActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -106,6 +108,8 @@ public class MypageCardFragment extends BaseFragment implements MypageCardActivi
         hideProgressDialog();
 
 
+        //성공하면 카드 나오고 아니면 등록화면 나오기
+
         if (code == 200) {
             llRegister.setVisibility(View.GONE);
             rlCard.setVisibility(View.VISIBLE);
@@ -113,12 +117,6 @@ public class MypageCardFragment extends BaseFragment implements MypageCardActivi
             mTvCardName.setText(result.get(0).getCardname());
             mtvCardDay.setText(result.get(0).getRegistration());
             System.out.println(result.get(0).getCardname().substring(0, 2));
-            if (result.get(0).getCardname() == "BC카드"){
-                System.out.println(result.get(0).getCardname().substring(0, 2));
-            rlCard.setBackground(ContextCompat.getDrawable(getActivity(), R.drawable.card_bc));}
-            else if (result.get(0).getCardname() == "신한카드") {
-                rlCard.setBackground(ContextCompat.getDrawable(getActivity(), R.drawable.card_shinhan));
-            }
         } else {
             llRegister.setVisibility(View.VISIBLE);
             rlCard.setVisibility(View.GONE);

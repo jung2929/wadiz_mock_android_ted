@@ -11,14 +11,15 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="60dp">
+            android:layout_height="50dp">
 
             <ImageButton
                 android:id="@+id/purchase_last_ib_back"
                 style="?android:attr/borderlessButtonStyle"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_height="35sp"
                 android:minWidth="0dp"
+                android:layout_centerVertical="true"
                 android:minHeight="0dp"
                 android:scaleType="centerCrop"
                 android:src="@drawable/back" />
@@ -41,8 +42,9 @@
                 android:id="@+id/purchase_last_ib_home"
                 style="?android:attr/borderlessButtonStyle"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_height="35sp"
                 android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
                 android:minWidth="0dp"
                 android:minHeight="0dp"
                 android:scaleType="centerCrop"

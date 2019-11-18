@@ -4,6 +4,7 @@ import com.softsquared.wadiz.src.common.SaveSharedPreference;
 import com.softsquared.wadiz.src.main.mypage.editprofile.interfaces.EditProfileActivityView;
 import com.softsquared.wadiz.src.main.mypage.editprofile.interfaces.EditProfileRetrofitInterface;
 import com.softsquared.wadiz.src.main.mypage.editprofile.models.DefaultResponse;
+import com.softsquared.wadiz.src.main.mypage.editprofile.models.ProfileEditList;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -18,9 +19,9 @@ class EditProfileService {
         this.mEditProfileActivityView = editProfileActivityView;
     }
 
-    void getTest(String token) {
+    void getTest(String token, ProfileEditList profileEditList) {
         final EditProfileRetrofitInterface editProfileRetrofitInterface = getRetrofit().create(EditProfileRetrofitInterface.class);
-        editProfileRetrofitInterface.patchEditProfile(token).enqueue(new Callback<DefaultResponse>() {
+        editProfileRetrofitInterface.patchEditProfile(token, profileEditList).enqueue(new Callback<DefaultResponse>() {
             @Override
             public void onResponse(Call<DefaultResponse> call, Response<DefaultResponse> response) {
                 final DefaultResponse defaultResponse = response.body();
@@ -30,7 +31,7 @@ class EditProfileService {
                     return;
                 }
 
-                mEditProfileActivityView.validateSuccess(defaultResponse.getMessage());
+                mEditProfileActivityView.validateSuccess(defaultResponse.getCode(), defaultResponse.getMessage());
             }
 
             @Override

@@ -3,6 +3,8 @@ package com.softsquared.wadiz.src.main.mypage.mypage_funding.models;
 import com.google.gson.annotations.SerializedName;
 
 public class FundingItemlist {
+    @SerializedName("projectIdx")
+    int projectIdx;
     @SerializedName("thumnail")
     String Image;
     @SerializedName("title")
@@ -18,14 +20,23 @@ public class FundingItemlist {
     @SerializedName("remaining")
     String Day;
 
-    public FundingItemlist(String image, String name, String company, String category, String percent, String money, String day) {
+    public FundingItemlist(int projectIdx, String image, String name, String company, String category, String percent, String money, String day) {
+        this.projectIdx = projectIdx;
         Image = image;
         Name = name;
-        this.Company = company;
+        Company = company;
         Category = category;
-        this.Percent = percent;
-        this.Money = money;
-        this.Day = day;
+        Percent = percent;
+        Money = money;
+        Day = day;
+    }
+
+    public int getProjectIdx() {
+        return projectIdx;
+    }
+
+    public void setProjectIdx(int projectIdx) {
+        this.projectIdx = projectIdx;
     }
 
     public String getImage() {
@@ -49,7 +60,7 @@ public class FundingItemlist {
     }
 
     public void setCompany(String company) {
-        this.Company = company;
+        Company = company;
     }
 
     public String getCategory() {
@@ -65,7 +76,7 @@ public class FundingItemlist {
     }
 
     public void setPercent(String percent) {
-        this.Percent = percent;
+        Percent = percent;
     }
 
     public String getMoney() {
@@ -73,7 +84,7 @@ public class FundingItemlist {
     }
 
     public void setMoney(String money) {
-        this.Money = money;
+        Money = money;
     }
 
     public String getDay() {
@@ -81,6 +92,6 @@ public class FundingItemlist {
     }
 
     public void setDay(String day) {
-        this.Day = day;
+        Day = day;
     }
 }

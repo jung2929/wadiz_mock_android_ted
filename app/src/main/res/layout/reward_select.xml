@@ -26,7 +26,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/nanumbarungothic"
-            android:text="28,000"
             android:textColor="@color/black"
             android:textSize="20sp"
             android:textStyle="bold" />
@@ -35,7 +34,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/nanumbarungothic"
-            android:text="원 펀딩합니다."
+            android:text="합니다."
             android:textColor="@color/black"
             android:textSize="20sp"
             android:textStyle="bold" />
@@ -48,7 +47,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:fontFamily="@font/nanumbarungothic"
-        android:text="[미백세트] 어쩌구 저쩌구 4개"
         android:textColor="@color/black"
         android:textSize="15sp" />
 
@@ -58,7 +56,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:fontFamily="@font/nanumbarungothic"
-        android:text="66,000->300 123%혜택\n칸디데치약4개\n개당 단가 : 100원"
         android:textColor="@color/gray"
         android:textSize="13sp" />
 

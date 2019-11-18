@@ -28,6 +28,7 @@ public class MypageFundingFragment extends BaseFragment implements FundingActivi
     TextView tvNull;
     LinearLayout llNum;;
     RecyclerView rvItem;
+    int mProjectIdx;
     ArrayList<FundingItemlist> fundingItemlistArrayList;
     public MypageFundingFragment() {
 

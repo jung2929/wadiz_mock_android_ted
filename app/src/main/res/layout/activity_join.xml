@@ -8,7 +8,7 @@
     <LinearLayout
         android:id="@+id/join_title"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="50dp"
         android:layout_alignParentTop="true"
         android:background="@drawable/customborder_sideline"
         android:orientation="horizontal">
@@ -16,7 +16,7 @@
         <ImageButton
             android:id="@+id/join_ib_back"
             android:layout_width="0dp"
-            android:layout_height="40sp"
+            android:layout_height="35sp"
             android:layout_gravity="center"
             android:layout_weight="1"
             android:background="@color/clear"
@@ -38,7 +38,7 @@
         <ImageButton
             android:id="@+id/join_ib_home"
             android:layout_width="0dp"
-            android:layout_height="40sp"
+            android:layout_height="35sp"
             android:layout_gravity="center"
             android:layout_weight="1"
             android:background="@color/clear"

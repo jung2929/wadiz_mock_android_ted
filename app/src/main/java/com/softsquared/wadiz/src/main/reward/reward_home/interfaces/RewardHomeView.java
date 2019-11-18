@@ -19,4 +19,8 @@ public interface RewardHomeView {
     void validateItemSuccess(ArrayList<Itemlist> item);
 
     void validateItemFailure(String message);
+
+    void validateSearchSuccess(ArrayList<Itemlist> item);
+
+    void validateSearchFailure(String message);
 }

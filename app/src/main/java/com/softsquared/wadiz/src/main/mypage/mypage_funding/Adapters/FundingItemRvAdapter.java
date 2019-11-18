@@ -1,11 +1,15 @@
 package com.softsquared.wadiz.src.main.mypage.mypage_funding.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -13,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.softsquared.wadiz.R;
+import com.softsquared.wadiz.src.main.mypage.mypage_funding.fundingDelete.MyFundingActivity;
 import com.softsquared.wadiz.src.main.mypage.mypage_funding.models.FundingItemlist;
 
 import java.util.ArrayList;
@@ -31,6 +36,7 @@ public class FundingItemRvAdapter extends RecyclerView.Adapter<FundingItemRvAdap
         TextView tvDay;
         TextView tvCategory;
         ProgressBar pb;
+        RelativeLayout rv;
 
         ViewHolder(View itemView) {
             super(itemView);
@@ -44,6 +50,9 @@ public class FundingItemRvAdapter extends RecyclerView.Adapter<FundingItemRvAdap
             tvDay = itemView.findViewById(R.id.mypage_funding_item_tv_day);
             tvCategory = itemView.findViewById(R.id.mypage_funding_item_tv_category);
             pb = itemView.findViewById(R.id.mypage_funding_item_progress);
+            rv = itemView.findViewById(R.id.mypage_funding_rv);
+
+
         }
     }
 
@@ -71,6 +80,7 @@ public class FundingItemRvAdapter extends RecyclerView.Adapter<FundingItemRvAdap
         holder.tvCompany.setText(mData.get(position).getCompany());
         holder.tvCategory.setText(mData.get(position).getCategory());
         holder.tvDay.setText(mData.get(position).getDay());
+        holder.ivItem.setColorFilter(Color.parseColor("#BDBDBD"), PorterDuff.Mode.MULTIPLY);
         if (mData.get(position).getPercent() == null) {
             holder.tvPercent.setText("0%");
             holder.pb.setProgress(0);
@@ -85,6 +95,22 @@ public class FundingItemRvAdapter extends RecyclerView.Adapter<FundingItemRvAdap
             holder.tvMoney.setText(mData.get(position).getMoney());
 
         }
+
+        holder.rv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, MyFundingActivity.class);
+                intent.putExtra("name", mData.get(position).getName());
+                intent.putExtra("category",mData.get(position).getCategory());
+                intent.putExtra("day", mData.get(position).getDay());
+                intent.putExtra("company", mData.get(position).getCompany());
+                intent.putExtra("projectIdx", mData.get(position).getProjectIdx());
+
+                mContext.startActivity(intent);
+            }
+        });
+
+
 
     }
 

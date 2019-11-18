@@ -12,7 +12,7 @@
         android:id="@+id/reward_tab"
         app:tabTextColor="@color/gray"
         app:tabSelectedTextColor="@color/black"
-        app:tabTextAppearance="@style/tab_text"
+        app:tabTextAppearance="@style/tab_home_text"
         app:tabIndicatorColor="@color/black"
         app:tabPaddingStart="10dp"
         app:tabPaddingEnd="10dp"

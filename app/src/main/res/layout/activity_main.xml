@@ -10,7 +10,7 @@
     <LinearLayout
         android:id="@+id/main_ll_titlebar"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="50dp"
         android:orientation="horizontal">
 
         <ImageButton

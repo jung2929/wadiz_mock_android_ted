@@ -3,6 +3,7 @@ package com.softsquared.wadiz.src.main.reward.reward_home.interfaces;
 import com.softsquared.wadiz.src.main.reward.reward_home.models.BannerResponse;
 import com.softsquared.wadiz.src.main.reward.reward_home.models.CategoryResponse;
 import com.softsquared.wadiz.src.main.reward.reward_home.models.ItemResponse;
+import com.softsquared.wadiz.src.main.reward.reward_home.models.SearchItemResponse;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
@@ -19,13 +20,7 @@ public interface RewardHomeRetrofitInterface {
     @GET("/project")
     Call<ItemResponse> getItem(@Query("orderby") String order);
 
-//
-//    @GET("/test/{number}")
-//    Call<BannerItemlist> getTestPathAndQuery(
-//            @Path("number") int number,
-//            @Query("content") final String content
-//    );
-//
-//    @POST("/test")
-//    Call<BannerItemlist> postTest(@Body RequestBody params);
+    @GET("/project/search")
+    Call<SearchItemResponse> searchItem(@Query("word") String word);
+
 }

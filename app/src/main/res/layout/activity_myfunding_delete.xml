@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:paddingLeft="30dp"
+    android:paddingTop="100dp"
+    android:paddingRight="30dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/nanumbarungothic"
+        android:text="취소 전, 아래 유의 사항을 꼭 확인하세요!"
+        android:textColor="@color/black"
+        android:textSize="25sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/nanumbarungothic"
+        android:text="리워드 종류 변경 및 수량 변경을 원한다면? 취소 전, 리워드 잔여 수량을 먼저 확인하고, 취소하세요. 남아있는 리워드 수량이 없을 경우, 재 펀딩이 불가할 수 있습니다."
+        android:textColor="@color/gray"
+        android:textSize="15sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/nanumbarungothic"
+        android:text="리워드 옵션 변경을 원한다면? 결제예약을 취소하지 않고, 펀딩 내역에서 옵션 변경이 가능합니다."
+        android:textColor="@color/gray"
+        android:textSize="15sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/nanumbarungothic"
+        android:text="리워드 제한 수량 특성 상, 취소 후 재 펀딩이 어려울 수 있으니 신중하게 취소해주세요."
+        android:textColor="@color/gray"
+        android:textSize="15sp" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:layout_marginTop="30dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/myfunding_delete_btn_cancel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:layout_weight="2"
+            android:background="@drawable/customborder_sideline"
+            android:fontFamily="@font/nanumbarungothic"
+            android:padding="5dp"
+            android:text="다시 생각하기"
+            android:textColor="@color/gray"
+            android:textSize="17sp" />
+
+        <Button
+            android:id="@+id/myfunding_delete_btn_ok"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/percent"
+            android:fontFamily="@font/nanumbarungothic"
+            android:text="확인"
+            android:padding="5dp"
+            android:textColor="@color/white"
+            android:textSize="17sp" />
+
+
+    </LinearLayout>
+
+</LinearLayout>

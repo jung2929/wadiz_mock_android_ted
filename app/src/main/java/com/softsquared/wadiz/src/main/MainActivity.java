@@ -106,8 +106,10 @@ public class MainActivity extends BaseActivity implements MainActivityView {
                 case 1000: //로그인
                     System.out.println("로그인 성공");
                     fragmentManager.beginTransaction().remove(mLoginFragment).commitAllowingStateLoss();
-                    if (mMypageFragment == null)
+                    if (mMypageFragment == null) {
+                        mMypageFragment = new MypageFragment();
                         fragmentManager.beginTransaction().replace(R.id.main_fl_container, mMypageFragment).commitAllowingStateLoss();
+                    }
                     else
                         fragmentManager.beginTransaction().replace(R.id.main_fl_container, mMypageFragment).commitAllowingStateLoss();
                     break;

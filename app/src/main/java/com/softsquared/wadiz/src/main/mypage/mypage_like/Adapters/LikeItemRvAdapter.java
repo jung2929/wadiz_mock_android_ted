@@ -1,6 +1,8 @@
 package com.softsquared.wadiz.src.main.mypage.mypage_like.Adapters;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,6 +46,8 @@ public class LikeItemRvAdapter extends RecyclerView.Adapter<LikeItemRvAdapter.Vi
             tvDay = itemView.findViewById(R.id.mypage_funding_item_tv_day);
             tvCategory = itemView.findViewById(R.id.mypage_funding_item_tv_category);
             pb = itemView.findViewById(R.id.mypage_funding_item_progress);
+            ivItem.setColorFilter(Color.parseColor("#BDBDBD"), PorterDuff.Mode.MULTIPLY);
+
         }
     }
 

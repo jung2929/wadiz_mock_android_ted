@@ -14,9 +14,11 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
+import com.bumptech.glide.Glide;
 import com.softsquared.wadiz.R;
 import com.softsquared.wadiz.src.BaseActivity;
 import com.softsquared.wadiz.src.common.SaveSharedPreference;
@@ -27,6 +29,8 @@ import com.softsquared.wadiz.src.main.mypage.editprofile.models.ProfileEditList;
 
 import java.util.ArrayList;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 
 public class EditprofileActivity extends BaseActivity implements EditProfileActivityView {
     MainActivity mainActivity;
@@ -35,9 +39,9 @@ public class EditprofileActivity extends BaseActivity implements EditProfileActi
     Button btnCancel, btnOk, btnImgupdate, btnImgdelete, btnImgchange;
     CheckBox cb1, cb2, cb3, cb4, cb5, cb6, cb7, cb8;
     EditText etIntroduce;
-    public static Intent intent;
     ArrayList<CategoryItem> mCategoryItem;
-    ArrayList<ProfileEditList> mProfileList;
+    ProfileEditList mProfileList;
+    CircleImageView mIvProfile;
 
     @Override
     protected void onResume() {
@@ -56,9 +60,10 @@ public class EditprofileActivity extends BaseActivity implements EditProfileActi
         btnImgupdate = findViewById(R.id.profile_edit_btn_imgupdate);
         btnImgchange = findViewById(R.id.profile_edit_btn_imgchange);
         btnImgdelete = findViewById(R.id.profile_edit_btn_imgdelete);
+        mIvProfile = findViewById(R.id.profile_edit_iv_profile);
         mcontext = this;
         mCategoryItem = new ArrayList<>();
-        mProfileList = new ArrayList<>();
+        mProfileList = new ProfileEditList(null, mCategoryItem);
 
         ibBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -82,8 +87,6 @@ public class EditprofileActivity extends BaseActivity implements EditProfileActi
             }
         });
 
-        intent = new Intent(this, MainActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
         cb1 = findViewById(R.id.profile_edit_cb1);
         cb2 = findViewById(R.id.profile_edit_cb2);
         cb3 = findViewById(R.id.profile_edit_cb3);
@@ -124,17 +127,25 @@ public class EditprofileActivity extends BaseActivity implements EditProfileActi
                 builder.setPositiveButton("확인",
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
-                                if (cb1.isChecked()) mCategoryItem.add(new CategoryItem("1"));
-                                if (cb2.isChecked()) mCategoryItem.add(new CategoryItem("2"));
-                                if (cb3.isChecked()) mCategoryItem.add(new CategoryItem("3"));
-                                if (cb4.isChecked()) mCategoryItem.add(new CategoryItem("4"));
-                                if (cb5.isChecked()) mCategoryItem.add(new CategoryItem("5"));
-                                if (cb6.isChecked()) mCategoryItem.add(new CategoryItem("6"));
-                                if (cb7.isChecked()) mCategoryItem.add(new CategoryItem("7"));
-                                if (cb8.isChecked()) mCategoryItem.add(new CategoryItem("8"));
-                                mProfileList.add((new ProfileEditList(etIntroduce.getText().toString(), mCategoryItem)));
+                                if (cb1.isChecked()) mCategoryItem.add(new CategoryItem(1));
+                                else    mCategoryItem.remove((Integer)1);
+                                if (cb2.isChecked()) mCategoryItem.add(new CategoryItem(2));
+                                else    mCategoryItem.remove((Integer)2);
+                                if (cb3.isChecked()) mCategoryItem.add(new CategoryItem(3));
+                                else    mCategoryItem.remove((Integer)3);
+                                if (cb4.isChecked()) mCategoryItem.add(new CategoryItem(4));
+                                else    mCategoryItem.remove((Integer)4);
+                                if (cb5.isChecked()) mCategoryItem.add(new CategoryItem(5));
+                                else    mCategoryItem.remove((Integer)5);
+                                if (cb6.isChecked()) mCategoryItem.add(new CategoryItem(6));
+                                else    mCategoryItem.remove((Integer)6);
+                                if (cb7.isChecked()) mCategoryItem.add(new CategoryItem(7));
+                                else    mCategoryItem.remove((Integer)7);
+                                if (cb8.isChecked()) mCategoryItem.add(new CategoryItem(8));
+                                else    mCategoryItem.remove((Integer)8);
+                                mProfileList.setUserinfo(etIntroduce.getText().toString());
+                                mProfileList.setCategoryItem(mCategoryItem);
 
-                                System.out.println("1번 선택?? : "+mCategoryItem.get(0).getCategoryIdx());
 
                                 tryGetTest();
                             }
@@ -142,20 +153,35 @@ public class EditprofileActivity extends BaseActivity implements EditProfileActi
                 builder.show();
             }
         });
+
+        Intent getintent= getIntent();
+        Glide.with(getApplicationContext()).load(getintent.getStringExtra("profileImg")).into(mIvProfile);
+        etIntroduce.setText(getintent.getStringExtra("indroduce"));
+
     }
 
     private void tryGetTest() {
         showProgressDialog();
 
         final EditProfileService editProfileService = new EditProfileService(this);
-        editProfileService.getTest(SaveSharedPreference.getUserToken(getApplicationContext()));
+        editProfileService.getTest(SaveSharedPreference.getUserToken(getApplicationContext()), mProfileList);
+        System.out.println(mProfileList.getUserinfo());
+
     }
 
     @Override
-    public void validateSuccess(String text) {
+    public void validateSuccess(int code, String message) {
         hideProgressDialog();
-        System.out.println("프로필 수정 완료");
-        finish();
+        if (code == 200) {
+            System.out.println("프로필 수정 완료");
+            finish();
+        } else {
+            System.out.println("프로필 수정 실패 " + code + message);
+            finish();
+            Toast.makeText(getApplicationContext(),"프로필 수정을 실패하였습니다. 다시 시도해주세요.", Toast.LENGTH_SHORT);
+        }
+
+
     }
 
     @Override

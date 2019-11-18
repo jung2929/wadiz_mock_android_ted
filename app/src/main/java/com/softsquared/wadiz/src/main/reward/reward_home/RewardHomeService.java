@@ -7,6 +7,8 @@ import com.softsquared.wadiz.src.main.reward.reward_home.models.BannerResponse;
 import com.softsquared.wadiz.src.main.reward.reward_home.models.CategoryItemList;
 import com.softsquared.wadiz.src.main.reward.reward_home.models.CategoryResponse;
 import com.softsquared.wadiz.src.main.reward.reward_home.models.ItemResponse;
+import com.softsquared.wadiz.src.main.reward.reward_home.models.Itemlist;
+import com.softsquared.wadiz.src.main.reward.reward_home.models.SearchItemResponse;
 
 import java.util.ArrayList;
 
@@ -28,6 +30,7 @@ public class RewardHomeService {
         rewardHomeRetrofitInterface.getBanner().enqueue(new Callback<BannerResponse>() {
             @Override
             public void onResponse(Call<BannerResponse> call, Response<BannerResponse> response) {
+
                 final BannerResponse bannerResponse = response.body();
                 if (bannerResponse == null) {
                     mRewardHomeView.validateBannerFailure(null);
@@ -40,6 +43,7 @@ public class RewardHomeService {
 
             @Override
             public void onFailure(Call<BannerResponse> call, Throwable t) {
+
                 mRewardHomeView.validateBannerFailure(null);
             }
 
@@ -79,14 +83,34 @@ public class RewardHomeService {
                     mRewardHomeView.validateItemFailure(null);
                     return;
                 }
-                mRewardHomeView.validateItemSuccess(itemResponse.getResult());
+                mRewardHomeView.validateItemSuccess(itemResponse.getResult() == null ? new ArrayList<>() : itemResponse.getResult());
 
             }
 
             @Override
             public void onFailure(Call<ItemResponse> call, Throwable t) {
                 mRewardHomeView.validateItemFailure(null);
-                System.out.println("아이템 통신 실패 : ");
+            }
+
+        });
+    }
+    void getSearch(String word) {
+        final RewardHomeRetrofitInterface rewardHomeRetrofitInterface = getRetrofit().create(RewardHomeRetrofitInterface.class);
+        rewardHomeRetrofitInterface.searchItem(word).enqueue(new Callback<SearchItemResponse>() {
+            @Override
+            public void onResponse(Call<SearchItemResponse> call, Response<SearchItemResponse> response) {
+                final SearchItemResponse searchItemResponse = response.body();
+                if (searchItemResponse == null) {
+                    mRewardHomeView.validateItemFailure(null);
+                    return;
+                }
+                mRewardHomeView.validateItemSuccess(searchItemResponse.getResult() == null ? new ArrayList<>() : searchItemResponse.getResult().getResult());
+
+            }
+
+            @Override
+            public void onFailure(Call<SearchItemResponse> call, Throwable t) {
+                mRewardHomeView.validateItemFailure(null);
             }
 
         });

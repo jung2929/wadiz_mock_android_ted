@@ -2,6 +2,7 @@ package com.softsquared.wadiz.src.login;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -21,20 +22,23 @@ import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.GraphRequest;
 import com.facebook.GraphResponse;
-import com.facebook.Profile;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 import com.softsquared.wadiz.R;
+import com.softsquared.wadiz.src.ApplicationClass;
 import com.softsquared.wadiz.src.BaseActivity;
 import com.softsquared.wadiz.src.common.SaveSharedPreference;
 import com.softsquared.wadiz.src.join.JoinActivity;
-import com.softsquared.wadiz.src.join.join_email.models.EmailList;
 import com.softsquared.wadiz.src.login.interfaces.LoginActivityView;
 import com.softsquared.wadiz.src.login.models.LoginList;
+import com.softsquared.wadiz.src.login.models.SociaList;
 import com.softsquared.wadiz.src.main.MainActivity;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import static com.softsquared.wadiz.src.ApplicationClass.X_ACCESS_TOKEN;
+import static com.softsquared.wadiz.src.ApplicationClass.sSharedPreferences;
 
 
 public class LoginActivity extends BaseActivity implements LoginActivityView {
@@ -49,6 +53,7 @@ public class LoginActivity extends BaseActivity implements LoginActivityView {
     EditText mEtEmail, mEtPw;
     TextView mTvError;
     LoginList mLoginList = new LoginList(null, null);
+    SociaList mSocialList = new SociaList(null);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,16 +79,12 @@ public class LoginActivity extends BaseActivity implements LoginActivityView {
         mBtnFacebookReal.registerCallback(mCallbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
-                ((MainActivity) MainActivity.mcontext).onFragmentChange(0);
-                Log.d("Success", String.valueOf(loginResult.getAccessToken()));
-                Log.d("Success", String.valueOf(Profile.getCurrentProfile().getId()));
-                Log.d("Success", String.valueOf(Profile.getCurrentProfile().getName()));
-                Log.d("Success", String.valueOf(Profile.getCurrentProfile().getProfilePictureUri(200, 200)));
 
-                requestUserProfile(loginResult);
+                String fbt = loginResult.getAccessToken().getToken();
+                Log.d("Success", String.valueOf(loginResult.getAccessToken()));
+                mSocialList.setFbt(fbt);
+                tryGetSocial();
+
             }
 
             @Override
@@ -97,7 +98,7 @@ public class LoginActivity extends BaseActivity implements LoginActivityView {
             }
         });
 
-        if (SaveSharedPreference.getUserName(getApplicationContext()).length() != 0){
+        if (SaveSharedPreference.getUserName(getApplicationContext()).length() != 0) {
             mEtEmail.setText(SaveSharedPreference.getUserName(getApplicationContext()));
             mLoginList.setEmail(mEtEmail.getText().toString());
         }
@@ -145,7 +146,7 @@ public class LoginActivity extends BaseActivity implements LoginActivityView {
         mbtnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                tryGetTest();
+                tryGetLogin();
             }
         });
 
@@ -174,26 +175,6 @@ public class LoginActivity extends BaseActivity implements LoginActivityView {
 
     }
 
-    public void requestUserProfile(LoginResult loginResult) {
-        GraphRequest request = GraphRequest.newMeRequest(
-                loginResult.getAccessToken(),
-                new GraphRequest.GraphJSONObjectCallback() {
-                    @Override
-                    public void onCompleted(JSONObject object, GraphResponse response) {
-                        try {
-                            String email = response.getJSONObject().getString("email").toString();
-                            Log.d("Result", email);
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-
-                    }
-                });
-        Bundle parameters = new Bundle();
-        parameters.putString("fields", "email");
-        request.setParameters(parameters);
-        request.executeAsync();
-    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -201,25 +182,35 @@ public class LoginActivity extends BaseActivity implements LoginActivityView {
         super.onActivityResult(requestCode, resultCode, data);
     }
 
-    private void tryGetTest() {
+    private void tryGetLogin() {
         showProgressDialog();
 
         final LoginService loginService = new LoginService(this);
-        loginService.getTest(mLoginList);
+        loginService.postLogin(mLoginList);
+    }
+
+    private void tryGetSocial() {
+        showProgressDialog();
+
+
+        final LoginService loginService = new LoginService(this);
+        loginService.postSocial(mSocialList);
     }
 
     @Override
-    public void validateSuccess(String token, int code, String message) {
+    public void validateLoginSuccess(String token, int code, String message) {
         hideProgressDialog();
 
         if (code == 200) {
             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            setResult(RESULT_OK,intent);
+            setResult(RESULT_OK, intent);
             finish();
-            SaveSharedPreference.setUserToken(getApplicationContext(),token);
-            if(cbSave.isChecked()) {
-                SaveSharedPreference.setUserName(getApplicationContext(),mEtEmail.getText().toString());
+            System.out.println(token);
+            SaveSharedPreference.setUserToken(getApplicationContext(), token);
+
+            if (cbSave.isChecked()) {
+                SaveSharedPreference.setUserName(getApplicationContext(), mEtEmail.getText().toString());
             } else {
                 SaveSharedPreference.clearUserName(getApplicationContext());
             }
@@ -232,15 +223,37 @@ public class LoginActivity extends BaseActivity implements LoginActivityView {
     }
 
     @Override
-    public void validateFailure(@Nullable String message) {
+    public void validateLoginFailure(@Nullable String message) {
         hideProgressDialog();
         showCustomToast(message == null || message.isEmpty() ? getString(R.string.network_error) : message);
+    }
+
+    @Override
+    public void validateSocialSuccess(String text, int code, String message, String result) {
+        hideProgressDialog();
+        if (code == 200) {
+            String jwt = result;
+            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            setResult(RESULT_OK, intent);
+            finish();
+            SaveSharedPreference.setUserToken(getApplicationContext(), jwt);
+        } else {
+            mTvError.setText(message);
+            mTvError.setVisibility(View.VISIBLE);
+        }
+    }
+
+    @Override
+    public void validateSocialFailure(String message) {
+        hideProgressDialog();
+
     }
 
     public void customOnClick(View view) {
         switch (view.getId()) {
 //            case R.id.main_btn_hello_world:
-//                tryGetTest();
+//                tryGetLogin();
 //                break;
             default:
                 break;

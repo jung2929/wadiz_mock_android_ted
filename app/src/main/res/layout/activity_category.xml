@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:softsquared="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
@@ -13,14 +13,14 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:background="@drawable/customborder_sideline"
+            android:layout_height="50dp"
+            android:background="@drawable/customborder_underline"
             android:orientation="horizontal">
 
             <ImageButton
                 android:id="@+id/category_ib_back"
                 android:layout_width="0dp"
-                android:layout_height="40sp"
+                android:layout_height="35sp"
                 android:layout_gravity="center"
                 android:layout_weight="1"
                 android:background="@color/clear"
@@ -42,7 +42,7 @@
             <ImageButton
                 android:id="@+id/category_ib_home"
                 android:layout_width="0dp"
-                android:layout_height="40sp"
+                android:layout_height="35sp"
                 android:layout_gravity="center"
                 android:layout_weight="1"
                 android:background="@color/clear"
@@ -57,14 +57,19 @@
             android:background="@color/clear"
             android:orientation="horizontal">
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/category_rv_name"
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/category_tl"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="20dp"
                 android:layout_weight="9"
-                android:orientation="horizontal"
-                android:scrollbars="none" />
+                app:tabIndicatorFullWidth="false"
+                app:tabIndicatorHeight="3dp"
+                app:tabMode="scrollable"
+                app:tabPaddingEnd="10dp"
+                app:tabPaddingStart="10dp"
+                app:tabTextAppearance="@style/tab_category_text"
+                app:tabTextColor="@color/black" />
 
             <ImageButton
                 android:id="@+id/category_ib_more"
@@ -72,7 +77,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@drawable/customborder_sideline"
+                android:background="@drawable/customborder_justsideline"
                 android:src="@drawable/category_more" />
 
         </LinearLayout>

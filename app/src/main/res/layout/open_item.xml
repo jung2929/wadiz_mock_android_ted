@@ -1,94 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="100dp"
-    android:layout_marginTop="10dp">
+    android:layout_centerInParent="true"
+    android:layout_marginTop="10dp"
+    android:id="@+id/open_item_ll"
+    android:orientation="horizontal">
+
+    <ImageView
+        android:id="@+id/open_iv"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1.3"
+        android:scaleType="centerCrop"
+        android:src="@drawable/banner0" />
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_centerInParent="true"
-        android:orientation="horizontal">
+        android:layout_marginLeft="10dp"
+        android:layout_weight="1.5"
+        android:orientation="vertical">
 
-        <ImageView
-            android:id="@+id/open_iv"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1.3"
-            android:scaleType="centerCrop"
-            android:src="@drawable/banner0" />
+        <TextView
+            android:id="@+id/open_tv_name"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="3dp"
+            android:layout_weight="2"
+            android:fontFamily="@font/nanumbarungothic"
+            android:maxLines="2"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="bold" />
 
         <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
             android:layout_weight="1.5"
-            android:orientation="vertical">
+            android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/open_tv_name"
-                android:layout_marginTop="3dp"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1.8"
-                android:fontFamily="@font/nanumbarungothic"
-                android:maxLines="2"
-                android:textColor="@color/black"
-                android:textSize="16sp"
-                android:textStyle="bold" />
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1.5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
                 android:orientation="horizontal">
 
-
-                <LinearLayout
+                <TextView
+                    android:id="@+id/open_tv_month"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/open_tv_month"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/nanumbarungothicbold"
-                        android:textColor="@color/percent"
-                        android:textSize="16sp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/nanumbarungothicbold"
-                        android:text="월 중 오픈예정"
-                        android:textColor="@color/percent"
-                        android:textSize="16sp" />
-
-                </LinearLayout>
-
+                    android:fontFamily="@font/nanumbarungothicbold"
+                    android:textColor="@color/percent"
+                    android:textSize="16sp" />
 
             </LinearLayout>
 
 
-            <TextView
-                android:id="@+id/open_tv_company"
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:text="어쩌고 저쩌고라구"
-                android:fontFamily="@font/nanumbarungothic"
-                android:textColor="@color/gray"
-                android:textSize="13sp" />
-
-            <View
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:layout_weight="1"/>
-
         </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/open_tv_company"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:fontFamily="@font/nanumbarungothic"
+            android:textColor="@color/gray"
+            android:textSize="13sp" />
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
 
     </LinearLayout>
 
-</RelativeLayout>
+</LinearLayout>

@@ -42,6 +42,7 @@
                 android:id="@+id/mypage_iv_profile"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
+                android:src="@drawable/profile"
                 android:layout_alignParentRight="true"/>
 
             <Button

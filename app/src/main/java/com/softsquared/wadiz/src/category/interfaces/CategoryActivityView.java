@@ -7,9 +7,9 @@ import java.util.ArrayList;
 
 public interface CategoryActivityView {
 
-    void validateCategoryNameSuccess(ArrayList<CategoryNamelist> result);
+    void validateCategoryBannerSuccess(ArrayList<CategoryNamelist> result);
 
-    void validateCategoryNameFailure(String message);
+    void validateCategoryBannerFailure(String message);
 
     void validateCategoryItemSuccess(ArrayList<Itemlist> result);
 

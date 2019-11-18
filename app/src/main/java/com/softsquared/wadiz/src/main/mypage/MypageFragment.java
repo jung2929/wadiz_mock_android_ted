@@ -50,6 +50,7 @@ public class MypageFragment extends BaseFragment implements MypageActivityView {
     RelativeLayout mrlCardInfo;
     public boolean[] mInterestNum = new boolean[8];
     public String mInfo;
+    String mProfileImg;
 
 
     public MypageFragment() {
@@ -69,6 +70,9 @@ public class MypageFragment extends BaseFragment implements MypageActivityView {
         tvName = view.findViewById(R.id.mypage_tv_name);
         tvMember = view.findViewById(R.id.mypage_tv_member);
         tvIntroduce = view.findViewById(R.id.mypage_tv_introduce);
+
+        //tvInterest1 = view.findViewById(R.id.mypage_tv_interest1);
+        int a = getResources().getIdentifier("mypage_tv_interest", "id", getActivity().getPackageName());
         tvInterest1 = view.findViewById(R.id.mypage_tv_interest1);
         tvInterest2 = view.findViewById(R.id.mypage_tv_interest2);
         tvInterest3 = view.findViewById(R.id.mypage_tv_interest3);
@@ -89,6 +93,8 @@ public class MypageFragment extends BaseFragment implements MypageActivityView {
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), EditprofileActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                intent.putExtra("profileImg", mProfileImg);
+                intent.putExtra("indroduce", tvIntroduce.getText().toString());
                 startActivityForResult(intent, 2000); // 프로필 수정 액티비티 호출 리퀘스트 코드 : 3000
             }
         });
@@ -226,10 +232,12 @@ public class MypageFragment extends BaseFragment implements MypageActivityView {
         hideProgressDialog();
 
         tvName.setText(mypageList.getName());
+        mProfileImg = mypageList.getImg();
         Glide.with(myContext).load(mypageList.getImg()).into(ivProfile);
         System.out.println(SaveSharedPreference.getUserToken(myContext));
 
         if (mypageList.getUserInfo() != null) {
+            System.out.println(mypageList.getUserInfo());
             tvIntroduce.setText(mypageList.getUserInfo());
             tvIntroduce.setVisibility(View.VISIBLE);
         } else {

@@ -19,23 +19,23 @@
                 android:id="@+id/purchase_second_ib_back"
                 style="?android:attr/borderlessButtonStyle"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:minWidth="0dp"
+                android:layout_centerVertical="true"
                 android:minHeight="0dp"
                 android:scaleType="centerCrop"
                 android:src="@drawable/purchase_back" />
 
             <TextView
-                android:id="@+id/purchasefirst_tv_name"
-                android:layout_width="250dp"
+                android:id="@+id/purchase_second_tv_name"
+                android:layout_width="230dp"
                 android:layout_height="match_parent"
                 android:layout_centerInParent="true"
                 android:ellipsize="end"
                 android:fontFamily="@font/nanumbarungothic"
                 android:gravity="center_vertical"
                 android:maxLines="1"
-                android:text="가나다라마바사아자차카타파하가나다라마"
                 android:textColor="@color/white"
                 android:textSize="20sp" />
 
@@ -60,110 +60,10 @@
                 android:layout_height="1dp"
                 android:background="@color/black" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:orientation="vertical"
-                android:padding="10dp">
-
-                <TextView
-                    android:id="@+id/purchase_second_tv_reward_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/nanumbarungothic"
-                    android:text="[슈퍼얼리버드]1세트"
-                    android:textColor="@color/wadiz"
-                    android:textSize="15sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/purchase_second_tv_reward_info"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:fontFamily="@font/nanumbarungothic"
-                    android:text="컬러 : 동해물과백두산이마르고닳도록하느님이보우하사우리나라만세무궁화삼천리화려강산대한사람대한으로길이보전하세"
-                    android:textColor="@color/gray"
-                    android:textSize="12sp" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/nanumbarungothic"
-                        android:text="옵션 - "
-                        android:textColor="@color/gray"
-                        android:textSize="13sp" />
-
-                    <TextView
-                        android:id="@+id/purchase_second_tv_reward_option"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/nanumbarungothic"
-                        android:text="블랙"
-                        android:textColor="@color/gray"
-                        android:textSize="13sp" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="right"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/nanumbarungothic"
-                        android:text="수량 : "
-                        android:textColor="@color/black"
-                        android:textSize="14sp" />
-
-                    <TextView
-                        android:id="@+id/purchase_second_tv_reward_num"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/nanumbarungothic"
-                        android:text="1"
-                        android:textColor="@color/black"
-                        android:textSize="14sp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="20dp"
-                        android:fontFamily="@font/nanumbarungothic"
-                        android:text="개"
-                        android:textColor="@color/black"
-                        android:textSize="14sp" />
-
-                    <TextView
-                        android:id="@+id/purchase_second_tv_reward_money"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/nanumbarungothic"
-                        android:text="89,000"
-                        android:textColor="@color/black"
-                        android:textSize="14sp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/nanumbarungothic"
-                        android:text="원"
-                        android:textColor="@color/black"
-                        android:textSize="14sp" />
-
-                </LinearLayout>
-
-            </LinearLayout>
+                android:id="@+id/purchase_second_rv"/>
 
             <View
                 android:layout_width="match_parent"
@@ -196,7 +96,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/nanumbarungothic"
-                        android:text="89,000"
+                        android:text="0"
                         android:textColor="@color/black"
                         android:textSize="14sp" />
 
@@ -503,7 +403,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/nanumbarungothic"
-                                android:text="89,000"
+                                android:text="0"
                                 android:textColor="@color/black"
                                 android:textSize="13sp" />
 
@@ -1044,7 +944,7 @@
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
                             android:background="@color/clear"
-                            android:text="변경"
+                            android:text="삭제"
                             android:textColor="@color/white" />
 
                     </RelativeLayout>

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/item_open_ll_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/white"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/item_open_ib_back"
+                android:layout_width="0dp"
+                android:layout_height="35sp"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:background="@color/clear"
+                android:scaleType="centerInside"
+                android:src="@drawable/back" />
+
+            <TextView
+                android:id="@+id/item_open_tv_title_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="5"
+                android:ellipsize="marquee"
+                android:fontFamily="@font/nanumbarungothic"
+                android:gravity="center"
+                android:singleLine="true"
+                android:text="모든 국민은 법률이 정하는 바에 의하여 납세의 의무를 진다. 국가는 농업 및 어업을 보호·육성하기 위하여 농·어촌종합개발과 그 지원등 필요한 계획을 수립·시행하여야 한다."
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <ImageButton
+                android:id="@+id/item_open_ib_home"
+                android:layout_width="0dp"
+                android:layout_height="35sp"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:background="@color/clear"
+                android:scaleType="centerInside"
+                android:src="@drawable/home" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/item_open_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/item_open_ll_footer"
+        android:layout_below="@id/item_open_ll_title" />
+
+    <LinearLayout
+        android:id="@+id/item_open_ll_footer"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/item_open_ib_shared"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:background="@drawable/customborder_sideline"
+            android:src="@drawable/shared" />
+
+
+        <Button
+            android:id="@+id/item_open_footer_btn_funding"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp"
+            android:layout_weight="5"
+            android:background="@color/percent"
+            android:fontFamily="@font/nanumbarungothic"
+            android:text="알림 신청"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+
+</RelativeLayout>

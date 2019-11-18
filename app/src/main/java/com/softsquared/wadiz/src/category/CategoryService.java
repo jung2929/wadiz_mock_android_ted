@@ -18,23 +18,23 @@ class CategoryService {
         this.mCategoryActivityView = categoryActivityView;
     }
 
-    void getCategoryName() {
+    void getCategoryBanner() {
         final CategoryRetrofitInterface categoryRetrofitInterface = getRetrofit().create(CategoryRetrofitInterface.class);
         categoryRetrofitInterface.getCategoryBanner().enqueue(new Callback<CategoryNameResponse>() {
             @Override
             public void onResponse(Call<CategoryNameResponse> call, Response<CategoryNameResponse> response) {
                 final CategoryNameResponse categoryNameResponse = response.body();
                 if (categoryNameResponse == null) {
-                    mCategoryActivityView.validateCategoryNameFailure(null);
+                    mCategoryActivityView.validateCategoryBannerFailure(null);
                     return;
                 }
 
-                mCategoryActivityView.validateCategoryNameSuccess(categoryNameResponse.getResult());
+                mCategoryActivityView.validateCategoryBannerSuccess(categoryNameResponse.getResult());
             }
 
             @Override
             public void onFailure(Call<CategoryNameResponse> call, Throwable t) {
-                mCategoryActivityView.validateCategoryNameFailure(null);
+                mCategoryActivityView.validateCategoryBannerFailure(null);
             }
         });
     }

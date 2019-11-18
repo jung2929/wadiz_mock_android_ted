@@ -2,6 +2,7 @@ package com.softsquared.wadiz.src.login.interfaces;
 
 import com.softsquared.wadiz.src.login.models.LoginList;
 import com.softsquared.wadiz.src.login.models.LoginResponse;
+import com.softsquared.wadiz.src.login.models.SociaList;
 
 import okhttp3.RequestBody;
 import retrofit2.Call;
@@ -15,4 +16,8 @@ public interface LoginRetrofitInterface {
     //    @GET("/test")
     @POST("/signin")
     Call<LoginResponse> postLogin(@Body LoginList loginList);
+
+    @POST("/facebook")
+    Call<LoginResponse> postLogin(@Body SociaList sociaList);
+
 }

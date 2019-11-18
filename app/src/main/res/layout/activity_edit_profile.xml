@@ -7,14 +7,14 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="50dp"
         android:background="@color/white"
         android:orientation="horizontal">
 
         <ImageButton
             android:id="@+id/profile_edit_ib_back"
             android:layout_width="0dp"
-            android:layout_height="40sp"
+            android:layout_height="35sp"
             android:layout_gravity="center"
             android:layout_weight="1"
             android:background="@color/clear"
@@ -36,7 +36,7 @@
         <ImageButton
             android:id="@+id/profile_edit_ib_home"
             android:layout_width="0dp"
-            android:layout_height="40sp"
+            android:layout_height="35sp"
             android:layout_gravity="center"
             android:layout_weight="1"
             android:background="@color/clear"
@@ -148,7 +148,7 @@
                         android:layout_weight="1"
                         android:button="@drawable/custom_checkbox"
                         android:fontFamily="@font/nanumbarungothic"
-                        android:text="  교육.키즈"
+                        android:text="  테크.가전"
                         android:textColor="@color/black"
                         android:textSize="15sp" />
 
@@ -160,7 +160,7 @@
                         android:layout_weight="1"
                         android:button="@drawable/custom_checkbox"
                         android:fontFamily="@font/nanumbarungothic"
-                        android:text="  패션.잡화.뷰티"
+                        android:text="  패션.잡화"
                         android:textColor="@color/black"
                         android:textSize="15sp" />
                 </TableRow>
@@ -175,7 +175,7 @@
                         android:layout_weight="1"
                         android:button="@drawable/custom_checkbox"
                         android:fontFamily="@font/nanumbarungothic"
-                        android:text="  홈리빙.디자인소품"
+                        android:text="  뷰티"
                         android:textColor="@color/black"
                         android:textSize="15sp" />
 
@@ -187,7 +187,7 @@
                         android:layout_weight="1"
                         android:button="@drawable/custom_checkbox"
                         android:fontFamily="@font/nanumbarungothic"
-                        android:text="  공연.컬쳐"
+                        android:text="  푸드"
                         android:textColor="@color/black"
                         android:textSize="15sp" />
                 </TableRow>
@@ -202,7 +202,7 @@
                         android:layout_weight="1"
                         android:button="@drawable/custom_checkbox"
                         android:fontFamily="@font/nanumbarungothic"
-                        android:text="  스포츠.모빌리티"
+                        android:text="  홈리빙"
                         android:textColor="@color/black"
                         android:textSize="15sp" />
 
@@ -214,7 +214,7 @@
                         android:layout_weight="1"
                         android:button="@drawable/custom_checkbox"
                         android:fontFamily="@font/nanumbarungothic"
-                        android:text="  출판"
+                        android:text="  디자인소품"
                         android:textColor="@color/black"
                         android:textSize="15sp" />
                 </TableRow>
@@ -229,7 +229,7 @@
                         android:layout_weight="1"
                         android:button="@drawable/custom_checkbox"
                         android:fontFamily="@font/nanumbarungothic"
-                        android:text="  반려동물"
+                        android:text="  여행.레저"
                         android:textColor="@color/black"
                         android:textSize="15sp" />
 
@@ -241,7 +241,7 @@
                         android:layout_weight="1"
                         android:button="@drawable/custom_checkbox"
                         android:fontFamily="@font/nanumbarungothic"
-                        android:text="  테크.가전"
+                        android:text="  스포츠.모빌리티"
                         android:textColor="@color/black"
                         android:textSize="15sp" />
                 </TableRow>
