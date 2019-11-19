@@ -28,7 +28,7 @@ public class ProfileEditList {
         Userinfo = userinfo;
     }
 
-    public void setCategoryItem(ArrayList<com.softsquared.wadiz.src.main.mypage.editprofile.models.CategoryItem> categoryItem) {
+    public void setCategoryItem(ArrayList<CategoryItem> categoryItem) {
         CategoryItem = categoryItem;
     }
 }

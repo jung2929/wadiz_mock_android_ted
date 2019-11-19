@@ -1,14 +1,22 @@
 package com.softsquared.wadiz.src.main.mypage.editprofile;
 
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.Path;
+import android.net.Uri;
 import android.os.Bundle;
 
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.text.Editable;
 import android.text.Html;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -16,9 +24,19 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.FileProvider;
+import androidx.loader.content.CursorLoader;
 
 import com.bumptech.glide.Glide;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 import com.softsquared.wadiz.R;
 import com.softsquared.wadiz.src.BaseActivity;
 import com.softsquared.wadiz.src.common.SaveSharedPreference;
@@ -27,6 +45,8 @@ import com.softsquared.wadiz.src.main.MainActivity;
 import com.softsquared.wadiz.src.main.mypage.editprofile.models.CategoryItem;
 import com.softsquared.wadiz.src.main.mypage.editprofile.models.ProfileEditList;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -42,6 +62,9 @@ public class EditprofileActivity extends BaseActivity implements EditProfileActi
     ArrayList<CategoryItem> mCategoryItem;
     ProfileEditList mProfileList;
     CircleImageView mIvProfile;
+    StorageReference mStorageReference;
+    FirebaseStorage mFirebaseStorage;
+    public static final int GALLERY = 1000;
 
     @Override
     protected void onResume() {
@@ -64,6 +87,9 @@ public class EditprofileActivity extends BaseActivity implements EditProfileActi
         mcontext = this;
         mCategoryItem = new ArrayList<>();
         mProfileList = new ProfileEditList(null, mCategoryItem);
+        mFirebaseStorage = FirebaseStorage.getInstance("gs://wadiz-20532.appspot.com/");
+        mStorageReference = mFirebaseStorage.getReference();
+
 
         ibBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -100,6 +126,12 @@ public class EditprofileActivity extends BaseActivity implements EditProfileActi
         btnImgdelete.setText(Html.fromHtml(getResources().getString(R.string.profiledelete)));
         btnImgupdate.setText(Html.fromHtml(getResources().getString(R.string.profileupdate)));
 
+        btnImgupdate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openExplorer(v);
+            }
+        });
 
         etIntroduce = findViewById(R.id.profile_edit_et);
         etIntroduce.addTextChangedListener(new TextWatcher() {
@@ -128,21 +160,21 @@ public class EditprofileActivity extends BaseActivity implements EditProfileActi
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
                                 if (cb1.isChecked()) mCategoryItem.add(new CategoryItem(1));
-                                else    mCategoryItem.remove((Integer)1);
+                                else mCategoryItem.remove((Integer) 1);
                                 if (cb2.isChecked()) mCategoryItem.add(new CategoryItem(2));
-                                else    mCategoryItem.remove((Integer)2);
+                                else mCategoryItem.remove((Integer) 2);
                                 if (cb3.isChecked()) mCategoryItem.add(new CategoryItem(3));
-                                else    mCategoryItem.remove((Integer)3);
+                                else mCategoryItem.remove((Integer) 3);
                                 if (cb4.isChecked()) mCategoryItem.add(new CategoryItem(4));
-                                else    mCategoryItem.remove((Integer)4);
+                                else mCategoryItem.remove((Integer) 4);
                                 if (cb5.isChecked()) mCategoryItem.add(new CategoryItem(5));
-                                else    mCategoryItem.remove((Integer)5);
+                                else mCategoryItem.remove((Integer) 5);
                                 if (cb6.isChecked()) mCategoryItem.add(new CategoryItem(6));
-                                else    mCategoryItem.remove((Integer)6);
+                                else mCategoryItem.remove((Integer) 6);
                                 if (cb7.isChecked()) mCategoryItem.add(new CategoryItem(7));
-                                else    mCategoryItem.remove((Integer)7);
+                                else mCategoryItem.remove((Integer) 7);
                                 if (cb8.isChecked()) mCategoryItem.add(new CategoryItem(8));
-                                else    mCategoryItem.remove((Integer)8);
+                                else mCategoryItem.remove((Integer) 8);
                                 mProfileList.setUserinfo(etIntroduce.getText().toString());
                                 mProfileList.setCategoryItem(mCategoryItem);
 
@@ -154,18 +186,84 @@ public class EditprofileActivity extends BaseActivity implements EditProfileActi
             }
         });
 
-        Intent getintent= getIntent();
+        Intent getintent = getIntent();
         Glide.with(getApplicationContext()).load(getintent.getStringExtra("profileImg")).into(mIvProfile);
         etIntroduce.setText(getintent.getStringExtra("indroduce"));
 
     }
+
+    public void openExplorer(View view) {
+        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+        intent.setType("image/*");
+
+        startActivityForResult(intent.createChooser(intent, "Select Picture"), 1000);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == GALLERY) {
+            Uri uri = data.getData();
+            upload(uri);
+        }
+    }
+    //파이어 베이스에 올리고 성공적으로 올리면 다시 url다운받아서 프로필에 보이도록 해주기
+    public void upload(Uri file) {
+        StorageReference riversRef = mStorageReference.child("images/" + file.getLastPathSegment().replace(":",""));
+        UploadTask uploadTask = riversRef.putFile(file);
+        showProgressDialog();
+
+        // Register observers to listen for when the download is done or if it fails
+        uploadTask.addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception exception) {
+                hideProgressDialog();
+                Toast.makeText(getApplicationContext(), exception.getMessage(), Toast.LENGTH_SHORT).show();
+
+            }
+        }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                download(riversRef);
+            }
+        });
+    }
+
+    public void download(StorageReference riversRef) {
+        riversRef.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
+            @Override
+            public void onComplete(@NonNull Task<Uri> task) {
+                if (task.isSuccessful()) {
+                    hideProgressDialog();
+                    Glide.with(getApplicationContext()).load(task.getResult()).into(mIvProfile);
+                } else {
+                    hideProgressDialog();
+                    Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+    }
+
+    public String getPath(Uri uri) {
+        String[] proj = {MediaStore.Images.Media.DATA};
+        CursorLoader cursorLoader = new CursorLoader(this, uri, proj, null, null, null);
+
+        Cursor cursor = cursorLoader.loadInBackground();
+        int index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+
+        cursor.moveToFirst();
+
+        return cursor.getString(index);
+    }
+
 
     private void tryGetTest() {
         showProgressDialog();
 
         final EditProfileService editProfileService = new EditProfileService(this);
         editProfileService.getTest(SaveSharedPreference.getUserToken(getApplicationContext()), mProfileList);
-        System.out.println(mProfileList.getUserinfo());
 
     }
 
@@ -178,7 +276,7 @@ public class EditprofileActivity extends BaseActivity implements EditProfileActi
         } else {
             System.out.println("프로필 수정 실패 " + code + message);
             finish();
-            Toast.makeText(getApplicationContext(),"프로필 수정을 실패하였습니다. 다시 시도해주세요.", Toast.LENGTH_SHORT);
+            Toast.makeText(getApplicationContext(), "프로필 수정을 실패하였습니다. 다시 시도해주세요.", Toast.LENGTH_SHORT);
         }
 
 
