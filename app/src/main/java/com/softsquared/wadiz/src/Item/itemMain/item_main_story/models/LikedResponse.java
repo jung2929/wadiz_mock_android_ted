@@ -12,7 +12,12 @@ public class LikedResponse {
     @SerializedName("isSuccess")
     private boolean isSuccess;
 
+    @SerializedName("result")
+    LikedList likedList;
 
+    public LikedList getLikedList() {
+        return likedList;
+    }
 
     public int getCode() {
         return code;

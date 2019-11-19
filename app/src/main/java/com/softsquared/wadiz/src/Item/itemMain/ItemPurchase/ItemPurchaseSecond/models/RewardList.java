@@ -1,8 +1,8 @@
-package com.softsquared.wadiz.src.Item.itemMain.ItemPurchase.ItemPurchaseFirst.models;
+package com.softsquared.wadiz.src.Item.itemMain.ItemPurchase.ItemPurchaseSecond.models;
 
 import java.io.Serializable;
 
-public class RewardList implements Serializable {
+public class RewardList {
 
     int rewardIdx;
     String name;

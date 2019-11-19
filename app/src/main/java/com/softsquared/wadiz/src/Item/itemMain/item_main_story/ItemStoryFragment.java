@@ -1,6 +1,7 @@
 package com.softsquared.wadiz.src.Item.itemMain.item_main_story;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
@@ -18,6 +19,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.core.widget.NestedScrollView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -30,6 +32,7 @@ import com.softsquared.wadiz.src.Item.itemMain.item_main_story.Adapters.ItemRvAd
 import com.softsquared.wadiz.src.Item.itemMain.item_main_story.interfaces.ItemStoryActivityView;
 import com.softsquared.wadiz.src.Item.itemMain.item_main_story.models.ItemRewardlist;
 import com.softsquared.wadiz.src.Item.itemMain.item_main_story.models.ItemStorylist;
+import com.softsquared.wadiz.src.Item.itemMain.item_main_story.models.LikedList;
 import com.softsquared.wadiz.src.Item.itemMain.policy.PolicyActivity;
 import com.softsquared.wadiz.src.common.RecyclerDecoration;
 import com.softsquared.wadiz.src.common.SaveSharedPreference;
@@ -45,13 +48,14 @@ public class ItemStoryFragment extends BaseFragment implements ItemStoryActivity
     ImageView ivMainimage;
     CircleImageView ivCompany_image;
     ProgressBar pb;
-    Button btnFunding, btnLike, btnMore, btnLess, btnCompany_homepage;
+    Button btnFunding, btnMore, btnLess, btnCompany_homepage;
+    public Button btnLike;
     RecyclerView rvItem;
     NestedScrollView scrollView;
     WebView mWv;
     public String mTitle;
     WebSettings mWvSetting;
-    int mProjectIdx;
+    public int mProjectIdx, mLikedNum;
     ArrayList<ItemRewardlist> mItemRewardList;
 
     public ItemStoryFragment() {
@@ -128,6 +132,7 @@ public class ItemStoryFragment extends BaseFragment implements ItemStoryActivity
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), PolicyActivity.class);
                 intent.putExtra("projectidx",mProjectIdx);
+                intent.putExtra("name", mTitle);
                 startActivity(intent);
             }
         });
@@ -162,6 +167,7 @@ public class ItemStoryFragment extends BaseFragment implements ItemStoryActivity
         final ItemStoryService itemStoryService = new ItemStoryService(this);
         itemStoryService.getStory(mProjectIdx, SaveSharedPreference.getUserToken(getActivity()));
         itemStoryService.getReward(mProjectIdx, SaveSharedPreference.getUserToken(getActivity()));
+        itemStoryService.getLiked(mProjectIdx, SaveSharedPreference.getUserToken(getActivity()));
     }
     private void trypostLike() {
         showProgressDialog();
@@ -173,10 +179,18 @@ public class ItemStoryFragment extends BaseFragment implements ItemStoryActivity
     @Override
     public void validateLikeSuccess(int code) {
         hideProgressDialog();
+        Drawable click = getActivity().getResources().getDrawable(R.drawable.heart_click);
+        Drawable nonClick = getActivity().getResources().getDrawable(R.drawable.heart_gray);
         if (code == 201){
-            Toast.makeText(getActivity(), "좋아하는 프로젝트에서 제외 되었습니다.",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), "좋아하는 프로젝트에서 제외 되었습니다.",Toast.LENGTH_SHORT).show();            btnLike.setCompoundDrawablesWithIntrinsicBounds(click, null, null, null);
+            btnLike.setCompoundDrawablesWithIntrinsicBounds(nonClick, null, null, null);
+            ((ItemMainActivity)getActivity()).ibLike.setImageResource(R.drawable.heart);
+            btnLike.setText(Integer.toString(mLikedNum) );
         } else  if (code == 200) {
             Toast.makeText(getActivity(), "좋아하는 프로젝트 저장 완료!\n마이메뉴 > 좋아한 에서 확인 할 수 있습니다.",Toast.LENGTH_SHORT).show();
+            btnLike.setCompoundDrawablesWithIntrinsicBounds(click, null, null, null);
+            ((ItemMainActivity)getActivity()).ibLike.setImageResource(R.drawable.heart_click);
+            btnLike.setText(Integer.toString(mLikedNum + 1));
         }
 
     }
@@ -190,6 +204,7 @@ public class ItemStoryFragment extends BaseFragment implements ItemStoryActivity
     @Override
     public void validateStorySuccess(ItemStorylist item) {
         hideProgressDialog();
+        mTitle = item.getName();
         tvName.setText(item.getName());
         tvCategory.setText(item.getCategory());
         tvInfo.setText(item.getInfoText());
@@ -255,6 +270,31 @@ public class ItemStoryFragment extends BaseFragment implements ItemStoryActivity
 
     @Override
     public void validateRewardFailure(String message) {
+        hideProgressDialog();
+
+    }
+
+    @Override
+    public void validateLikedSuccess(LikedList likedList, int code) {
+        hideProgressDialog();
+        Drawable click = getActivity().getResources().getDrawable(R.drawable.heart_click);
+        Drawable nonClick = getActivity().getResources().getDrawable(R.drawable.heart_gray);
+        mLikedNum = likedList.getLikeCnt();
+        btnLike.setText(Integer.toString(mLikedNum));
+        if (likedList.getIsLike() == 1) {
+            mLikedNum = likedList.getLikeCnt() -1;
+            btnLike.setCompoundDrawablesWithIntrinsicBounds(click, null, null, null);
+            ((ItemMainActivity)getActivity()).ibLike.setImageResource(R.drawable.heart_click);
+        } else {
+            btnLike.setCompoundDrawablesWithIntrinsicBounds(nonClick, null, null, null);
+            ((ItemMainActivity)getActivity()).ibLike.setImageResource(R.drawable.heart);
+        }
+
+
+    }
+
+    @Override
+    public void validateLikedFailure(String message) {
         hideProgressDialog();
 
     }

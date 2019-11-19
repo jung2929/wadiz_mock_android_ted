@@ -258,14 +258,6 @@
                             android:textColor="@color/black"
                             android:textSize="15sp" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/nanumbarungothic"
-                            android:text="에"
-                            android:textColor="@color/black"
-                            android:textSize="15sp" />
-
                     </LinearLayout>
 
                     <LinearLayout
@@ -287,7 +279,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/nanumbarungothic"
-                            android:text="월을 펀딩합니다."
+                            android:text="원을 펀딩합니다."
                             android:textColor="@color/black"
                             android:textSize="15sp" />
 

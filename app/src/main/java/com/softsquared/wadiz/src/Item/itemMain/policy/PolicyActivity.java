@@ -14,13 +14,10 @@ import androidx.core.content.ContextCompat;
 
 import com.softsquared.wadiz.R;
 import com.softsquared.wadiz.src.BaseActivity;
-import com.softsquared.wadiz.src.Item.itemMain.ItemMainActivity;
 import com.softsquared.wadiz.src.Item.itemMain.ItemPurchase.ItemPurchaseFirst.PurchaseFirstActivity;
 import com.softsquared.wadiz.src.Item.itemMain.policy.interfaces.PolicyActivityView;
 import com.softsquared.wadiz.src.Item.itemMain.policy.models.PolicyList;
 import com.softsquared.wadiz.src.common.SaveSharedPreference;
-
-import java.util.ArrayList;
 
 
 public class PolicyActivity extends BaseActivity implements PolicyActivityView {

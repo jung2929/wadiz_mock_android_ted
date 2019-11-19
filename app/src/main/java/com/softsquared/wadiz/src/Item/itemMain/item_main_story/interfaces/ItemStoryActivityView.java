@@ -2,6 +2,7 @@ package com.softsquared.wadiz.src.Item.itemMain.item_main_story.interfaces;
 
 import com.softsquared.wadiz.src.Item.itemMain.item_main_story.models.ItemRewardlist;
 import com.softsquared.wadiz.src.Item.itemMain.item_main_story.models.ItemStorylist;
+import com.softsquared.wadiz.src.Item.itemMain.item_main_story.models.LikedList;
 
 import java.util.ArrayList;
 
@@ -19,6 +20,11 @@ public interface ItemStoryActivityView {
     void validateLikeSuccess(int code);
 
     void validateLikeFailure(String message);
+
+    void validateLikedSuccess(LikedList likedList, int code);
+
+    void validateLikedFailure(String message);
+
 
 
 }

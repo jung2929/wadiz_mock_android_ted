@@ -5,6 +5,7 @@ import com.softsquared.wadiz.src.Item.itemMain.item_main_story.interfaces.ItemSt
 import com.softsquared.wadiz.src.Item.itemMain.item_main_story.models.DefaultResponse;
 import com.softsquared.wadiz.src.Item.itemMain.item_main_story.models.ItemRewardResponse;
 import com.softsquared.wadiz.src.Item.itemMain.item_main_story.models.ItemStoryResponse;
+import com.softsquared.wadiz.src.Item.itemMain.item_main_story.models.LikedResponse;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -83,4 +84,31 @@ class ItemStoryService {
             }
         });
     }
+
+    void getLiked(int projectIdx, String token) {
+        final ItemStoryRetrofitInterface itemStoryRetrofitInterface = getRetrofit().create(ItemStoryRetrofitInterface.class);
+        itemStoryRetrofitInterface.getLiked(projectIdx, token).enqueue(new Callback<LikedResponse>() {
+            @Override
+            public void onResponse(Call<LikedResponse> call, Response<LikedResponse> response) {
+                final LikedResponse likedResponse = response.body();
+                if (likedResponse == null) {
+                    mItemStoryActivityView.validateLikedFailure(null);
+                    System.out.println("좋아요 갯수 불러오기 배열 빔");
+
+                    return;
+                }
+
+                mItemStoryActivityView.validateLikedSuccess(likedResponse.getLikedList(), likedResponse.getCode());
+                System.out.println("좋아요 갯수 불러오기 성공");
+            }
+
+            @Override
+            public void onFailure(Call<LikedResponse> call, Throwable t) {
+                mItemStoryActivityView.validateLikedFailure(null);
+                System.out.println("좋아요 갯수 불러오기 통신 실패" + t.getMessage());
+
+            }
+        });
+    }
+
 }

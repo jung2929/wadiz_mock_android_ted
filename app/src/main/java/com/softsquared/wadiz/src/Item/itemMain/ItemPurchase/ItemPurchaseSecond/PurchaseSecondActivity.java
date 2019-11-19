@@ -12,12 +12,15 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.softsquared.wadiz.R;
 import com.softsquared.wadiz.src.BaseActivity;
 import com.softsquared.wadiz.src.Item.itemMain.ItemMainActivity;
+import com.softsquared.wadiz.src.Item.itemMain.ItemPurchase.ItemPurchaseFirst.models.RewardList;
 import com.softsquared.wadiz.src.Item.itemMain.ItemPurchase.ItemPurchaseLast.PurchaseLastActivity;
+import com.softsquared.wadiz.src.Item.itemMain.ItemPurchase.ItemPurchaseSecond.Adapters.RewardItemRvAdapter;
 import com.softsquared.wadiz.src.Item.itemMain.ItemPurchase.ItemPurchaseSecond.interfaces.PurchaseSecondActivityView;
 import com.softsquared.wadiz.src.Item.itemMain.ItemPurchase.ItemPurchaseSecond.models.CardList;
 import com.softsquared.wadiz.src.Item.itemMain.ItemPurchase.ItemPurchaseSecond.models.GetDeliveryList;
@@ -34,13 +37,21 @@ public class PurchaseSecondActivity extends BaseActivity implements PurchaseSeco
     Button mBtnLastestDelivery;
     ImageButton mIbBack;
     RecyclerView mRv;
-    TextView mTvMoney, mTvDeliveryMoney, mTvRewardName, mTvRewardInfo, mTvSponsor, mTvSponsor2, mTvMoney2, mTvDeliveryMoney2, mTvCardName, mTvCardNum, mTvCardDay;
+    TextView mTvMoney, mTvDeliveryMoney, mTvRewardName, mTvRewardInfo, mResultMoney, mTvSponsor, mTvSponsor2, mTvMoney2, mTvDeliveryMoney2, mTvCardName, mTvCardNum, mTvCardDay;
     LinearLayout mLlLastestAdderss, mLlNewAddress;
     CheckBox mCbLastestAddress, mCbNewAddress, mCbAgreeAll, mCbAgree1, mCbAgree2;
     TextView mTvTitle;
     EditText mEtDeliveryName, mEtDeliveryPhoneNumber, mEtDeliveryAddress;
     boolean mLastestFlag;
     PutDeliveryList mPutDeliveryList = new PutDeliveryList(null, null, null);
+    ArrayList<RewardList> mRewardLists = new ArrayList<>();
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(getApplicationContext(), ItemMainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,25 +73,33 @@ public class PurchaseSecondActivity extends BaseActivity implements PurchaseSeco
         mIbBack = findViewById(R.id.purchase_second_ib_back);
         mTvTitle = findViewById(R.id.purchase_second_tv_name);
         mTvMoney2 = findViewById(R.id.purchase_second_tv_reward_money2);
+        mResultMoney = findViewById(R.id.purchase_second_tv_reward_result_money);
         mTvDeliveryMoney = findViewById(R.id.purchase_second_tv_reward_delivery_money2);
         mTvDeliveryMoney2 = findViewById(R.id.purchase_second_tv_reward_delivery_money);
-        mTvSponsor =findViewById(R.id.purchase_second_tv_reward_sponsor);
-        mTvSponsor2 =findViewById(R.id.purchase_second_tv_reward_sponsor2);
+        mTvSponsor = findViewById(R.id.purchase_second_tv_reward_sponsor);
+        mTvSponsor2 = findViewById(R.id.purchase_second_tv_reward_sponsor2);
         mTvCardName = findViewById(R.id.purchase_second_tv_card_name);
         mTvCardNum = findViewById(R.id.purchase_second_tv_card_num);
         mTvCardDay = findViewById(R.id.purchase_second_tv_card_day);
         mRv = findViewById(R.id.purchase_second_rv);
 
-//        Intent getintent = getIntent();
-//        mTvTitle.setText(getintent.getStringExtra("name"));
-//        mTvMoney.setText(getintent.getStringExtra("money"));
-//        mTvMoney2.setText(getintent.getStringExtra("money"));
-//        mTvDeliveryMoney2.setText(getintent.getStringExtra("delivery"));
-//        mTvDeliveryMoney.setText(getintent.getStringExtra("delivery"));
-//        mTvSponsor.setText(getintent.getStringExtra("sponsor"));
-//        mTvSponsor2.setText(getintent.getStringExtra("sponsor"));
+        Intent getintent = getIntent();
+        mTvTitle.setText(getintent.getStringExtra("name"));
+        mTvMoney2.setText(String.format("%,d", getintent.getIntExtra("money", 0)));
+        mTvDeliveryMoney2.setText(String.format("%,d", getintent.getIntExtra("delivery", 0)));
+        mTvDeliveryMoney.setText(String.format("%,d", getintent.getIntExtra("delivery", 0)));
+        mTvSponsor.setText(getintent.getStringExtra("sponsor"));
+        mTvSponsor2.setText(getintent.getStringExtra("sponsor"));
+        mResultMoney.setText(String.format("%,d", (getintent.getIntExtra("money", 0) + getintent.getIntExtra("delivery", 0))));
+        mRewardLists = (ArrayList<RewardList>) getIntent().getSerializableExtra("rewardList");
+
 
         tryGetCard();
+
+
+        mRv.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+        RewardItemRvAdapter rewardItemRvAdapter = new RewardItemRvAdapter(mRewardLists, this);
+        mRv.setAdapter(rewardItemRvAdapter);
 
         mLastestFlag = false; // 최근배송지 목록 열었는지 확인 플래그
 
@@ -218,7 +237,6 @@ public class PurchaseSecondActivity extends BaseActivity implements PurchaseSeco
         final PurchaseSecondService purchaseSecondService = new PurchaseSecondService(this);
         purchaseSecondService.getCard(SaveSharedPreference.getUserToken(getApplicationContext()));
     }
-
 
 
     @Override

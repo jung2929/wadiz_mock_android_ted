@@ -17,7 +17,6 @@ import androidx.fragment.app.FragmentManager;
 
 import com.softsquared.wadiz.R;
 import com.softsquared.wadiz.src.BaseActivity;
-import com.softsquared.wadiz.src.Item.itemMain.ItemPurchase.ItemPurchaseFirst.PurchaseFirstActivity;
 import com.softsquared.wadiz.src.Item.itemMain.interfaces.ItemMainActivityView;
 import com.softsquared.wadiz.src.Item.itemMain.item_main_story.ItemStoryFragment;
 import com.softsquared.wadiz.src.Item.itemMain.item_main_supporter.ItemMainSupporterFragment;
@@ -28,7 +27,8 @@ import com.softsquared.wadiz.src.main.MainActivity;
 
 public class ItemMainActivity extends BaseActivity implements ItemMainActivityView {
     public static Context mcontext;
-    ImageButton ibBack, ibHome, ibLike;
+    ImageButton ibBack, ibHome;
+    public ImageButton ibLike;
     public TextView tvTitleName;
     Button btnStory, btnReward, btnSupporter, btnFunding;
     Fragment storyFragment, supporterFragment;
@@ -75,8 +75,6 @@ public class ItemMainActivity extends BaseActivity implements ItemMainActivityVi
                 finish();
             }
         });
-
-        ItemStoryFragment fragment = (ItemStoryFragment) fragmentManager.findFragmentById(R.id.item_main_container);
 
         btnStory.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -153,10 +151,19 @@ public class ItemMainActivity extends BaseActivity implements ItemMainActivityVi
     @Override
     public void validateSuccess(int code) {
         hideProgressDialog();
+        Drawable click = getApplicationContext().getResources().getDrawable(R.drawable.heart_click);
+        Drawable nonClick = getApplicationContext().getResources().getDrawable(R.drawable.heart_gray);
+        ItemStoryFragment fragment = (ItemStoryFragment) getSupportFragmentManager().findFragmentById(R.id.item_main_container);
         if (code == 201){
             Toast.makeText(getApplicationContext(), "좋아하는 프로젝트에서 제외 되었습니다.",Toast.LENGTH_SHORT).show();
+            ibLike.setImageResource(R.drawable.heart);
+            fragment.btnLike.setCompoundDrawablesWithIntrinsicBounds(nonClick, null, null, null);
+            fragment.btnLike.setText(Integer.toString((fragment.mLikedNum)));
         } else  if (code == 200) {
             Toast.makeText(getApplicationContext(), "좋아하는 프로젝트 저장 완료!\n마이메뉴 > 좋아한 에서 확인 할 수 있습니다.",Toast.LENGTH_SHORT).show();
+            ibLike.setImageResource(R.drawable.heart_click);
+            fragment.btnLike.setCompoundDrawablesWithIntrinsicBounds(click, null, null, null);
+            fragment.btnLike.setText(Integer.toString((fragment.mLikedNum) + 1));
         }
     }
 

@@ -16,8 +16,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.softsquared.wadiz.R;
 import com.softsquared.wadiz.src.BaseActivity;
 import com.softsquared.wadiz.src.Item.itemMain.ItemPurchase.ItemPurchaseFirst.Adapters.PurchaseItemRvAdapter;
-import com.softsquared.wadiz.src.Item.itemMain.ItemPurchase.ItemPurchaseFirst.interfaces.MainActivityView;
+import com.softsquared.wadiz.src.Item.itemMain.ItemPurchase.ItemPurchaseFirst.interfaces.PurchaseFirstActivityView;
 import com.softsquared.wadiz.src.Item.itemMain.ItemPurchase.ItemPurchaseFirst.models.PurchaseItemlist;
+import com.softsquared.wadiz.src.Item.itemMain.ItemPurchase.ItemPurchaseFirst.models.RewardList;
 import com.softsquared.wadiz.src.Item.itemMain.ItemPurchase.ItemPurchaseSecond.PurchaseSecondActivity;
 import com.softsquared.wadiz.src.common.RecyclerDecoration;
 import com.softsquared.wadiz.src.common.SaveSharedPreference;
@@ -25,7 +26,7 @@ import com.softsquared.wadiz.src.common.SaveSharedPreference;
 import java.util.ArrayList;
 
 
-public class PurchaseFirstActivity extends BaseActivity implements MainActivityView {
+public class PurchaseFirstActivity extends BaseActivity implements PurchaseFirstActivityView {
 
     TextView mTvName, mTvLastName;
     public TextView mTvLastMoney;
@@ -37,6 +38,7 @@ public class PurchaseFirstActivity extends BaseActivity implements MainActivityV
     int mProjectIdx;
     int mMoney, mDelivery, mRewardName, mRewardInfo;
     ImageButton mIbBack;
+    ArrayList<RewardList> mRewardList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,13 +53,14 @@ public class PurchaseFirstActivity extends BaseActivity implements MainActivityV
         mCbNameOpen = findViewById(R.id.purchase_first_cb_name_open);
         mCbMoneyOpen = findViewById(R.id.purchase_first_cb_money_open);
         mRv = findViewById(R.id.purchase_first_rv);
+        mRewardList = new ArrayList<>();
 
         mPurchaseItemlistArrayList = new ArrayList<>();
 
         Intent getintent = getIntent();
         mProjectIdx = getintent.getIntExtra("projectidx", 999);
-        mTvName.setText(getintent.getStringExtra("name"));
-        mTvLastName.setText(getintent.getStringExtra("name"));
+        mTvName.setText(getintent.getStringExtra("name") );
+        mTvLastName.setText(getintent.getStringExtra("name") + "에");
 
         tryGetTest();
 
@@ -76,9 +79,16 @@ public class PurchaseFirstActivity extends BaseActivity implements MainActivityV
                 intent.putExtra("money", mMoney);
                 intent.putExtra("delivery", mDelivery);
                 intent.putExtra("sponsor", mEtSponsor.getText().toString());
+                intent.putExtra("veilName", mCbNameOpen.isChecked());
+                intent.putExtra("veilPrice", mCbMoneyOpen.isChecked());
+                intent.putExtra("rewardList", mRewardList);
+
+
                 startActivity(intent);
             }
         });
+
+
 
     }
 
@@ -86,8 +96,8 @@ public class PurchaseFirstActivity extends BaseActivity implements MainActivityV
     private void tryGetTest() {
         showProgressDialog();
 
-        final MainService mainService = new MainService(this);
-        mainService.getReward(mProjectIdx, SaveSharedPreference.getUserToken(getApplicationContext()));
+        final PruchaseFirstService pruchaseFirstService = new PruchaseFirstService(this);
+        pruchaseFirstService.getReward(mProjectIdx, SaveSharedPreference.getUserToken(getApplicationContext()));
     }
 
     @Override
@@ -125,9 +135,35 @@ public class PurchaseFirstActivity extends BaseActivity implements MainActivityV
     }
 
     @Override
-    public void addPrice(int total) {
-        mMoney = total;
+    public void addTotalMoney(int totalMoney) {
+        mMoney = totalMoney;
         mTvLastMoney.setText(String.format("%,d", mMoney));
     }
 
+    @Override
+    public void addDeliveryMoney(int deliveryMoney) {
+        if (deliveryMoney < 0) {
+            mDelivery = 0;
+        } else {
+            mDelivery = deliveryMoney;
+        }
+    }
+
+    @Override
+    public void addItemList(RewardList rewardList, int position) {
+
+
+        try {
+            mRewardList.set(position, rewardList);
+        } catch (IndexOutOfBoundsException e) {
+            mRewardList.add(position, rewardList);
+        }
+        if (rewardList.getRewardIdx() == 999) {
+            mRewardList.remove(position);
+        }
+
+        for (int i =0; i<mRewardList.size();i++) {
+            System.out.println("리워드 아이템 리스트 : "+mRewardList.get(i).getRewardIdx());
+        }
+    }
 }

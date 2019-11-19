@@ -177,7 +177,6 @@
                     android:fontFamily="@font/nanumbarungothic"
                     android:paddingLeft="30dp"
                     android:paddingRight="30dp"
-                    android:text="0"
                     android:textSize="15sp" />
 
                 <Button

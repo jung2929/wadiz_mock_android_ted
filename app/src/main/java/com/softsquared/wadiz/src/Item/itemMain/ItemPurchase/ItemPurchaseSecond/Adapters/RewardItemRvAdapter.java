@@ -4,29 +4,26 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CheckBox;
-import android.widget.EditText;
-import android.widget.ImageButton;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.softsquared.wadiz.R;
-import com.softsquared.wadiz.src.Item.itemMain.ItemPurchase.ItemPurchaseFirst.PurchaseFirstActivity;
-import com.softsquared.wadiz.src.Item.itemMain.ItemPurchase.ItemPurchaseFirst.interfaces.MainActivityView;
-import com.softsquared.wadiz.src.Item.itemMain.ItemPurchase.ItemPurchaseFirst.models.PurchaseItemlist;
-import com.softsquared.wadiz.src.Item.itemMain.ItemPurchase.ItemPurchaseSecond.models.RewardItemList;
+
+import com.softsquared.wadiz.src.Item.itemMain.ItemPurchase.ItemPurchaseFirst.models.RewardList;
+import com.softsquared.wadiz.src.Item.itemMain.ItemPurchase.ItemPurchaseSecond.PurchaseSecondActivity;
+import com.softsquared.wadiz.src.Item.itemMain.ItemPurchase.ItemPurchaseSecond.interfaces.PurchaseSecondActivityView;
+
 
 import java.util.ArrayList;
 
 public class RewardItemRvAdapter extends RecyclerView.Adapter<RewardItemRvAdapter.ViewHolder> {
 
-    ArrayList<RewardItemList> mData = null;
+    ArrayList<RewardList> mData = null;
     Context mContext;
-    PurchaseFirstActivity mPurchaseFirstActivity;
-    MainActivityView mMainActivityView;
+    PurchaseSecondActivity mPurchaseSecondActivity;
+    PurchaseSecondActivityView mPurchaseSecondActivityView;
     int mMoney = 0;
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -46,9 +43,9 @@ public class RewardItemRvAdapter extends RecyclerView.Adapter<RewardItemRvAdapte
     }
 
     // 생성자에서 데이터 리스트 객체를 전달받음.
-    public RewardItemRvAdapter(ArrayList<RewardItemList> list, MainActivityView mainActivityView) {
+    public RewardItemRvAdapter(ArrayList<RewardList> list, PurchaseSecondActivityView purchaseSecondActivityView) {
         mData = list;
-        mMainActivityView = mainActivityView;
+        mPurchaseSecondActivityView = purchaseSecondActivityView;
     }
 
     @NonNull
@@ -66,8 +63,8 @@ public class RewardItemRvAdapter extends RecyclerView.Adapter<RewardItemRvAdapte
 
         holder.tvMoney.setText(mData.get(position).getMoney());
         holder.tvName.setText(mData.get(position).getName());
-        holder.tvInfo.setText(mData.get(position).getRewardInfo());
-        holder.tvRewardNum.setText(mData.get(position).getRewardNum());
+        holder.tvInfo.setText(mData.get(position).getInfo());
+        holder.tvRewardNum.setText(Integer.toString(mData.get(position).getRewardNum()));
 
     }
 

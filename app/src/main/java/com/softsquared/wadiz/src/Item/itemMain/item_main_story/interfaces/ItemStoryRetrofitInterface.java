@@ -32,7 +32,7 @@ public interface ItemStoryRetrofitInterface {
     );
 
     @GET("/project/{projectIdx}/isLiked")
-    Call<LikedResponse> getLike (
+    Call<LikedResponse> getLiked (
         @Path("projectIdx") int projectidx,
         @Header("token") String token
     );

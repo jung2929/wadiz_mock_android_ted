@@ -2,7 +2,7 @@ package com.softsquared.wadiz.src.Item.itemMain.item_main_story.models;
 
 import com.google.gson.annotations.SerializedName;
 
-public class LikdedList {
+public class LikedList {
 
     @SerializedName("likeCnt")
     int likeCnt;
@@ -10,7 +10,7 @@ public class LikdedList {
     @SerializedName("isLike")
     int isLike;
 
-    public LikdedList(int likeCnt, int isLike) {
+    public LikedList(int likeCnt, int isLike) {
         this.likeCnt = likeCnt;
         this.isLike = isLike;
     }
