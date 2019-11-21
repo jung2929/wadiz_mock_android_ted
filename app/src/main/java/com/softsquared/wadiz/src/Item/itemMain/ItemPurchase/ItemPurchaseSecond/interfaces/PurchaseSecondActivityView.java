@@ -18,4 +18,10 @@ public interface PurchaseSecondActivityView {
     void validateCardSuccess(ArrayList<CardList> result,int code);
 
     void validateCardFailure(String message);
+
+    void validatePostRewardSuccess(String message,int code);
+
+    void validatePostRewardFailure(String message);
+
+
 }

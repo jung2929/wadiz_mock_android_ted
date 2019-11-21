@@ -98,7 +98,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@string/point"
-                        android:text="든든한 서포터"
+                        android:text="든든한 서포터 "
                         android:textColor="@color/black"
                         android:textSize="20sp"
                         android:textStyle="bold" />
@@ -133,32 +133,7 @@
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:orientation="horizontal">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@string/point"
-                        android:text="결제 예정일 : "
-                        android:textColor="@color/gray"
-                        android:textSize="15sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/purchase_last_day"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@string/point"
-                        android:text="2019년 12월 09일"
-                        android:textColor="@color/gray"
-                        android:textSize="15sp"
-                        android:textStyle="bold" />
-
-                </LinearLayout>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -170,32 +145,7 @@
                     android:textSize="13sp"
                     android:textStyle="bold" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:orientation="horizontal">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@string/point"
-                        android:text="리워드 발송예정일 : "
-                        android:textColor="@color/gray"
-                        android:textSize="15sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/purchase_last_delivery_day"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@string/point"
-                        android:text="2019년 12월 중순"
-                        android:textColor="@color/gray"
-                        android:textSize="15sp"
-                        android:textStyle="bold" />
-
-                </LinearLayout>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -259,11 +209,12 @@
 
 
                 <TextView
+                    android:id="@+id/purchase_last_tv_number"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:fontFamily="@font/nanumbarungothic"
-                    android:text="11명"
+                    android:text="11"
                     android:textColor="@color/wadiz_splash"
                     android:textSize="14sp"
                     android:textStyle="bold" />
@@ -273,7 +224,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:fontFamily="@font/nanumbarungothic"
-                    android:text="이 확산에 참여중입니다"
+                    android:text="명이 확산에 참여중입니다"
                     android:textColor="@color/black"
                     android:textSize="14sp"
                     android:textStyle="bold" />

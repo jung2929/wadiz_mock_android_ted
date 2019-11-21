@@ -4,15 +4,22 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
 import com.softsquared.wadiz.R;
 import com.softsquared.wadiz.src.BaseActivity;
 import com.softsquared.wadiz.src.common.InavailableFragment;
@@ -85,6 +92,21 @@ public class MainActivity extends BaseActivity implements MainActivityView {
             }
         });
 
+        FirebaseInstanceId.getInstance().getInstanceId()
+                .addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<InstanceIdResult> task) {
+                        if (!task.isSuccessful()) {
+                            Log.w("FCM", "getInstanceId failed", task.getException());
+                            return;
+                        }
+
+                        // Get new Instance ID token
+                        String FCMtoken = task.getResult().getToken();
+
+                        Log.d("FCM", "FCM토큰 : " + FCMtoken);
+                    }
+                });
 
     }
 
@@ -112,10 +134,6 @@ public class MainActivity extends BaseActivity implements MainActivityView {
                     }
                     else
                         fragmentManager.beginTransaction().replace(R.id.main_fl_container, mMypageFragment).commitAllowingStateLoss();
-                    break;
-
-                case 2000: //프로필 수정
-
                     break;
 
                 case 3000: //카드등록

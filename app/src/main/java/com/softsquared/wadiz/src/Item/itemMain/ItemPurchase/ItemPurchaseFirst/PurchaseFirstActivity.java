@@ -59,7 +59,7 @@ public class PurchaseFirstActivity extends BaseActivity implements PurchaseFirst
 
         Intent getintent = getIntent();
         mProjectIdx = getintent.getIntExtra("projectidx", 999);
-        mTvName.setText(getintent.getStringExtra("name") );
+        mTvName.setText(getintent.getStringExtra("name"));
         mTvLastName.setText(getintent.getStringExtra("name") + "에");
 
         tryGetTest();
@@ -82,12 +82,11 @@ public class PurchaseFirstActivity extends BaseActivity implements PurchaseFirst
                 intent.putExtra("veilName", mCbNameOpen.isChecked());
                 intent.putExtra("veilPrice", mCbMoneyOpen.isChecked());
                 intent.putExtra("rewardList", mRewardList);
-
+                intent.putExtra("projectidx", mProjectIdx);
 
                 startActivity(intent);
             }
         });
-
 
 
     }
@@ -113,7 +112,6 @@ public class PurchaseFirstActivity extends BaseActivity implements PurchaseFirst
         PurchaseItemRvAdapter purchaseItemRvAdapter = new PurchaseItemRvAdapter(mPurchaseItemlistArrayList, this);
         mRv.addItemDecoration(recyclerDecoration);
         mRv.setAdapter(purchaseItemRvAdapter);
-
 
 
     }
@@ -150,20 +148,8 @@ public class PurchaseFirstActivity extends BaseActivity implements PurchaseFirst
     }
 
     @Override
-    public void addItemList(RewardList rewardList, int position) {
+    public void addItemList(ArrayList<RewardList> rewardList, int positionAdpater) {
+        mRewardList = rewardList;
 
-
-        try {
-            mRewardList.set(position, rewardList);
-        } catch (IndexOutOfBoundsException e) {
-            mRewardList.add(position, rewardList);
-        }
-        if (rewardList.getRewardIdx() == 999) {
-            mRewardList.remove(position);
-        }
-
-        for (int i =0; i<mRewardList.size();i++) {
-            System.out.println("리워드 아이템 리스트 : "+mRewardList.get(i).getRewardIdx());
-        }
     }
 }

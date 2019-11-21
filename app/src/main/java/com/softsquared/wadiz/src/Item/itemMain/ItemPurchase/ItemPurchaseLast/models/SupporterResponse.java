@@ -1,8 +1,8 @@
-package com.softsquared.wadiz.src.main.mypage.editprofile.models;
+package com.softsquared.wadiz.src.Item.itemMain.ItemPurchase.ItemPurchaseLast.models;
 
 import com.google.gson.annotations.SerializedName;
 
-public class DefaultResponse {
+public class SupporterResponse {
     @SerializedName("code")
     private int code;
 
@@ -11,6 +11,13 @@ public class DefaultResponse {
 
     @SerializedName("isSuccess")
     private boolean isSuccess;
+
+    @SerializedName("result")
+    SupporterResult result;
+
+    public SupporterResult getResult() {
+        return result;
+    }
 
     public int getCode() {
         return code;

@@ -1,22 +1,17 @@
 package com.softsquared.wadiz.src.main.mypage.editprofile;
 
 import android.app.AlertDialog;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
-import android.graphics.Bitmap;
-import android.graphics.Path;
 import android.net.Uri;
 import android.os.Bundle;
 
-import android.os.Environment;
 import android.provider.MediaStore;
 import android.text.Editable;
 import android.text.Html;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -26,7 +21,6 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.content.FileProvider;
 import androidx.loader.content.CursorLoader;
 
 import com.bumptech.glide.Glide;
@@ -45,8 +39,6 @@ import com.softsquared.wadiz.src.main.MainActivity;
 import com.softsquared.wadiz.src.main.mypage.editprofile.models.CategoryItem;
 import com.softsquared.wadiz.src.main.mypage.editprofile.models.ProfileEditList;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -64,6 +56,7 @@ public class EditprofileActivity extends BaseActivity implements EditProfileActi
     CircleImageView mIvProfile;
     StorageReference mStorageReference;
     FirebaseStorage mFirebaseStorage;
+    Uri mImgUri;
     public static final int GALLERY = 1000;
 
     @Override
@@ -237,6 +230,7 @@ public class EditprofileActivity extends BaseActivity implements EditProfileActi
                 if (task.isSuccessful()) {
                     hideProgressDialog();
                     Glide.with(getApplicationContext()).load(task.getResult()).into(mIvProfile);
+                    mImgUri = task.getResult();
                 } else {
                     hideProgressDialog();
                     Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
@@ -246,24 +240,13 @@ public class EditprofileActivity extends BaseActivity implements EditProfileActi
 
     }
 
-    public String getPath(Uri uri) {
-        String[] proj = {MediaStore.Images.Media.DATA};
-        CursorLoader cursorLoader = new CursorLoader(this, uri, proj, null, null, null);
-
-        Cursor cursor = cursorLoader.loadInBackground();
-        int index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
-
-        cursor.moveToFirst();
-
-        return cursor.getString(index);
-    }
-
-
     private void tryGetTest() {
         showProgressDialog();
 
         final EditProfileService editProfileService = new EditProfileService(this);
-        editProfileService.getTest(SaveSharedPreference.getUserToken(getApplicationContext()), mProfileList);
+        editProfileService.patchProfile(SaveSharedPreference.getUserToken(getApplicationContext()), mProfileList);
+        System.out.println(mImgUri);
+        editProfileService.patchProfileImg(SaveSharedPreference.getUserToken(getApplicationContext()), mImgUri.toString());
 
     }
 

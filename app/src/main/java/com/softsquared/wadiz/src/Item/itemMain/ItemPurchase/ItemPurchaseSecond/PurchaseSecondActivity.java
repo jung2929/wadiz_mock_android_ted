@@ -24,6 +24,8 @@ import com.softsquared.wadiz.src.Item.itemMain.ItemPurchase.ItemPurchaseSecond.A
 import com.softsquared.wadiz.src.Item.itemMain.ItemPurchase.ItemPurchaseSecond.interfaces.PurchaseSecondActivityView;
 import com.softsquared.wadiz.src.Item.itemMain.ItemPurchase.ItemPurchaseSecond.models.CardList;
 import com.softsquared.wadiz.src.Item.itemMain.ItemPurchase.ItemPurchaseSecond.models.GetDeliveryList;
+import com.softsquared.wadiz.src.Item.itemMain.ItemPurchase.ItemPurchaseSecond.models.PostReward;
+import com.softsquared.wadiz.src.Item.itemMain.ItemPurchase.ItemPurchaseSecond.models.PostRewardList;
 import com.softsquared.wadiz.src.Item.itemMain.ItemPurchase.ItemPurchaseSecond.models.PutDeliveryList;
 import com.softsquared.wadiz.src.common.SaveSharedPreference;
 
@@ -45,6 +47,10 @@ public class PurchaseSecondActivity extends BaseActivity implements PurchaseSeco
     boolean mLastestFlag;
     PutDeliveryList mPutDeliveryList = new PutDeliveryList(null, null, null);
     ArrayList<RewardList> mRewardLists = new ArrayList<>();
+    ArrayList<PostRewardList> mPostRewardLists = new ArrayList<>();
+    PostReward mPostRewards = new PostReward(mPostRewardLists, false, false);
+    int mProjectIdx;
+    String mProjectName;
 
     @Override
     public void onBackPressed() {
@@ -83,7 +89,9 @@ public class PurchaseSecondActivity extends BaseActivity implements PurchaseSeco
         mTvCardDay = findViewById(R.id.purchase_second_tv_card_day);
         mRv = findViewById(R.id.purchase_second_rv);
 
+
         Intent getintent = getIntent();
+        mProjectName = getintent.getStringExtra("name");
         mTvTitle.setText(getintent.getStringExtra("name"));
         mTvMoney2.setText(String.format("%,d", getintent.getIntExtra("money", 0)));
         mTvDeliveryMoney2.setText(String.format("%,d", getintent.getIntExtra("delivery", 0)));
@@ -92,6 +100,16 @@ public class PurchaseSecondActivity extends BaseActivity implements PurchaseSeco
         mTvSponsor2.setText(getintent.getStringExtra("sponsor"));
         mResultMoney.setText(String.format("%,d", (getintent.getIntExtra("money", 0) + getintent.getIntExtra("delivery", 0))));
         mRewardLists = (ArrayList<RewardList>) getIntent().getSerializableExtra("rewardList");
+        mProjectIdx = getintent.getIntExtra("projectidx", 999);
+
+        mPostRewards.setVeilName(getintent.getBooleanExtra("veilName", false));
+        mPostRewards.setVeilPrice(getintent.getBooleanExtra("veilPrice", false));
+
+        for (int i=0; i<mRewardLists.size(); i++) {
+            mPostRewardLists.add(new PostRewardList(mRewardLists.get(i).getRewardIdx()+1, mRewardLists.get(i).getRewardNum()));
+            System.out.println("리워드 리스트 : "  +mPostRewardLists.get(i).getRewardIdx() + mPostRewardLists.get(i).getQuantity());
+        }
+
 
 
         tryGetCard();
@@ -118,10 +136,11 @@ public class PurchaseSecondActivity extends BaseActivity implements PurchaseSeco
                 mPutDeliveryList.setUsername(mEtDeliveryName.getText().toString());
                 mPutDeliveryList.setPhone(mEtDeliveryPhoneNumber.getText().toString());
                 mPutDeliveryList.setAddress(mEtDeliveryAddress.getText().toString());
+                tryPostReward();
+                if (mEtDeliveryName.getText().toString() != null) {
+                    tryPutDelivery();
+                }
 
-                tryPutDelivery();
-                Intent intent = new Intent(getApplicationContext(), PurchaseLastActivity.class);
-                startActivity(intent);
             }
         });
 
@@ -239,6 +258,14 @@ public class PurchaseSecondActivity extends BaseActivity implements PurchaseSeco
     }
 
 
+    private void tryPostReward() {
+        showProgressDialog();
+
+        final PurchaseSecondService purchaseSecondService = new PurchaseSecondService(this);
+        purchaseSecondService.postReward(SaveSharedPreference.getUserToken(getApplicationContext()), mProjectIdx, mPostRewards);
+    }
+
+
     @Override
     public void validateGetSuccess(ArrayList<GetDeliveryList> result, int code) {
         hideProgressDialog();
@@ -279,16 +306,6 @@ public class PurchaseSecondActivity extends BaseActivity implements PurchaseSeco
         showCustomToast(message == null || message.isEmpty() ? getString(R.string.network_error) : message);
     }
 
-    public void customOnClick(View view) {
-        switch (view.getId()) {
-//            case R.id.main_btn_hello_world:
-//                tryGetTest();
-//                break;
-            default:
-                break;
-        }
-    }
-
     @Override
     public void validateCardSuccess(ArrayList<CardList> result, int code) {
         hideProgressDialog();
@@ -300,6 +317,30 @@ public class PurchaseSecondActivity extends BaseActivity implements PurchaseSeco
 
     @Override
     public void validateCardFailure(String message) {
+        hideProgressDialog();
+
+    }
+
+    @Override
+    public void validatePostRewardSuccess(String message, int code) {
+        hideProgressDialog();
+        if (code == 200) {
+
+            System.out.println("리워드 구매 성공");
+            Intent intent = new Intent(getApplicationContext(), PurchaseLastActivity.class);
+            intent.putExtra("projectidx", mProjectIdx);
+            intent.putExtra("projectname", mProjectName );
+            startActivity(intent);
+
+
+        } else {
+            System.out.println("리워드 구매 실패 : " + message);
+
+        }
+    }
+
+    @Override
+    public void validatePostRewardFailure(String message) {
         hideProgressDialog();
 
     }

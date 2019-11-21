@@ -15,5 +15,5 @@ public interface PurchaseFirstActivityView {
 
     void addDeliveryMoney(int deliveryMoney);
 
-    void addItemList(RewardList rewardList, int position);
+    void addItemList(ArrayList<RewardList> rewardList, int position);
 }

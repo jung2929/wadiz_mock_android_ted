@@ -2,8 +2,10 @@ package com.softsquared.wadiz.src.Item.itemMain.ItemPurchase.ItemPurchaseSecond;
 
 import com.softsquared.wadiz.src.Item.itemMain.ItemPurchase.ItemPurchaseSecond.interfaces.PurchaseSecondActivityView;
 import com.softsquared.wadiz.src.Item.itemMain.ItemPurchase.ItemPurchaseSecond.interfaces.PurchaseSecondRetrofitInterface;
+import com.softsquared.wadiz.src.Item.itemMain.ItemPurchase.ItemPurchaseSecond.models.DefaultResponse;
 import com.softsquared.wadiz.src.Item.itemMain.ItemPurchase.ItemPurchaseSecond.models.GetDeliveryResponse;
 import com.softsquared.wadiz.src.Item.itemMain.ItemPurchase.ItemPurchaseSecond.models.MypageCardResponse;
+import com.softsquared.wadiz.src.Item.itemMain.ItemPurchase.ItemPurchaseSecond.models.PostReward;
 import com.softsquared.wadiz.src.Item.itemMain.ItemPurchase.ItemPurchaseSecond.models.PutDeliveryList;
 import com.softsquared.wadiz.src.Item.itemMain.ItemPurchase.ItemPurchaseSecond.models.PutDeliveryResponse;
 
@@ -78,6 +80,27 @@ class PurchaseSecondService {
             @Override
             public void onFailure(Call<MypageCardResponse> call, Throwable t) {
                 mPurchaseSecondActivityView.validateCardFailure(null);
+            }
+        });
+    }
+
+    void postReward(String token, int projectidx, PostReward postReward) {
+        final PurchaseSecondRetrofitInterface mypageCardRetrofitInterface = getRetrofit().create(PurchaseSecondRetrofitInterface.class);
+        mypageCardRetrofitInterface.postReward(token, projectidx, postReward).enqueue(new Callback<DefaultResponse>() {
+            @Override
+            public void onResponse(Call<DefaultResponse> call, Response<DefaultResponse> response) {
+                final DefaultResponse defaultResponse = response.body();
+                if (defaultResponse == null) {
+                    mPurchaseSecondActivityView.validatePostRewardFailure(null);
+                    return;
+                }
+
+                mPurchaseSecondActivityView.validatePostRewardSuccess(defaultResponse.getMessage(), defaultResponse.getCode());
+            }
+
+            @Override
+            public void onFailure(Call<DefaultResponse> call, Throwable t) {
+                mPurchaseSecondActivityView.validatePostRewardFailure(null);
             }
         });
     }

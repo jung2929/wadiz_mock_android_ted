@@ -28,7 +28,7 @@ public class PurchaseItemRvAdapter extends RecyclerView.Adapter<PurchaseItemRvAd
     PurchaseFirstActivity mPurchaseFirstActivity;
     PurchaseFirstActivityView mPurchaseFirstActivityView;
     int mMoney = 0;
-    RewardList mRewardList;
+    ArrayList<RewardList> mRewardList;
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         CheckBox cb;
@@ -88,17 +88,17 @@ public class PurchaseItemRvAdapter extends RecyclerView.Adapter<PurchaseItemRvAd
     }
 
     @Override
-    public void onBindViewHolder(@NonNull PurchaseItemRvAdapter.ViewHolder holder, int position) {
-        mRewardList = new RewardList(999, null, 0, null, null);
+    public void onBindViewHolder(@NonNull PurchaseItemRvAdapter.ViewHolder holder, int positionAdapter) {
+        mRewardList = new ArrayList<>();
 
-        holder.tvMoney.setText(mData.get(position).Money);
-        holder.tvRewardName.setText(mData.get(position).RewardName);
-        holder.tvRewardInfo.setText(mData.get(position).Info);
-        holder.tvDeliveryMoney.setText(mData.get(position).DeliveryMoney);
+        holder.tvMoney.setText(mData.get(positionAdapter).Money);
+        holder.tvRewardName.setText(mData.get(positionAdapter).RewardName);
+        holder.tvRewardInfo.setText(mData.get(positionAdapter).Info);
+        holder.tvDeliveryMoney.setText(mData.get(positionAdapter).DeliveryMoney);
 
         //원 이전 숫자만 뽑아서 int형식으로 바꾸기
-        int idx = (mData.get(position).getMoney()).indexOf("원");
-        int money = Integer.parseInt(mData.get(position).getMoney().substring(0,idx).replace(",",""));
+        int idx = (mData.get(positionAdapter).getMoney()).indexOf("원");
+        int money = Integer.parseInt(mData.get(positionAdapter).getMoney().substring(0,idx).replace(",",""));
 
         holder.llMain.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -111,11 +111,16 @@ public class PurchaseItemRvAdapter extends RecyclerView.Adapter<PurchaseItemRvAd
                     mMoney -= (money*quantity);
                     holder.etNumber.setText("1");
 
-                    mRewardList.setRewardIdx(999);
-                    mPurchaseFirstActivityView.addItemList(mRewardList, position);
+                    for (int i = 0; i<mRewardList.size(); i++) {
+                        if (positionAdapter == mRewardList.get(i).getRewardIdx()){
+                            mRewardList.remove(i);
+                        }
+                    }
+
+                    mPurchaseFirstActivityView.addItemList(mRewardList, positionAdapter);
                     mPurchaseFirstActivityView.addTotalMoney(mMoney);
-                    mPurchaseFirstActivityView.addDeliveryMoney(-Integer.parseInt(mData.get(position).getDeliveryMoney()));
-                    System.out.println(-Integer.parseInt(mData.get(position).getDeliveryMoney()));
+                    mPurchaseFirstActivityView.addDeliveryMoney(-Integer.parseInt(mData.get(positionAdapter).getDeliveryMoney()));
+                    System.out.println(-Integer.parseInt(mData.get(positionAdapter).getDeliveryMoney()));
                 } else {  //체크 안되어 있을때 선택 --> 체크
                     holder.cb.setChecked(true);
                     holder.llMain.setBackgroundResource(R.drawable.customborder_rounded_reward_click);
@@ -128,18 +133,12 @@ public class PurchaseItemRvAdapter extends RecyclerView.Adapter<PurchaseItemRvAd
                     mMoney += money;
                     int quantity = Integer.parseInt(holder.etNumber.getText().toString());
 
-                    mRewardList.setRewardIdx(position);
-                    mRewardList.setName(mData.get(position).getRewardName());
-                    mRewardList.setRewardNum(quantity);
-                    mRewardList.setInfo(mData.get(position).getInfo());
-                    mRewardList.setMoney(String.format("%,d", (quantity*money)));
+                    mRewardList.add(new RewardList(positionAdapter, mData.get(positionAdapter).getRewardName(), quantity, mData.get(positionAdapter).getInfo(), String.format("%,d", (quantity*money))) );
 
-                    System.out.println("클릭 위치 : " + position);
-                    System.out.println("클릭 리워드 아이템 리스트 : " + mRewardList.getRewardIdx() +mRewardList.getName());
-                    mPurchaseFirstActivityView.addItemList(mRewardList, position);
+                    mPurchaseFirstActivityView.addItemList(mRewardList, positionAdapter);
                     mPurchaseFirstActivityView.addTotalMoney(mMoney);
-                    mPurchaseFirstActivityView.addDeliveryMoney(Integer.parseInt(mData.get(position).getDeliveryMoney()));
-                    System.out.println(Integer.parseInt(mData.get(position).getDeliveryMoney()));
+                    mPurchaseFirstActivityView.addDeliveryMoney(Integer.parseInt(mData.get(positionAdapter).getDeliveryMoney()));
+                    System.out.println(Integer.parseInt(mData.get(positionAdapter).getDeliveryMoney()));
                 }
             }
 
@@ -157,10 +156,14 @@ public class PurchaseItemRvAdapter extends RecyclerView.Adapter<PurchaseItemRvAd
                 holder.etNumber.setText(Integer.toString(num));
                 mMoney += money;
 
-                mRewardList.setRewardNum(num);
-                mRewardList.setMoney(String.format("%,d", (money * num)));
+                for (int i = 0; i<mRewardList.size(); i++) {
+                    if (positionAdapter == mRewardList.get(i).getRewardIdx()){
+                        mRewardList.get(i).setRewardNum(num);
+                        mRewardList.get(i).setMoney(String.format("%,d", (money * num)));
+                    }
+                }
 
-                mPurchaseFirstActivityView.addItemList(mRewardList, position);
+                mPurchaseFirstActivityView.addItemList(mRewardList, positionAdapter);
                 mPurchaseFirstActivityView.addTotalMoney(mMoney);
             }
         });
@@ -176,10 +179,14 @@ public class PurchaseItemRvAdapter extends RecyclerView.Adapter<PurchaseItemRvAd
                 holder.etNumber.setText(Integer.toString(num));
                 mMoney -= money;
 
-                mRewardList.setRewardNum(num);
-                mRewardList.setMoney(String.format("%,d", (money * num)));
+                for (int i = 0; i<mRewardList.size(); i++) {
+                    if (positionAdapter == mRewardList.get(i).getRewardIdx()){
+                        mRewardList.get(i).setRewardNum(num);
+                        mRewardList.get(i).setMoney(String.format("%,d", (money * num)));
+                    }
+                }
 
-                mPurchaseFirstActivityView.addItemList(mRewardList, position);
+                mPurchaseFirstActivityView.addItemList(mRewardList, positionAdapter);
                 mPurchaseFirstActivityView.addTotalMoney(mMoney);
             }
         });
