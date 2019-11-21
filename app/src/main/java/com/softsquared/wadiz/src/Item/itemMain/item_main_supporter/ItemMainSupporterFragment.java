@@ -74,6 +74,7 @@ public class ItemMainSupporterFragment extends BaseFragment implements ItemMainS
         }
 
         rv.setLayoutManager(new LinearLayoutManager(getActivity()));
+        tvSum.setText(Integer.toString(result.getCnt()));
         rvAdapter = new SupporterItemRvAdapter(mSupporterListArrayList, getActivity());
         rv.setAdapter(rvAdapter);
 

@@ -74,7 +74,7 @@ public class ViewpagerAdapter extends PagerAdapter {
     @Override
     public int getCount() {
 
-        return view_count*3;
+        return view_count*100;
     }
 
     @Override

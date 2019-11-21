@@ -62,10 +62,10 @@ public class RewardHomeFragment extends BaseFragment implements RewardHomeView {
     ProgressBar mPb;
     RewardHomeService rewardHomeService;
     String mOrder;
-    int mProjectIdx;
     SmallItemRvAdapter smallItemRvAdapter;
     BigItemRvAdapter bigItemRvAdapter;
     String mSearchWord;
+    int mPbNum;
 
     public RewardHomeFragment() {
 
@@ -294,8 +294,8 @@ public class RewardHomeFragment extends BaseFragment implements RewardHomeView {
         pagerAdapter.view_count = mBannerItemlist.size();
         viewPager.setAdapter(pagerAdapter);
         viewPager.setCurrentItem(pagerAdapter.view_count);
-
-
+        mPb.setMax(pagerAdapter.view_count);
+        mPb.setProgress(1);
 //       자동스크롤 잘안됨;
 //        mCurrentPage = 0;
 //        final Handler handler = new Handler();
@@ -319,21 +319,21 @@ public class RewardHomeFragment extends BaseFragment implements RewardHomeView {
 
         //배너 무한스크롤 구현 (마지막에서 다시 처음으로)
         viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            int Count = pagerAdapter.view_count;
-
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
             }
 
             @Override
             public void onPageSelected(int position) {
-                mPb.setProgress((100 / pagerAdapter.view_count) * position);
+                mPb.setProgress(position % pagerAdapter.view_count + 1);
+                System.out.println(position);
+                System.out.println(position % pagerAdapter.view_count);
                 if (position < pagerAdapter.view_count) {       //1번째 아이템에서 마지막 아이템으로 이동하면
                     viewPager.setCurrentItem(position + pagerAdapter.view_count, false); //이동 애니메이션을 제거 해야 한다
-                    mPb.setProgress((100 / pagerAdapter.view_count) * pagerAdapter.view_count);
+                    mPb.setProgress(pagerAdapter.view_count+1);
                 } else if (position >= pagerAdapter.view_count * 2) {   //마지막 아이템에서 1번째 아이템으로 이동하면
                     viewPager.setCurrentItem(position - pagerAdapter.view_count, false);
-                    mPb.setProgress((100 / pagerAdapter.view_count) * 1);
+                    mPb.setProgress(1);
                 }
             }
 

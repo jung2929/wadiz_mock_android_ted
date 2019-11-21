@@ -46,7 +46,7 @@ public class PurchaseLastActivity extends BaseActivity implements PurchaseLastAc
         mProjectName = getintent.getStringExtra("projectname");
         mTvTitle.setText(mProjectName);
         mNotiList.setTitle("구매 성공");
-        mNotiList.setContents( mProjectName + "을 성공적으로 펀딩하였습니다!");
+        mNotiList.setContents( mProjectName + "을\n성공적으로 펀딩하였습니다!");
 
         tryGetTest();
 
