@@ -246,7 +246,9 @@ public class EditprofileActivity extends BaseActivity implements EditProfileActi
         final EditProfileService editProfileService = new EditProfileService(this);
         editProfileService.patchProfile(SaveSharedPreference.getUserToken(getApplicationContext()), mProfileList);
         System.out.println(mImgUri);
-        editProfileService.patchProfileImg(SaveSharedPreference.getUserToken(getApplicationContext()), mImgUri.toString());
+        if (mImgUri != null){
+            editProfileService.patchProfileImg(SaveSharedPreference.getUserToken(getApplicationContext()), mImgUri.toString());
+        }
 
     }
 

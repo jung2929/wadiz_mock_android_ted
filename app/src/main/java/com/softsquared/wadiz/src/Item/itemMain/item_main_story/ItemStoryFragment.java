@@ -44,14 +44,14 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ItemStoryFragment extends BaseFragment implements ItemStoryActivityView {
     View view;
-    TextView tvName, tvCategory, tvInfo, tvDay, tvPercent, tvMoney, tvSupporter, tvGoalmoney, tvFundingday, tvFinishday, tvMain, tvSchedule, tvQna, tvDelivery, tvCompany_name;
+    TextView tvName, tvCategory, tvInfo, tvDay, tvPercent, tvMoney, tvSupporter, tvGoalmoney, tvFundingday, tvCompany_name, tvReward;
     ImageView ivMainimage;
     CircleImageView ivCompany_image;
     ProgressBar pb;
     Button btnFunding, btnMore, btnLess, btnCompany_homepage;
     public Button btnLike;
     RecyclerView rvItem;
-    NestedScrollView scrollView;
+    public NestedScrollView scrollView;
     WebView mWv;
     public String mTitle;
     WebSettings mWvSetting;
@@ -74,7 +74,7 @@ public class ItemStoryFragment extends BaseFragment implements ItemStoryActivity
         tvName = view.findViewById(R.id.item_main_tv_name);
         tvCategory = view.findViewById(R.id.item_main_tv_category);
         tvInfo = view.findViewById(R.id.item_main_tv_info);
-        tvDay =view.findViewById(R.id.item_main_tv_day);
+        tvDay = view.findViewById(R.id.item_main_tv_day);
         tvPercent = view.findViewById(R.id.item_main_tv_percent);
         tvMoney = view.findViewById(R.id.item_main_tv_money);
         tvSupporter = view.findViewById(R.id.item_main_tv_supporter);
@@ -91,11 +91,13 @@ public class ItemStoryFragment extends BaseFragment implements ItemStoryActivity
         btnCompany_homepage = view.findViewById(R.id.item_main_btn_company_homepage);
         scrollView = view.findViewById(R.id.item_main_sv);
         mWv = view.findViewById(R.id.item_main_story_wv);
+        tvReward = view.findViewById(R.id.item_main_tv_reward);
         mItemRewardList = new ArrayList<>();
 
-        mProjectIdx = ((ItemMainActivity)getActivity()).mProjectIdx;
+        mProjectIdx = ((ItemMainActivity) getActivity()).mProjectIdx;
 
         tryGetTest();
+
 
         //        더보기 기능
         btnMore.setOnClickListener(new View.OnClickListener() {
@@ -111,8 +113,8 @@ public class ItemStoryFragment extends BaseFragment implements ItemStoryActivity
         btnLess.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                float dp =  getResources().getDisplayMetrics().density;
-                mWv.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, (int)(300*dp)));
+                float dp = getResources().getDisplayMetrics().density;
+                mWv.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, (int) (300 * dp)));
                 btnMore.setVisibility(View.VISIBLE);
                 btnLess.setVisibility(View.GONE);
             }
@@ -126,12 +128,11 @@ public class ItemStoryFragment extends BaseFragment implements ItemStoryActivity
         });
 
 
-
         btnFunding.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), PolicyActivity.class);
-                intent.putExtra("projectidx",mProjectIdx);
+                intent.putExtra("projectidx", mProjectIdx);
                 intent.putExtra("name", mTitle);
                 startActivity(intent);
             }
@@ -141,7 +142,7 @@ public class ItemStoryFragment extends BaseFragment implements ItemStoryActivity
     }
 
     public void scrollstart() {
-        scrollToView(rvItem, scrollView, 0);
+        scrollToView(tvReward, scrollView, 0);
     }
 
     //스크롤뷰를 내리기 위한 클래스
@@ -161,6 +162,8 @@ public class ItemStoryFragment extends BaseFragment implements ItemStoryActivity
         }
     }
 
+
+
     private void tryGetTest() {
         showProgressDialog();
 
@@ -169,6 +172,7 @@ public class ItemStoryFragment extends BaseFragment implements ItemStoryActivity
         itemStoryService.getReward(mProjectIdx, SaveSharedPreference.getUserToken(getActivity()));
         itemStoryService.getLiked(mProjectIdx, SaveSharedPreference.getUserToken(getActivity()));
     }
+
     private void trypostLike() {
         showProgressDialog();
 
@@ -181,15 +185,16 @@ public class ItemStoryFragment extends BaseFragment implements ItemStoryActivity
         hideProgressDialog();
         Drawable click = getActivity().getResources().getDrawable(R.drawable.heart_click);
         Drawable nonClick = getActivity().getResources().getDrawable(R.drawable.heart_gray);
-        if (code == 201){
-            Toast.makeText(getActivity(), "좋아하는 프로젝트에서 제외 되었습니다.",Toast.LENGTH_SHORT).show();            btnLike.setCompoundDrawablesWithIntrinsicBounds(click, null, null, null);
-            btnLike.setCompoundDrawablesWithIntrinsicBounds(nonClick, null, null, null);
-            ((ItemMainActivity)getActivity()).ibLike.setImageResource(R.drawable.heart);
-            btnLike.setText(Integer.toString(mLikedNum) );
-        } else  if (code == 200) {
-            Toast.makeText(getActivity(), "좋아하는 프로젝트 저장 완료!\n마이메뉴 > 좋아한 에서 확인 할 수 있습니다.",Toast.LENGTH_SHORT).show();
+        if (code == 201) {
+            Toast.makeText(getActivity(), "좋아하는 프로젝트에서 제외 되었습니다.", Toast.LENGTH_SHORT).show();
             btnLike.setCompoundDrawablesWithIntrinsicBounds(click, null, null, null);
-            ((ItemMainActivity)getActivity()).ibLike.setImageResource(R.drawable.heart_click);
+            btnLike.setCompoundDrawablesWithIntrinsicBounds(nonClick, null, null, null);
+            ((ItemMainActivity) getActivity()).ibLike.setImageResource(R.drawable.heart);
+            btnLike.setText(Integer.toString(mLikedNum));
+        } else if (code == 200) {
+            Toast.makeText(getActivity(), "좋아하는 프로젝트 저장 완료!\n마이메뉴 > 좋아한 에서 확인 할 수 있습니다.", Toast.LENGTH_SHORT).show();
+            btnLike.setCompoundDrawablesWithIntrinsicBounds(click, null, null, null);
+            ((ItemMainActivity) getActivity()).ibLike.setImageResource(R.drawable.heart_click);
             btnLike.setText(Integer.toString(mLikedNum + 1));
         }
 
@@ -208,16 +213,16 @@ public class ItemStoryFragment extends BaseFragment implements ItemStoryActivity
         tvName.setText(item.getName());
         tvCategory.setText(item.getCategory());
         tvInfo.setText(item.getInfoText());
-        ((ItemMainActivity)getActivity()).tvTitleName.setText(item.getName());
-        ((ItemMainActivity)getActivity()).mTitle = item.getName();
-        tvDay.setText(((ItemMainActivity)getActivity()).mDay);
-        tvPercent.setText(((ItemMainActivity)getActivity()).mPercent);
-        tvMoney.setText(((ItemMainActivity)getActivity()).mMoney);
+        ((ItemMainActivity) getActivity()).tvTitleName.setText(item.getName());
+        ((ItemMainActivity) getActivity()).mTitle = item.getName();
+        tvDay.setText(((ItemMainActivity) getActivity()).mDay);
+        tvPercent.setText(((ItemMainActivity) getActivity()).mPercent);
+        tvMoney.setText(((ItemMainActivity) getActivity()).mMoney);
         tvGoalmoney.setText(item.getGoal());
         tvFundingday.setText(item.getTerm());
         tvCompany_name.setText(item.getMakerName());
         Glide.with(getActivity()).load(item.getMakerImg()).into(ivCompany_image);
-        if (item.getFacebook() != null ){
+        if (item.getFacebook() != null) {
             btnCompany_homepage.setText(item.getFacebook());
         } else if (item.getInstagram() != null) {
             btnCompany_homepage.setText(item.getInstagram());
@@ -233,15 +238,15 @@ public class ItemStoryFragment extends BaseFragment implements ItemStoryActivity
         mWvSetting = mWv.getSettings();
         mWvSetting.setJavaScriptEnabled(true);
         mWvSetting.setSupportZoom(true);
-        mWvSetting.setBuiltInZoomControls(true);
-        mWvSetting.setDisplayZoomControls(true);
+        mWvSetting.setBuiltInZoomControls(false);
+        mWvSetting.setDisplayZoomControls(false);
         mWvSetting.setLoadWithOverviewMode(true);
         mWvSetting.setUseWideViewPort(true);
         mWv.loadData(item.getStory(), "text/html; charset=UTF-8", null);
 
         // 프로그레스 바
-        int idx = (((ItemMainActivity)getActivity()).mPercent).indexOf("%");
-        pb.setProgress(Integer.parseInt(((ItemMainActivity)getActivity()).mPercent.substring(0,idx)));
+        int idx = (((ItemMainActivity) getActivity()).mPercent).indexOf("%");
+        pb.setProgress(Integer.parseInt(((ItemMainActivity) getActivity()).mPercent.substring(0, idx)));
 
     }
 
@@ -282,12 +287,12 @@ public class ItemStoryFragment extends BaseFragment implements ItemStoryActivity
         mLikedNum = likedList.getLikeCnt();
         btnLike.setText(Integer.toString(mLikedNum));
         if (likedList.getIsLike() == 1) {
-            mLikedNum = likedList.getLikeCnt() -1;
+            mLikedNum = likedList.getLikeCnt() - 1;
             btnLike.setCompoundDrawablesWithIntrinsicBounds(click, null, null, null);
-            ((ItemMainActivity)getActivity()).ibLike.setImageResource(R.drawable.heart_click);
+            ((ItemMainActivity) getActivity()).ibLike.setImageResource(R.drawable.heart_click);
         } else {
             btnLike.setCompoundDrawablesWithIntrinsicBounds(nonClick, null, null, null);
-            ((ItemMainActivity)getActivity()).ibLike.setImageResource(R.drawable.heart);
+            ((ItemMainActivity) getActivity()).ibLike.setImageResource(R.drawable.heart);
         }
 
 

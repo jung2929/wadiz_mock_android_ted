@@ -9,12 +9,12 @@ public class PostReward {
     ArrayList<PostRewardList> rewardList;
 
     @SerializedName("veliName")
-    boolean veilName ;
+    int veilName ;
 
     @SerializedName("veilPrice")
-    boolean veilPrice;
+    int veilPrice;
 
-    public PostReward(ArrayList<PostRewardList> rewardList, boolean veilName, boolean veilPrice) {
+    public PostReward(ArrayList<PostRewardList> rewardList, int veilName, int veilPrice) {
         this.rewardList = rewardList;
         this.veilName = veilName;
         this.veilPrice = veilPrice;
@@ -28,19 +28,19 @@ public class PostReward {
         this.rewardList = rewardList;
     }
 
-    public boolean isVeilName() {
+    public int getVeilName() {
         return veilName;
     }
 
-    public void setVeilName(boolean veilName) {
+    public void setVeilName(int veilName) {
         this.veilName = veilName;
     }
 
-    public boolean isVeilPrice() {
+    public int getVeilPrice() {
         return veilPrice;
     }
 
-    public void setVeilPrice(boolean veilPrice) {
+    public void setVeilPrice(int veilPrice) {
         this.veilPrice = veilPrice;
     }
 }

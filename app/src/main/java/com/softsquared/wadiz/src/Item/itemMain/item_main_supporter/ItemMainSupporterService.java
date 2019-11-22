@@ -29,7 +29,7 @@ class ItemMainSupporterService {
                     return;
                 }
 
-                mItemMainSupporterActivityView.validateSuccess(defaultResponse.getResult());
+                mItemMainSupporterActivityView.validateSuccess(defaultResponse.getResult(), defaultResponse.getCode());
 
             }
 

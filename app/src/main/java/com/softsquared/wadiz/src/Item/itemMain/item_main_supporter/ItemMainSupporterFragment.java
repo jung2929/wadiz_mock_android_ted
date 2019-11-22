@@ -65,18 +65,17 @@ public class ItemMainSupporterFragment extends BaseFragment implements ItemMainS
     }
 
     @Override
-    public void validateSuccess(SupporterResult result) {
+    public void validateSuccess(SupporterResult result, int code) {
         hideProgressDialog();
-        if (result == null) {
-            tvSum.setText("0");
-        } else {
+        if (code == 200) {
             mSupporterListArrayList = result.getResult();
+            rv.setLayoutManager(new LinearLayoutManager(getActivity()));
+            tvSum.setText(Integer.toString(result.getCnt()));
+            rvAdapter = new SupporterItemRvAdapter(mSupporterListArrayList, getActivity());
+            rv.setAdapter(rvAdapter);
+        } else {
+            tvSum.setText("0");
         }
-
-        rv.setLayoutManager(new LinearLayoutManager(getActivity()));
-        tvSum.setText(Integer.toString(result.getCnt()));
-        rvAdapter = new SupporterItemRvAdapter(mSupporterListArrayList, getActivity());
-        rv.setAdapter(rvAdapter);
 
 
     }

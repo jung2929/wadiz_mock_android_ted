@@ -1,115 +1,142 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/white"
-    android:fillViewport="true">
+    android:layout_height="match_parent">
 
-    <LinearLayout
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/reward_home_sv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="230dp">
-
-            <androidx.viewpager.widget.ViewPager
-                android:id="@+id/reward_home_vp"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-
-            <ProgressBar
-                android:id="@+id/reward_home_pb"
-                style="@android:style/Widget.ProgressBar.Horizontal"
-                android:layout_width="160dp"
-                android:layout_height="2dp"
-                android:layout_alignParentBottom="true"
-                android:layout_marginLeft="20dp"
-                android:layout_marginBottom="10dp"
-                android:progress="33"
-                android:progressDrawable="@drawable/progressbar_custom_white" />
-
-        </RelativeLayout>
-
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/reward_home_rv_category"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:layout_gravity="center_vertical"
-            android:layout_marginTop="40dp"
-            android:layout_marginBottom="20dp"
-            android:orientation="horizontal"
-            android:scrollbars="none" />
+        android:background="@color/white"
+        android:fillViewport="true">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:orientation="horizontal">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-            <EditText
-                android:id="@+id/reward_home_et"
-                android:layout_width="0dp"
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="230dp">
+
+                <androidx.viewpager.widget.ViewPager
+                    android:id="@+id/reward_home_vp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+                <ProgressBar
+                    android:id="@+id/reward_home_pb"
+                    style="@android:style/Widget.ProgressBar.Horizontal"
+                    android:layout_width="160dp"
+                    android:layout_height="2dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginBottom="10dp"
+                    android:progress="33"
+                    android:progressDrawable="@drawable/progressbar_custom_white" />
+
+            </RelativeLayout>
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/reward_home_rv_category"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginTop="40dp"
+                android:layout_marginBottom="20dp"
+                android:orientation="horizontal"
+                android:scrollbars="none" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/reward_home_et"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="4"
+                    android:background="@drawable/customborder_sideline"
+                    android:drawableEnd="@drawable/search_small"
+                    android:fontFamily="@font/nanumbarungothic"
+                    android:hint="  검색"
+                    android:maxLines="1"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="3dp"
+                    android:textSize="13sp" />
+
+                <Button
+                    android:id="@+id/reward_home_control"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2.5"
+                    android:background="@drawable/customborder_sideline"
+                    android:drawableStart="@drawable/control"
+                    android:drawablePadding="5dp"
+                    android:fontFamily="@font/nanumbarungothic"
+                    android:paddingLeft="13dp"
+                    android:paddingRight="13dp"
+                    android:text="전체"
+                    android:textSize="13sp" />
+
+                <Button
+                    android:id="@+id/reward_home_order"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2.5"
+                    android:background="@drawable/customborder_sideline"
+                    android:drawableStart="@drawable/order"
+                    android:drawablePadding="5dp"
+                    android:fontFamily="@font/nanumbarungothic"
+                    android:maxLines="1"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:text="추천순"
+                    android:textSize="13sp" />
+
+
+                <ImageButton
+                    android:id="@+id/reward_home_showlist"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1.5"
+                    android:background="@drawable/customborder_sideline"
+                    android:padding="5dp"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/smalllist" />
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/reward_home_lv"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="4"
-                android:background="@drawable/customborder_sideline"
-                android:drawableEnd="@drawable/search_small"
-                android:fontFamily="@font/nanumbarungothic"
-                android:hint="  검색"
-                android:paddingLeft="5dp"
-                android:maxLines="1"
-                android:paddingRight="3dp"
-                android:textSize="13sp" />
-
-            <Button
-                android:id="@+id/reward_home_control"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="2.5"
-                android:background="@drawable/customborder_sideline"
-                android:drawableStart="@drawable/control"
-                android:drawablePadding="5dp"
-                android:fontFamily="@font/nanumbarungothic"
-                android:paddingLeft="13dp"
-                android:paddingRight="13dp"
-                android:text="전체"
-                android:textSize="13sp" />
-
-            <Button
-                android:id="@+id/reward_home_order"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="2.5"
-                android:background="@drawable/customborder_sideline"
-                android:drawableStart="@drawable/order"
-                android:drawablePadding="5dp"
-                android:fontFamily="@font/nanumbarungothic"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:text="추천순"
-                android:maxLines="1"
-                android:textSize="13sp" />
+                android:layout_marginTop="10dp"
+                android:nestedScrollingEnabled="false" />
 
 
-            <ImageButton
-                android:id="@+id/reward_home_showlist"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1.5"
-                android:background="@drawable/customborder_sideline"
-                android:padding="5dp"
-                android:scaleType="centerInside"
-                android:src="@drawable/smalllist" />
+
         </LinearLayout>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/reward_home_lv"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="10dp"
-            android:nestedScrollingEnabled="false" />
+    </androidx.core.widget.NestedScrollView>
 
-    </LinearLayout>
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/reward_home_btn_floating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/white"
+        android:src="@drawable/floating"
+        app:borderWidth="0dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="10dp"
+        android:layout_marginRight="10dp"
+        android:visibility="visible"
+        app:fabSize="normal" />
 
-</androidx.core.widget.NestedScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

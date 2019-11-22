@@ -90,6 +90,14 @@ public class ItemMainActivity extends BaseActivity implements ItemMainActivityVi
             }
         });
 
+        btnReward.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onFragmentChange(0);
+                ItemStoryFragment fragment = (ItemStoryFragment) getSupportFragmentManager().findFragmentById(R.id.item_main_container);
+                fragment.scrollstart();
+            }
+        });
         btnFunding.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

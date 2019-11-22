@@ -14,6 +14,8 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
@@ -22,10 +24,12 @@ import android.widget.ProgressBar;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.widget.NestedScrollView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.softsquared.wadiz.R;
 import com.softsquared.wadiz.src.BaseFragment;
 import com.softsquared.wadiz.src.category.CategoryActivity;
@@ -65,7 +69,10 @@ public class RewardHomeFragment extends BaseFragment implements RewardHomeView {
     SmallItemRvAdapter smallItemRvAdapter;
     BigItemRvAdapter bigItemRvAdapter;
     String mSearchWord;
-    int mPbNum;
+    FloatingActionButton mBtnFloating;
+    NestedScrollView mSv;
+    boolean isFabOpen = false;
+    private Animation fab_open, fab_close;
 
     public RewardHomeFragment() {
 
@@ -95,8 +102,24 @@ public class RewardHomeFragment extends BaseFragment implements RewardHomeView {
         mOrder = "recommend";
         rvItem = view.findViewById(R.id.reward_home_lv);
         rvCategory = view.findViewById(R.id.reward_home_rv_category);
+        mBtnFloating = view.findViewById(R.id.reward_home_btn_floating);
+        mSv = view.findViewById(R.id.reward_home_sv);
+        fab_open = AnimationUtils.loadAnimation(getActivity(), R.anim.btn_open);
+        fab_close = AnimationUtils.loadAnimation(getActivity(), R.anim.btn_close);
 
         tryGetTest();
+
+        rvItem.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                if (dy < 0) {
+                    mBtnFloating.show();
+                }
+                else if (dy > 0) {
+                    mBtnFloating.hide();
+                }
+            }
+        });
 
         //카테고리 클릭 이벤트 구현
         rvCategory.addOnItemTouchListener(new RecyclerTouchListener(getActivity(), rvCategory, new ClickListener() {
@@ -183,6 +206,13 @@ public class RewardHomeFragment extends BaseFragment implements RewardHomeView {
             }
         });
 
+        mBtnFloating.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mSv.smoothScrollTo(0, 0);
+            }
+        });
+
         etSearch.setOnKeyListener(new View.OnKeyListener() {
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
@@ -218,6 +248,19 @@ public class RewardHomeFragment extends BaseFragment implements RewardHomeView {
         return view;
     }
 
+
+    private void toggleFab() {
+
+        if (isFabOpen) {
+            mBtnFloating.startAnimation(fab_close);
+            isFabOpen = false;
+
+        } else {
+            mBtnFloating.startAnimation(fab_open);
+            isFabOpen = true;
+        }
+
+    }
 
     //리사이클러뷰 클릭 리스너 추가
     public interface ClickListener {

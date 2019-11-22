@@ -48,9 +48,10 @@ public class PurchaseSecondActivity extends BaseActivity implements PurchaseSeco
     PutDeliveryList mPutDeliveryList = new PutDeliveryList(null, null, null);
     ArrayList<RewardList> mRewardLists = new ArrayList<>();
     ArrayList<PostRewardList> mPostRewardLists = new ArrayList<>();
-    PostReward mPostRewards = new PostReward(mPostRewardLists, false, false);
+    PostReward mPostRewards = new PostReward(mPostRewardLists, 0,0);
     int mProjectIdx;
     String mProjectName;
+    int mVeilName, mVeilPrice;
 
     @Override
     public void onBackPressed() {
@@ -101,15 +102,25 @@ public class PurchaseSecondActivity extends BaseActivity implements PurchaseSeco
         mResultMoney.setText(String.format("%,d", (getintent.getIntExtra("money", 0) + getintent.getIntExtra("delivery", 0))));
         mRewardLists = (ArrayList<RewardList>) getIntent().getSerializableExtra("rewardList");
         mProjectIdx = getintent.getIntExtra("projectidx", 999);
-
-        mPostRewards.setVeilName(getintent.getBooleanExtra("veilName", false));
-        mPostRewards.setVeilPrice(getintent.getBooleanExtra("veilPrice", false));
-
-        for (int i=0; i<mRewardLists.size(); i++) {
-            mPostRewardLists.add(new PostRewardList(mRewardLists.get(i).getRewardIdx()+1, mRewardLists.get(i).getRewardNum()));
-            System.out.println("리워드 리스트 : "  +mPostRewardLists.get(i).getRewardIdx() + mPostRewardLists.get(i).getQuantity());
+        if (getintent.getBooleanExtra("veilName", false)) {
+            mVeilName = 1;
+        } else {
+            mVeilName = 0;
         }
+        if (getintent.getBooleanExtra("veilPrice", false)) {
+            mVeilPrice = 1;
+        } else {
+            mVeilPrice = 0;
+        }
+        mPostRewards.setVeilName(mVeilName);
+        mPostRewards.setVeilPrice(mVeilPrice);
+        System.out.println(mVeilName);
+        System.out.println(mVeilPrice);
 
+        for (int i = 0; i < mRewardLists.size(); i++) {
+            mPostRewardLists.add(new PostRewardList(mRewardLists.get(i).getRewardIdx() + 1, mRewardLists.get(i).getRewardNum()));
+            System.out.println("리워드 리스트 : " + mPostRewardLists.get(i).getRewardIdx() + mPostRewardLists.get(i).getQuantity());
+        }
 
 
         tryGetCard();
@@ -329,7 +340,7 @@ public class PurchaseSecondActivity extends BaseActivity implements PurchaseSeco
             System.out.println("리워드 구매 성공");
             Intent intent = new Intent(getApplicationContext(), PurchaseLastActivity.class);
             intent.putExtra("projectidx", mProjectIdx);
-            intent.putExtra("projectname", mProjectName );
+            intent.putExtra("projectname", mProjectName);
             startActivity(intent);
 
 

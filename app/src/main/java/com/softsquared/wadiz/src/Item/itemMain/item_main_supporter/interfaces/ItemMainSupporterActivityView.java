@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public interface ItemMainSupporterActivityView {
 
-    void validateSuccess(SupporterResult result);
+    void validateSuccess(SupporterResult result, int code);
 
     void validateFailure(String message);
 }
