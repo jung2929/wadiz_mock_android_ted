@@ -32,7 +32,7 @@
             android:fontFamily="@font/nanumbarungothic"
             android:maxLines="2"
             android:textColor="@color/black"
-            android:textSize="16sp"
+            android:textSize="14sp"
             android:textStyle="bold" />
 
         <LinearLayout
@@ -54,7 +54,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/nanumbarungothicbold"
                     android:textColor="@color/percent"
-                    android:textSize="16sp" />
+                    android:textSize="14sp" />
 
             </LinearLayout>
 
